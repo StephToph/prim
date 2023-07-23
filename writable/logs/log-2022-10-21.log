@@ -1,0 +1,158 @@
+ERROR - 2022-10-21 09:49:53 --> Table 'fuelmedb.fl_wallets' doesn't exist
+CRITICAL - 2022-10-21 09:49:53 --> Table 'fuelmedb.fl_wallets' doesn't exist
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(121): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\fuelme\app\Models\Crud.php(166): App\Models\Crud->read2('id', '4', 'user_id', '6', 'wallets')
+#6 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(248): App\Models\Crud->read_field2('id', '4', 'user_id', '6', 'wallets', 'amount')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->list('load')
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#9 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2022-10-21 11:55:02 --> Undefined property: stdClass::$name
+#0 C:\xampp\htdocs\fuelme\app\Views\wallets\list.php(76): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 76, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('wallets/list', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(327): view('wallets/list', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->list()
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-21 12:16:17 --> Too few arguments to function App\Controllers\Accounts::get_state(), 0 passed in C:\xampp\htdocs\fuelme\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->get_state()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-21 12:17:42 --> Too few arguments to function App\Controllers\Accounts::get_state(), 0 passed in C:\xampp\htdocs\fuelme\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->get_state()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2022-10-21 12:26:57 --> Unknown column 'stat1ion_id' in 'where clause'
+CRITICAL - 2022-10-21 12:26:57 --> Unknown column 'stat1ion_id' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1108): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(228): App\Models\Crud->filter_wallet(25, 0, '3', '1', '117', '', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->list('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-21 13:13:47 --> Undefined variable: curr
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(324): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 324, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->list('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-21 13:13:59 --> Undefined variable: curr
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(324): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 324, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->list('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-21 13:31:25 --> A non well formed numeric value encountered
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(605): CodeIgniter\Debug\Exceptions->errorHandler(8, 'A non well form...', 'C:\\xampp\\htdocs...', 605, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->transaction('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-21 13:31:51 --> A non well formed numeric value encountered
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Wallets.php(605): CodeIgniter\Debug\Exceptions->errorHandler(8, 'A non well form...', 'C:\\xampp\\htdocs...', 605, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Wallets->transaction('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wallets))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-10-21 14:18:53 --> Unknown column 'name' in 'where clause'
+CRITICAL - 2022-10-21 14:18:53 --> Unknown column 'name' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1763): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(176): App\Models\Crud->filter_order(25, 0, '3', 'all', 'all', 'all', '', '', '', '', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-21 14:33:33 --> Unknown column 'name' in 'where clause'
+CRITICAL - 2022-10-21 14:33:33 --> Unknown column 'name' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1763): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(176): App\Models\Crud->filter_order(25, 0, '3', 'all', 'all', 'all', '', '', '', '', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-21 14:36:04 --> Unknown column 'name' in 'where clause'
+CRITICAL - 2022-10-21 14:36:04 --> Unknown column 'name' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1763): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(176): App\Models\Crud->filter_order(25, 0, '3', 'all', 'all', 'all', '', '', '', '', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-21 14:36:31 --> Unknown column 'name' in 'where clause'
+CRITICAL - 2022-10-21 14:36:31 --> Unknown column 'name' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1763): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(176): App\Models\Crud->filter_order(25, 0, '3', 'all', 'all', 'all', '', '', '', '', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-21 14:41:53 --> Undefined property: stdClass::$product_id
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(189): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 189, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-21 14:42:43 --> Undefined property: stdClass::$approved
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(191): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 191, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-21 14:45:42 --> Undefined variable: pend
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(224): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 224, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-21 14:46:38 --> Undefined property: stdClass::$name
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(85): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 85, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

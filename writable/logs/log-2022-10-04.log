@@ -1,0 +1,39 @@
+ERROR - 2022-10-04 11:06:14 --> Unknown column 'title' in 'where clause'
+CRITICAL - 2022-10-04 11:06:14 --> Unknown column 'title' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(889): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Product.php(179): App\Models\Crud->filter_pump('', '', '3', 'all', 'p')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Product->pump('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-04 11:06:26 --> Unknown column 'title' in 'where clause'
+CRITICAL - 2022-10-04 11:06:26 --> Unknown column 'title' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(889): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Product.php(179): App\Models\Crud->filter_pump('', '', '3', 'all', 'pr')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Product->pump('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-04 14:22:56 --> Column 'state_id' cannot be null
+CRITICAL - 2022-10-04 14:22:56 --> Column 'state_id' cannot be null
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `fl...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `fl...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `fl...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `fl...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(18): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Product.php(413): App\Models\Crud->create('branch', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Product->branch('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}

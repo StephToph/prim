@@ -1,0 +1,136 @@
+CRITICAL - 2022-10-23 18:07:20 --> Undefined property: stdClass::$name
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(85): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 85, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '16')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:09:20 --> Undefined property: stdClass::$name
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(85): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 85, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:16:37 --> Undefined property: stdClass::$product_id
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(93): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 93, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '16')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:24:56 --> Undefined property: stdClass::$quantity
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(124): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 124, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:25:31 --> Undefined property: stdClass::$unit
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(124): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 124, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:26:26 --> Undefined property: stdClass::$delivery_address
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(134): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 134, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:26:39 --> Undefined property: stdClass::$unit
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(136): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 136, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-23 18:27:06 --> Undefined property: stdClass::$staus
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(141): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 141, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-10-23 18:27:22 --> Table 'fuelmedb.fl_account' doesn't exist
+CRITICAL - 2022-10-23 18:27:22 --> Table 'fuelmedb.fl_account' doesn't exist
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\fuelme\app\Models\Crud.php(155): App\Models\Crud->read_single('user_id', '100', 'account')
+#6 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(149): App\Models\Crud->read_field('user_id', '100', 'account', 'name')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '16')
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#9 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2022-10-23 18:35:06 --> Undefined variable: e_product_image
+#0 C:\xampp\htdocs\fuelme\app\Views\order\list_form.php(44): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 44, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('order/list_form', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(366): view('order/list_form', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-23 18:35:47 --> Undefined variable: e_product_image
+#0 C:\xampp\htdocs\fuelme\app\Views\order\list_form.php(44): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 44, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('order/list_form', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(366): view('order/list_form', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-23 18:35:59 --> Undefined variable: e_delivery_cost
+#0 C:\xampp\htdocs\fuelme\app\Views\order\list_form.php(108): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 108, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('order/list_form', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(366): view('order/list_form', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '15')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-23 18:36:24 --> Undefined variable: e_kg
+#0 C:\xampp\htdocs\fuelme\app\Views\order\list_form.php(98): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 98, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('order/list_form', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(366): view('order/list_form', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-23 18:37:36 --> Undefined variable: e_delivery_cost
+#0 C:\xampp\htdocs\fuelme\app\Views\order\list_form.php(100): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 100, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('order/list_form', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(366): view('order/list_form', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '17')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-23 18:49:04 --> Undefined variable: e_litre
+#0 C:\xampp\htdocs\fuelme\app\Views\order\list_form.php(98): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 98, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('order/list_form', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Order.php(366): view('order/list_form', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Order->list('manage', 'edit', '15')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Order))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

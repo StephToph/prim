@@ -1,0 +1,61 @@
+ERROR - 2022-11-14 10:29:26 --> Table 'angeldb.an_order' doesn't exist
+CRITICAL - 2022-11-14 10:29:26 --> Table 'angeldb.an_order' doesn't exist
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*)...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1539): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(738): CodeIgniter\Database\BaseBuilder->countAllResults()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(58): App\Models\Crud->date_check('2022-01-01', 'reg_date', '2022-01-31', 'reg_date', 'order')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->sales_rev()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-14 10:29:26 --> Unknown column 'is_partner' in 'where clause'
+CRITICAL - 2022-11-14 10:29:26 --> Unknown column 'is_partner' in 'where clause'
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(302): App\Models\Crud->read_single('is_partner', 1, 'user')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->top_fuel()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-14 10:29:26 --> Unknown column 'is_partner' in 'where clause'
+CRITICAL - 2022-11-14 10:29:26 --> Unknown column 'is_partner' in 'where clause'
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(390): App\Models\Crud->read_single('is_partner', 1, 'user')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->least_fuel()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-14 10:29:26 --> Table 'angeldb.an_category' doesn't exist
+CRITICAL - 2022-11-14 10:29:26 --> Table 'angeldb.an_category' doesn't exist
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Models\Crud.php(155): App\Models\Crud->read_single('name', 'Petrol', 'category')
+#6 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(120): App\Models\Crud->read_field('name', 'Petrol', 'category', 'id')
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->sales_qty()
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2022-11-14 10:52:38 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(485): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 485, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(283): App\Controllers\Api->execute('14', 'rhapsody', 'rhapsody', '21st november')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}

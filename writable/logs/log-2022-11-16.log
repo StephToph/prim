@@ -1,0 +1,128 @@
+CRITICAL - 2022-11-16 09:26:24 --> Undefined variable: query
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(533): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 533, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(599): App\Controllers\Api->rhapsody_execute(' these monday', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from these mond...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 09:31:09 --> syntax error, unexpected ','
+#0 C:\xampp\htdocs\angel\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('dashboard/test/...')
+#1 C:\xampp\htdocs\angel\system\CodeIgniter.php(719): CodeIgniter\Router\Router->handle('dashboard/test/...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-16 09:47:42 --> Call to undefined function App\Controllers\str_contains()
+#0 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#1 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-11-16 09:51:45 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(352): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 352, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(600): App\Controllers\Api->rhapsody_execute(' this monday', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this monda...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 09:59:42 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(352): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 352, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(600): App\Controllers\Api->rhapsody_execute(' this monday', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this monda...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 10:03:30 --> Undefined offset: 2
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(514): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 514, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(600): App\Controllers\Api->rhapsody_execute(' today', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'for today')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 10:17:52 --> Undefined variable: query
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(535): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 535, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' today', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'for today')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 10:52:44 --> syntax error, unexpected 'private' (T_PRIVATE)
+#0 C:\xampp\htdocs\angel\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('api/intent')
+#1 C:\xampp\htdocs\angel\system\CodeIgniter.php(719): CodeIgniter\Router\Router->handle('api/intent')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-16 11:47:57 --> Undefined offset: 2
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(370): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 370, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' tomorrow', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from tomorrow')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 11:48:30 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(350): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 350, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' this monday', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this monda...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 11:48:57 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(350): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 350, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' this week mond...', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this week ...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 11:52:21 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(350): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 350, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' this monday', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this monda...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 11:52:30 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(350): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 350, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' this week', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this week')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 11:57:26 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(351): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 351, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' this week', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from this week')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-16 11:58:51 --> Undefined offset: 2
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(370): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 370, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(602): App\Controllers\Api->rhapsody_execute(' tomorrow', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(286): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from tomorrow')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}

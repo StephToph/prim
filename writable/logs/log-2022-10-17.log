@@ -1,0 +1,121 @@
+CRITICAL - 2022-10-17 10:36:52 --> Undefined property: stdClass::$product
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(221): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 221, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-10-17 11:14:11 --> Column 'title' cannot be null
+CRITICAL - 2022-10-17 11:14:11 --> Column 'title' cannot be null
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `fl...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `fl...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `fl...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `fl...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(18): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(165): App\Models\Crud->create('support', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-17 11:14:24 --> Column 'title' cannot be null
+CRITICAL - 2022-10-17 11:14:24 --> Column 'title' cannot be null
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `fl...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `fl...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `fl...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `fl...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(18): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(165): App\Models\Crud->create('support', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-17 11:30:14 --> Undefined variable: img_id
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(132): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 132, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('manage', 'edit', '14')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-17 12:12:22 --> Invalid file: support/comment.php
+#0 C:\xampp\htdocs\fuelme\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('support/comment...')
+#1 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('support/comment', Array, true)
+#2 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(522): view('support/comment', Array)
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->comment('15')
+#4 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-10-17 12:16:11 --> Undefined property: CodeIgniter\View\View::$Crud
+#0 C:\xampp\htdocs\fuelme\app\Views\support\comment.php(53): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 53, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('support/comment', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(522): view('support/comment', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->comment('15')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-17 15:32:30 --> Undefined property: App\Controllers\Support::$input
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(403): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 403, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->comment('14', 'load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-17 15:56:39 --> Call to undefined method CodeIgniter\Session\Session::userdata()
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->save_comment()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-17 15:56:44 --> Call to undefined method CodeIgniter\Session\Session::userdata()
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->save_comment()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-17 15:57:56 --> Call to undefined method CodeIgniter\Session\Session::userdata()
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->save_comment()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-17 15:57:59 --> Call to undefined method CodeIgniter\Session\Session::userdata()
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->save_comment()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-17 15:58:14 --> Call to undefined method CodeIgniter\Session\Session::userdata()
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->save_comment()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-17 16:56:29 --> Undefined property: stdClass::$branch_id
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(318): App\Models\Crud->read_field('id', '3', 'user', 'branch_id')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('load')
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#4 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-10-17 16:56:41 --> Undefined property: stdClass::$branch_id
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(318): App\Models\Crud->read_field('id', '3', 'user', 'branch_id')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('load')
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#4 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-10-17 22:20:39 --> Undefined property: stdClass::$branch_id
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(318): App\Models\Crud->read_field('id', '3', 'user', 'branch_id')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('load')
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#4 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}

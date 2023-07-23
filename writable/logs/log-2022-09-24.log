@@ -1,0 +1,138 @@
+CRITICAL - 2022-09-24 19:32:51 --> Undefined variable: counts
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(258): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 258, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-09-24 19:33:08 --> Undefined variable: counts
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(258): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 258, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-09-24 19:34:30 --> Undefined variable: counts
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(258): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 258, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-09-24 19:37:31 --> Undefined variable: counts
+#0 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(258): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 258, Array)
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('load')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-09-24 19:59:00 --> Undefined variable: fullname
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(34): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 34, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:01:38 --> Undefined variable: fullname
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(34): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 34, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:01:49 --> Undefined variable: fullname
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(34): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 34, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:03:30 --> Undefined variable: id
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(38): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 38, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:04:35 --> Undefined variable: id
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(38): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 38, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:07:52 --> Undefined variable: dob
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(62): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 62, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:09:25 --> Undefined variable: v_dob
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(62): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 62, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(275): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:09:56 --> Undefined variable: reg_date
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(88): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 88, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(276): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:10:46 --> Undefined variable: reg_date
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(88): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 88, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(277): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-09-24 20:11:00 --> Undefined variable: country_id
+#0 C:\xampp\htdocs\fuelme\app\Views\accounts\partner_form.php(100): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 100, Array)
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/partne...', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(277): view('accounts/partne...', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->partner('manage', 'profile', '2')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

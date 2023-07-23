@@ -1,0 +1,41 @@
+ERROR - 2022-09-27 16:03:38 --> Unknown column 'title' in 'where clause'
+CRITICAL - 2022-09-27 16:03:38 --> Unknown column 'title' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1056): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Activity.php(73): App\Models\Crud->filter_activity(25, 0, '3', 'p', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Activity->index('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Activity))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-09-27 16:03:48 --> Unknown column 'title' in 'where clause'
+CRITICAL - 2022-09-27 16:03:48 --> Unknown column 'title' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(1056): CodeIgniter\Database\BaseBuilder->get(25)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Activity.php(73): App\Models\Crud->filter_activity(25, 0, '3', 'pa', '', '')
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Activity->index('load')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Activity))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-09-27 16:22:19 --> syntax error, unexpected '}', expecting end of file
+#0 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('dashboard', Array, true)
+#2 C:\xampp\htdocs\fuelme\app\Controllers\Dashboard.php(28): view('dashboard', Array)
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Dashboard->index()
+#4 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-09-27 23:08:16 --> Too few arguments to function App\Controllers\Accounts::get_state(), 0 passed in C:\xampp\htdocs\fuelme\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->get_state()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}

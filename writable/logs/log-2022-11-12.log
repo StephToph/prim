@@ -1,0 +1,421 @@
+CRITICAL - 2022-11-12 11:53:53 --> Undefined property: stdClass::$lang_id
+#0 C:\xampp\htdocs\angel\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(242): App\Models\Crud->read_field('id', '3', 'user', 'lang_id')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+ERROR - 2022-11-12 12:53:27 --> Unknown column 'is_partner' in 'where clause'
+CRITICAL - 2022-11-12 12:53:27 --> Unknown column 'is_partner' in 'where clause'
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(302): App\Models\Crud->read_single('is_partner', 1, 'user')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->top_fuel()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-12 12:53:27 --> Table 'angeldb.an_category' doesn't exist
+CRITICAL - 2022-11-12 12:53:27 --> Table 'angeldb.an_category' doesn't exist
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Models\Crud.php(155): App\Models\Crud->read_single('name', 'Petrol', 'category')
+#6 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(120): App\Models\Crud->read_field('name', 'Petrol', 'category', 'id')
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->sales_qty()
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2022-11-12 12:53:27 --> Table 'angeldb.an_order' doesn't exist
+CRITICAL - 2022-11-12 12:53:27 --> Table 'angeldb.an_order' doesn't exist
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*)...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1539): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(738): CodeIgniter\Database\BaseBuilder->countAllResults()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(58): App\Models\Crud->date_check('2022-01-01', 'reg_date', '2022-01-31', 'reg_date', 'order')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->sales_rev()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-12 12:53:27 --> Unknown column 'is_partner' in 'where clause'
+CRITICAL - 2022-11-12 12:53:27 --> Unknown column 'is_partner' in 'where clause'
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(390): App\Models\Crud->read_single('is_partner', 1, 'user')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->least_fuel()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-12 13:57:33 --> Table 'angeldb.an_order' doesn't exist
+CRITICAL - 2022-11-12 13:57:33 --> Table 'angeldb.an_order' doesn't exist
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*)...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1539): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(738): CodeIgniter\Database\BaseBuilder->countAllResults()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(58): App\Models\Crud->date_check('2022-01-01', 'reg_date', '2022-01-31', 'reg_date', 'order')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->sales_rev()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-12 13:57:33 --> Table 'angeldb.an_category' doesn't exist
+CRITICAL - 2022-11-12 13:57:33 --> Table 'angeldb.an_category' doesn't exist
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Models\Crud.php(155): App\Models\Crud->read_single('name', 'Petrol', 'category')
+#6 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(120): App\Models\Crud->read_field('name', 'Petrol', 'category', 'id')
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->sales_qty()
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2022-11-12 13:57:34 --> Unknown column 'is_partner' in 'where clause'
+CRITICAL - 2022-11-12 13:57:34 --> Unknown column 'is_partner' in 'where clause'
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(390): App\Models\Crud->read_single('is_partner', 1, 'user')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->least_fuel()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-11-12 13:57:34 --> Unknown column 'is_partner' in 'where clause'
+CRITICAL - 2022-11-12 13:57:34 --> Unknown column 'is_partner' in 'where clause'
+#0 C:\xampp\htdocs\angel\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\angel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\angel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\angel\app\Models\Crud.php(78): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\angel\app\Controllers\Dashboard.php(302): App\Models\Crud->read_single('is_partner', 1, 'user')
+#6 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->top_fuel()
+#7 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#8 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-11-12 19:48:54 --> Too few arguments to function App\Controllers\Dashboard::test(), 0 passed in C:\xampp\htdocs\angel\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->test()
+#1 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-11-12 19:51:13 --> Too few arguments to function App\Controllers\Dashboard::test(), 0 passed in C:\xampp\htdocs\angel\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Dashboard->test()
+#1 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-11-12 20:22:03 --> [] operator not supported for strings
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(271): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'november 2022')
+#1 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-12 21:18:19 --> Undefined offset: 4
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(370): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 370, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(271): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteen of nove...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 21:40:13 --> Undefined offset: 3
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(379): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 379, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'first november')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 21:44:29 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(388): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 388, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'twenty first of...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:10:08 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(404): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 404, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteen of ...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:11:23 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(404): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 404, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteen of ...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:11:42 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(405): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 405, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteen of ...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:12:40 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(404): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 404, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteen of ...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:12:55 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(404): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 404, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteen of ...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:13:32 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(407): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 407, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteen of ...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:15:40 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(407): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 407, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:16:34 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(363): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 363, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:17:21 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(410): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 410, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:17:36 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(410): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 410, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:18:12 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(410): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 410, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:19:47 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(410): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 410, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:21:45 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(410): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 410, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:22:31 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(412): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 412, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:23:22 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(412): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 412, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:24:40 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:25:42 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:28:44 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:29:22 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:29:27 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:32:18 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(417): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 417, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:34:05 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:34:28 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'the fifteenth o...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:35:14 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(415): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 415, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:36:23 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(412): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 412, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:42:56 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(417): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 417, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:43:33 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(435): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 435, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:44:02 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(436): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 436, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:45:03 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(436): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 436, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:45:57 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(437): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 437, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:48:14 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(439): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 439, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 22:49:06 --> Undefined variable: date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(439): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 439, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'fifteenth of no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-12 23:08:42 --> Undefined offset: 6
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(385): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 385, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(273): App\Controllers\Api->execute('1', 'rhapsody', 'show me rhapsod...', 'twenty first no...')
+#2 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}

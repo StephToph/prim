@@ -1,0 +1,132 @@
+ERROR - 2022-10-19 15:55:00 --> Table 'fuelmedb.fl_ntify' doesn't exist
+CRITICAL - 2022-10-19 15:55:00 --> Table 'fuelmedb.fl_ntify' doesn't exist
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `fl...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `fl...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `fl...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `fl...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(18): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(154): App\Models\Crud->create('ntify', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('manage', 'edit', '16')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-19 15:59:55 --> syntax error, unexpected 'if' (T_IF), expecting function (T_FUNCTION) or const (T_CONST)
+#0 C:\xampp\htdocs\fuelme\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('support/list/ma...')
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(719): CodeIgniter\Router\Router->handle('support/list/ma...')
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-10-19 21:03:52 --> Too few arguments to function App\Controllers\Auth::get_state(), 0 passed in C:\xampp\htdocs\fuelme\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Auth->get_state()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-19 21:04:15 --> Too few arguments to function App\Controllers\Auth::get_state(), 0 passed in C:\xampp\htdocs\fuelme\system\CodeIgniter.php on line 825 and exactly 1 expected
+#0 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Auth->get_state()
+#1 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#2 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-10-19 21:05:06 --> Undefined property: stdClass::$e_lga
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Views\accounts\staff_form.php(245): App\Models\Crud->read_field('id', '3', 'user', 'e_lga')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/staff_...', Array, true)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(751): view('accounts/staff_...', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->staff('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-19 21:05:18 --> Undefined property: stdClass::$e_lga
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Views\accounts\staff_form.php(245): App\Models\Crud->read_field('id', '3', 'user', 'e_lga')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/staff_...', Array, true)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(751): view('accounts/staff_...', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->staff('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-19 21:05:38 --> Undefined property: stdClass::$lga
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Views\accounts\staff_form.php(245): App\Models\Crud->read_field('id', '3', 'user', 'lga')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/staff_...', Array, true)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(751): view('accounts/staff_...', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->staff('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-19 21:06:14 --> Undefined property: stdClass::$branch
+#0 C:\xampp\htdocs\fuelme\app\Models\Crud.php(158): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 158, Array)
+#1 C:\xampp\htdocs\fuelme\app\Views\accounts\staff_form.php(246): App\Models\Crud->read_field('id', '3', 'user', 'branch')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('accounts/staff_...', Array, true)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Accounts.php(751): view('accounts/staff_...', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Accounts->staff('manage')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Accounts))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-10-19 21:41:51 --> Column 'item_id' cannot be null
+CRITICAL - 2022-10-19 21:41:51 --> Column 'item_id' cannot be null
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `fl...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `fl...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `fl...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `fl...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(18): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\fuelme\app\Controllers\Support.php(100): App\Models\Crud->create('notify', Array)
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Support->list('manage', 'escalate', '19')
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Support))
+#8 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-10-19 21:54:50 --> Too few arguments to function App\Models\Crud::date_check1(), 5 passed in C:\xampp\htdocs\fuelme\app\Views\dashboard.php on line 67 and exactly 7 expected
+#0 C:\xampp\htdocs\fuelme\app\Views\dashboard.php(67): App\Models\Crud->date_check1('2022-10-01', 'reg_date', '2022-10-19', 'reg_date', 'order')
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('dashboard', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Dashboard.php(41): view('dashboard', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Dashboard->index()
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-10-19 21:55:05 --> Too few arguments to function App\Models\Crud::date_check1(), 5 passed in C:\xampp\htdocs\fuelme\app\Views\dashboard.php on line 71 and exactly 7 expected
+#0 C:\xampp\htdocs\fuelme\app\Views\dashboard.php(71): App\Models\Crud->date_check1('2022-10-01', 'reg_date', '2022-10-19', 'reg_date', 'order')
+#1 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('dashboard', Array, true)
+#4 C:\xampp\htdocs\fuelme\app\Controllers\Dashboard.php(41): view('dashboard', Array)
+#5 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Dashboard->index()
+#6 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#7 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-10-19 22:00:54 --> Unknown column 'staus' in 'where clause'
+CRITICAL - 2022-10-19 22:00:54 --> Unknown column 'staus' in 'where clause'
+#0 C:\xampp\htdocs\fuelme\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*)...', 0)
+#1 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\fuelme\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\fuelme\system\Database\BaseBuilder.php(1539): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 C:\xampp\htdocs\fuelme\app\Models\Crud.php(245): CodeIgniter\Database\BaseBuilder->countAllResults()
+#5 C:\xampp\htdocs\fuelme\app\Views\dashboard.php(116): App\Models\Crud->check('staus', 'used', 'order')
+#6 C:\xampp\htdocs\fuelme\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\fuelme\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\xampp\htdocs\fuelme\system\Common.php(1089): CodeIgniter\View\View->render('dashboard', Array, true)
+#9 C:\xampp\htdocs\fuelme\app\Controllers\Dashboard.php(41): view('dashboard', Array)
+#10 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(825): App\Controllers\Dashboard->index()
+#11 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#12 C:\xampp\htdocs\fuelme\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\xampp\htdocs\fuelme\index.php(37): CodeIgniter\CodeIgniter->run()
+#14 {main}

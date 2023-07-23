@@ -1,0 +1,18 @@
+CRITICAL - 2022-11-21 12:45:01 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(385): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 385, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(806): App\Controllers\Api->rhapsody_execute(' 12 to 15 novem...', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(289): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from 12 to 15 n...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-11-21 12:47:10 --> Undefined variable: start_date
+#0 C:\xampp\htdocs\angel\app\Controllers\Api.php(385): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 385, Array)
+#1 C:\xampp\htdocs\angel\app\Controllers\Api.php(806): App\Controllers\Api->rhapsody_execute(' 12 to 15 novem...', '8')
+#2 C:\xampp\htdocs\angel\app\Controllers\Api.php(289): App\Controllers\Api->execute('3', '8', 'rhapsody', 'rhapsody', 'from 12 to 15 n...')
+#3 C:\xampp\htdocs\angel\system\CodeIgniter.php(825): App\Controllers\Api->intent()
+#4 C:\xampp\htdocs\angel\system\CodeIgniter.php(412): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#5 C:\xampp\htdocs\angel\system\CodeIgniter.php(320): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\angel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
