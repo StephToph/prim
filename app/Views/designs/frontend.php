@@ -90,137 +90,11 @@
                                         <a href="<?=site_url(); ?>" class="nav-link active">Home</a>
                                     </li>
 									<li class="nav-item">
-										<a href="#" class="nav-link dropdown-toggle">Services</a>
-										<ul class="dropdown-menu dropdown-style">
-											<li class="nav-item">
-												<a href="services.html" class="nav-link">services</a>
-											</li>
-											<li class="nav-item">
-												<a href="service-details.html" class="nav-link">service Details</a>
-											</li>
-										</ul>
-									</li>
+                                        <a href="<?=site_url(); ?>" class="nav-link ">Scholarship</a>
+                                    </li>
 									<li class="nav-item">
-										<a href="#" class="nav-link dropdown-toggle">Projects</a>
-										<ul class="dropdown-menu dropdown-style">
-											<li class="nav-item">
-												<a href="projects.html" class="nav-link">Projects</a>
-											</li>
-											<li class="nav-item">
-												<a href="projects-details.html" class="nav-link">Projects Details</a>
-											</li>
-										</ul>
-									</li>
-									<li class="nav-item">
-										<a href="#" class="nav-link dropdown-toggle">Pages</a>
-										<ul class="dropdown-menu dropdown-style">
-											<li class="nav-item">
-												<a href="#" class="nav-link dropdown-toggle">Services</a>
-												<ul class="dropdown-menu dropdown-style">
-													<li class="nav-item">
-														<a href="services.html" class="nav-link">services</a>
-													</li>
-													<li class="nav-item">
-														<a href="service-details.html" class="nav-link">service Details</a>
-													</li>
-												</ul>
-											</li>
-											<li class="nav-item">
-												<a href="#" class="nav-link dropdown-toggle">Projects</a>
-												<ul class="dropdown-menu dropdown-style">
-													<li class="nav-item">
-														<a href="projects.html" class="nav-link">Projects</a>
-													</li>
-													<li class="nav-item">
-														<a href="projects-details.html" class="nav-link">Projects Details</a>
-													</li>
-												</ul>
-											</li>
-											
-											<li class="nav-item">
-												<a href="#" class="nav-link dropdown-toggle">Blog</a>
-												<ul class="dropdown-menu dropdown-style">
-													<li class="nav-item">
-														<a href="blog-grid.html" class="nav-link">Blog Grid</a>
-													</li>
-													<li class="nav-item">
-														<a href="blog-right-sidebar.html" class="nav-link">Blog Right Sidebar</a>
-													</li>
-													<li class="nav-item">
-														<a href="blog-left-sidebar.html" class="nav-link">Blog Left Sidebar</a>
-													</li>
-													<li class="nav-item">
-														<a href="blog-details.html" class="nav-link">Blog Details</a>
-													</li>
-												</ul>
-											</li>
-											<li class="nav-item">
-												<a href="team.html" class="nav-link">Team</a>
-											</li>
-											<li class="nav-item">
-												<a href="#" class="nav-link dropdown-toggle">Shop</a>
-												<ul class="dropdown-menu dropdown-style">
-													<li class="nav-item">
-														<a href="shop-grid.html" class="nav-link">Shop Grid</a>
-													</li>
-													<li class="nav-item">
-														<a href="cart.html" class="nav-link">Cart</a>
-													</li>
-													<li class="nav-item">
-														<a href="checkout.html" class="nav-link">Checkout</a>
-													</li>
-													<li class="nav-item">
-														<a href="shop-details.html" class="nav-link">Shop Details</a>
-													</li>
-												</ul>
-											</li>
-											<li class="nav-item">
-												<a href="testimonial.html" class="nav-link">Testimonial</a>
-											</li>
-											<li class="nav-item">
-												<a href="faq.html" class="nav-link">FAQ</a>
-											</li>
-											<li class="nav-item">
-												<a href="coming-soon.html" class="nav-link">Coming Soon</a>
-											</li>
-											<li class="nav-item">
-												<a href="404.html" class="nav-link">404 Error</a>
-											</li>
-											<li class="nav-item">
-												<a href="#" class="nav-link dropdown-toggle">User</a>
-												<ul class="dropdown-menu dropdown-style">
-													<li class="nav-item">
-														<a href="log-in.html" class="nav-link">Log In</a>
-													</li>
-													<li class="nav-item">
-														<a href="sign-up.html" class="nav-link">Sign Up</a>
-													</li>
-													<li class="nav-item">
-														<a href="recover-password.html" class="nav-link">Recover Password</a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-										
-									</li>
-									
-									<li class="nav-item">
-										<a href="#" class="nav-link dropdown-toggle">Blog</a>
-										<ul class="dropdown-menu dropdown-style">
-											<li class="nav-item">
-												<a href="blog-grid.html" class="nav-link">Blog Grid</a>
-											</li>
-											<li class="nav-item">
-												<a href="blog-right-sidebar.html" class="nav-link">Blog Right Sidebar</a>
-											</li>
-											<li class="nav-item">
-												<a href="blog-left-sidebar.html" class="nav-link">Blog Left Sidebar</a>
-											</li>
-											<li class="nav-item">
-												<a href="blog-details.html" class="nav-link">Blog Details</a>
-											</li>
-										</ul>
-									</li>
+                                        <a href="<?=site_url(); ?>" class="nav-link ">Blogs</a>
+                                    </li>
 									<li class="nav-item">
 										<a href="contact.html" class="nav-link">Contact</a>
 									</li>
@@ -230,7 +104,7 @@
 										<i class="fa fa-phone"></i> 
 										+800-987-65-43
 									</a>
-									<a class="default-btn" href="#">
+									<a class="default-btn" href="javascript:;">
 										Get Started
 									</a>
 								</div>
@@ -249,10 +123,10 @@
 		<section class="footer-top-area pt-100 pb-70">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4 col-md-6">
+					<div class="col-lg-6 col-md-6">
 						<div class="single-widget">
 							<a href="<?=site_url(); ?>">
-								<img src="<?=site_url(); ?>assets/logo.png" alt="White-Logo" style="height:67px">
+								<img src="<?=site_url(); ?>assets/logos.jpeg" alt="White-Logo" style="height:67px">
 							</a>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua. Quis ipsum suspendisse ultrices gravida.</p>
 							<ul class="address">
@@ -271,7 +145,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-6">
+					<div class="col-lg-3 col-6">
 						<div class="single-widget">
 							<h3>Links</h3>
 							<ul class="links">
@@ -296,7 +170,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-6">
+					<div class="col-lg-3 col-6">
 						<div class="single-widget">
 							<h3>Support</h3>
 							<ul class="links">
@@ -317,43 +191,6 @@
 								</li>
 								<li>
 									<a href="#">Refund Policy</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="single-widget">
-							<h3>Instagram</h3>
-							<ul class="instragram">
-								<li>
-									<a href="#">
-										<img src="<?=site_url(); ?>assets/public/assets/img/inst/1.jpg" alt="">
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="<?=site_url(); ?>assets/public/assets/img/inst/2.jpg" alt="">
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="<?=site_url(); ?>assets/public/assets/img/inst/3.jpg" alt="">
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="<?=site_url(); ?>assets/public/assets/img/inst/4.jpg" alt="">
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="<?=site_url(); ?>assets/public/assets/img/inst/5.jpg" alt="">
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="<?=site_url(); ?>assets/public/assets/img/inst/6.jpg" alt="">
-									</a>
 								</li>
 							</ul>
 						</div>
