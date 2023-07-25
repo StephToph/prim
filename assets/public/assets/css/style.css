@@ -1165,11 +1165,15 @@ Hero Slider Area Style
 }
 
 .slider-item-bg-1 {
-  background-image: url(../img/home-one/slider/2.jpg);
+  background-image: url(../../../1.png);
+}
+
+.slider-item-bg-3 {
+  background-image: url(../../../2.jpg);
 }
 
 .slider-item-bg-2 {
-  background-image: url(../img/home-one/slider/3.jpg);
+  background-image: url(../../../7.jpg);
 }
 
 /*
