@@ -61,7 +61,7 @@
 				<!-- Menu For Mobile Device -->
 				<div class="mobile-nav">
 					<a href="<?=site_url(); ?>" class="logo">
-						<img src="<?=site_url(); ?>assets/logo.jpeg" alt="Logo" style="height:40px">
+						<img src="<?=site_url(); ?>assets/logo.png" alt="Logo" style="height:40px">
 					</a>
 				</div>
 
@@ -70,7 +70,7 @@
 					<nav class="navbar navbar-expand-md navbar-light">
 						<div class="container">
 							<a class="navbar-brand" href="<?=site_url(); ?>">
-								<img src="<?=site_url(); ?>assets/logo.jpeg" alt="Logo"style="height:50px">
+								<img src="<?=site_url(); ?>assets/logo.png" alt="Logo"style="height:50px">
 							</a>
 	
 							<div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -252,7 +252,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-widget">
 							<a href="<?=site_url(); ?>">
-								<img src="<?=site_url(); ?>assets/logo.jpeg" alt="White-Logo" style="height:67px">
+								<img src="<?=site_url(); ?>assets/logo.png" alt="White-Logo" style="height:67px">
 							</a>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua. Quis ipsum suspendisse ultrices gravida.</p>
 							<ul class="address">
