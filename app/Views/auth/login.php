@@ -1,94 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="<?=app_name;?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <link rel="shortcut icon" href="<?=site_url();?>assets/logo.png">
-    <title><?=$title;?></title>
-    <!-- StyleSheets  -->
-    <link rel="stylesheet" href="<?=site_url();?>assets/backend/css/main.css?v=<?=time();?>"">
-    <link id="skin-default" rel="stylesheet" href="<?=site_url();?>assets/backend/css/skins/theme-green.css">
-    <link id="skin-default" rel="stylesheet" href="<?=site_url();?>assets/backend/css/theme.css">
+    <title><?php echo $title; ?></title>
+    <link rel="shortcut icon" href="<?php echo site_url() ?>assets/images/favicon.png">
+    <link href="<?php echo site_url() ?>assets/css/app.min.css?v=5" rel="stylesheet">
 </head>
 
-<body class="nk-body bg-white npc-default pg-auth">
-    <div class="nk-app-root">
-        <div class="nk-main ">
-            <div class="nk-wrap nk-wrap-nosidebar">
-                <div class="nk-content ">
-                    <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
-                        <div class="brand-logo text-center">
-                            <a href="<?=site_url();?>" class="logo-link">
-                                <img class="" src="<?=site_url();?>assets/logo.png" srcset="<?=site_url();?>assets/logo.png 2x" alt="logo">
-                            </a>
-                        </div>
-                        <div class="card">
-                            <div class="card-inner card-inner-lg">
-                                <div class="nk-block-head">
-                                    <div class="nk-block-head-content">
-                                        <h4 class="nk-block-title">Sign In</h4>
-                                        <div class="nk-block-des">
-                                            <p>Access the <?=app_name;?> panel using your email and passcode.</p>
-                                        </div>
+<body>
+    <div class="app">
+        <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
+            style="background-image: url('<?php echo site_url() ?>assets/images/others/login-3.png')">
+            <div class="d-flex flex-column justify-content-between w-100">
+                <div class="container d-flex h-100">
+                    <div class="row align-items-center w-100">
+                        <div class="col-md-7 col-lg-5 m-h-auto">
+                            <div class="card shadow-lg">
+                                <div class="card-body">
+                                    <div class="text-center m-b-30">
+                                        <a href="<?php echo site_url(); ?>"><img class="img-fluid" alt="" src="<?php echo site_url() ?>assets/images/logo-dark.png" style="max-width:100%;"></a>
                                     </div>
-                                </div>
+                                    <?php echo form_open_multipart(site_url('auth/login'), array('id'=>'bb_ajax_form', 'class'=>'')); ?>
+                                        <div id="bb_ajax_msg"></div>
 
-                                <?=form_open_multipart(site_url('auth/login'), array('id'=>'bb_ajax_form', 'class'=>''));?>
-                                    <div id="bb_ajax_msg"></div>
-
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="email">Email Address</label>
+                                        <div class="form-group">
+                                            <label class="font-weight-semibold" for="userName">Email:</label>
+                                            <div class="input-affix">
+                                                <i class="prefix-icon anticon anticon-user"></i>
+                                                <input type="text" class="form-control" id="userName" name="email"
+                                                    placeholder="Email">
+                                            </div>
                                         </div>
-                                        <div class="form-control-wrap">
-                                            <input class="form-control form-control-lg" name="email" type="email" id="email" placeholder="Enter your email" required>
+                                        <div class="form-group">
+                                            <label class="font-weight-semibold" for="password">Password:</label>
+                                            <div class="input-affix m-b-10">
+                                                <i class="prefix-icon anticon anticon-lock"></i>
+                                                <input type="password" class="form-control" id="password" name="password"
+                                                    placeholder="Password">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="password">Password</label>
-                                            <a class="link link-primary link-sm" href="javascript:;">Forgot Password?</a>
+                                        <div class="form-group">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <span class="font-size-13 text-muted">
+                                                    <a class="small" href="javascript:;"> Forget Password?</a>
+                                                </span>
+                                                <button type="submit" class="btn btn-primary bb_form_btn"><i class="anticon anticon-login"></i> Sign In</button>
+                                            </div>
                                         </div>
-                                        <div class="form-control-wrap">
-                                            <a href="javascript:;" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                           <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Enter your password" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block bb_form_btn" type="submit">Sign in</button>
-                                    </div>
-                                <?=form_close();?>
-                                
-                                <div class="form-note-s2 text-center pt-4"> New on our platform? <a href="<?=site_url('auth/register');?>">Create an account</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nk-footer nk-auth-footer-full">
-                        <div class="container wide-lg">
-                            <div class="row g-3">
-                                <div class="col-lg-6 order-lg-last">
-                                    <ul class="nav nav-sm justify-content-center justify-content-lg-end">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="javascript:;">Terms & Condition</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="javascript:;">Privacy Policy</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="javascript:;">Help</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="nk-block-content text-center text-lg-left">
-                                        <p class="text-soft">&copy; <?=date('Y');?> <?=app_name;?> | All Rights Reserved.</p>
-                                    </div>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +58,9 @@
             </div>
         </div>
     </div>
-    
-    <script src="<?=site_url();?>assets/backend/js/bundle.js"></script>
-    <script src="<?=site_url();?>assets/backend/js/scripts.js"></script>
-    <script src="<?=site_url();?>assets/backend/js/jsform.js"></script>
+
+    <script src="<?php echo site_url() ?>assets/js/vendors.min.js"></script>
+    <script src="<?php echo site_url() ?>assets/js/app.min.js"></script>
+    <script src="<?php echo site_url(); ?>assets/js/jsform.js"></script>
+</body>
 </html>

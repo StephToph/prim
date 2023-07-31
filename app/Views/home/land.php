@@ -22,8 +22,8 @@
 									<h1>We Are Happy To Build Your Best <span>Business</span></h1>
 									<p>We help you for getting success</p>	
 									<div class="banner-button">
-										<a class="default-btn" href="book-table.html">
-											Let's Start
+										<a class="default-btn" href="<?=site_url(); ?>apply">
+											Apply Now
 										</a>
 									</div>	
 								</div>
@@ -40,8 +40,8 @@
 									<h1>Take Your Business To New <span>Heights</span></h1>
 									<p>We help you for getting success</p>	
 									<div class="banner-button">
-										<a class="default-btn" href="book-table.html">
-											Let's Start
+										<a class="default-btn" href="<?=site_url(); ?>apply">
+											Apply Now
 										</a>
 									</div>	
 								</div>
@@ -58,8 +58,8 @@
 									<h1>Take Your Business To New <span>Heights</span></h1>
 									<p>We help you for getting success</p>	
 									<div class="banner-button">
-										<a class="default-btn" href="book-table.html">
-											Let's Start
+										<a class="default-btn" href="<?=site_url(); ?>apply">
+											Apply Now
 										</a>
 									</div>	
 								</div>
@@ -75,7 +75,7 @@
 		<!-- End Hero Slider Area -->
 
 		<!-- Start About Us Area -->
-		<section class="about-us-area py-5 pb-100">
+		<section class="about-us-area py-5 pb-100" id="about_us">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -101,7 +101,6 @@
 									A wonderful Sarcenet
 								</li>
 							</ul>
-							<a class="default-btn" href="#">Discover More</a>
 						</div>
 					</div>
 					<!-- <div class="col-lg-6">
@@ -199,7 +198,7 @@
 
 		
 		<!-- Start Team Area -->
-		<section class="team-area pt-50 pb-70">
+		<section class="team-area pt-50 pb-70" id="team">
 			<div class="container">
 				<div class="section-title">
 					<span>Team Member</span>
@@ -357,7 +356,7 @@
 		<!-- End Client Area -->
 
 		<!-- Start Blog Area -->
-        <section class="blog-area pb-100">
+        <section class="blog-area pb-100" id="blog">
 			<div class="container">
 				<div class="section-title">
 					<span>News</span>
@@ -448,7 +447,7 @@
 		<section class="questions-area two pb-100">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-lg-6">
+					<div class="col-lg-6"  id="faq">
 						<div class="questions-bg-area">
 							<div class="section-title">
 								<span>FAQ</span>
@@ -515,7 +514,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-6">
+					<div class="col-lg-6"  id="contact">
 						<div class="questions">
 							<div class="contact-form">
 								<form id="contactForm">

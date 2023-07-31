@@ -3,71 +3,62 @@
     $this->Crud = new Crud();
 ?>
 
-<?=$this->extend('designs/backend');?>
-<?=$this->section('title');?>
-    <?=$title;?>
-<?=$this->endSection();?>
+<?php echo $this->extend('designs/backend'); ?>
+<?php echo $this->section('title'); ?>
+    <?php echo $title; ?>
+<?php echo $this->endSection(); ?>
 
-<?=$this->section('content');?>
-    <div class="nk-content ">
-        <div class="container-fluid">
-            <div class="nk-content-inner">
-                <div class="nk-content-body">
-                    <div class="nk-block-head nk-block-head-sm">
-                        <div class="nk-block-between">
-                            <div class="nk-block-head-content">
-                                <h3 class="nk-block-title page-title">Access CRUD</h3>
-                                <div class="nk-block-des text-soft">
-                                    <p>Manage application access CRUDs</p>
+<?php echo $this->section('content'); ?>
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Access CRUD</h4>
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="role_id">Role</label>
+                                    <select id="role_id" name="role_id" class="select2" style="width: 100%;" data-placeholder="Choose one.." tabindex="-1" aria-hidden="true" onchange="getModule();">
+                                        <option value="">Select</option>
+                                        <?php if(!empty($allrole)): ?>
+                                        <?php foreach($allrole as $rol): ?>
+                                            <?php if($role == 'administrator') if($rol->name == 'Developer') continue; ?>
+                                            <option value="<?php echo $rol->id; ?>" <?php if(!empty($e_role_id)){if($e_role_id == $rol->id){echo 'selected';}} ?>><?php echo $rol->name; ?></option>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="nk-block">
-                        <div class="row g-gs">
-                            <div class="col-xxl-6">
-                                <div class="row g-gs">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="role_id">Role</label>
-                                            <select id="role_id" name="role_id" class="select2" style="width: 100%;" data-placeholder="Choose one.." tabindex="-1" aria-hidden="true" onchange="getModule();">
-                                                <option value="">Select</option>
-                                                <?php if(!empty($allrole)): ?>
-                                                <?php foreach($allrole as $rol): ?>
-                                                    <option value="<?php echo $rol->id; ?>" <?php if(!empty($e_role_id)){if($e_role_id == $rol->id){echo 'selected';}} ?>><?php echo $rol->name; ?></option>
-                                                <?php endforeach; ?>
-                                                <?php endif; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-sm-12 table-responsive" style="max-height:400px;">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Module</th>
-                                                    <th><u>C</u><span class="hidden-xs">reate</span></th>
-                                                    <th><u>R</u><span class="hidden-xs">ead</span></th>
-                                                    <th><u>U</u><span class="hidden-xs">pdate</span></th>
-                                                    <th><u>D</u><span class="hidden-xs">elete</span></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="module_list">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            
+                            <div class="col-sm-12 table-responsive" style="max-height:400px;">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Module</th>
+                                            <th><u>C</u><span class="hidden-xs">reate</span></th>
+                                            <th><u>R</u><span class="hidden-xs">ead</span></th>
+                                            <th><u>U</u><span class="hidden-xs">pdate</span></th>
+                                            <th><u>D</u><span class="hidden-xs">elete</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="module_list">
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<?=$this->endSection();?>
+    </div>  
+<?php echo $this->endSection(); ?>
 
-<?=$this->section('scripts');?>
+<?php echo $this->section('footer_bottom'); ?>
 <script>
     $(function() {
         $('.select2').select2();
@@ -118,4 +109,4 @@
         });
     }
   </script>
-  <?=$this->endSection();?>
+  <?php echo $this->endSection(); ?>

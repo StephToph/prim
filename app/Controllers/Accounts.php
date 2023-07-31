@@ -3,43 +3,48 @@
 namespace App\Controllers;
 
 class Accounts extends BaseController {
+	private $db;
 
-	//Fueling Station
-	public function partner($param1='', $param2='', $param3='') {
-		// check session login
-		if($this->session->get('fls_id') == ''){
-			$request_uri = uri_string();
-			$this->session->set('fls_redirect', $request_uri);
-			return redirect()->to(site_url('auth'));
-		} 
+    public function __construct() {
+		$this->db = \Config\Database::connect();
+	}
 
-        $mod = 'accounts/partner';
+    public function index() {
+        return $this->parents();
+    }
 
-        $log_id = $this->session->get('fls_id');
+    //// PARENTS
+    public function parents($param1='', $param2='', $param3='') {
+        // check login
+        $log_id = $this->session->get('plx_id');
+        if(empty($log_id)) return redirect()->to(site_url('auth'));
+
         $role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
         $role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-        $role_c = $this->Crud->module($role_id, $mod, 'create');
-        $role_r = $this->Crud->module($role_id, $mod, 'read');
-        $role_u = $this->Crud->module($role_id, $mod, 'update');
-        $role_d = $this->Crud->module($role_id, $mod, 'delete');
+        $role_c = $this->Crud->module($role_id, 'accounts/parents', 'create');
+        $role_r = $this->Crud->module($role_id, 'accounts/parents', 'read');
+        $role_u = $this->Crud->module($role_id, 'accounts/parents', 'update');
+        $role_d = $this->Crud->module($role_id, 'accounts/parents', 'delete');
         if($role_r == 0){
-            return redirect()->to(site_url('dashboard'));	
+            return redirect()->to(site_url('profile'));	
         }
+
         $data['log_id'] = $log_id;
         $data['role'] = $role;
         $data['role_c'] = $role_c;
-       
-		$table = 'user';
-		$form_link = site_url($mod);
-		if($param1){$form_link .= '/'.$param1;}
-		if($param2){$form_link .= '/'.$param2.'/';}
-		if($param3){$form_link .= $param3;}
+
+        $table = 'user';
+
+		$form_link = site_url('accounts/parents/');
+		if($param1){$form_link .= $param1.'/';}
+		if($param2){$form_link .= $param2.'/';}
+		if($param3){$form_link .= $param3.'/';}
 		
 		// pass parameters to view
 		$data['param1'] = $param1;
 		$data['param2'] = $param2;
 		$data['param3'] = $param3;
-		$data['form_link'] = $form_link;
+		$data['form_link'] = rtrim($form_link, '/');
 		
 		// manage record
 		if($param1 == 'manage') {
@@ -47,30 +52,29 @@ class Accounts extends BaseController {
 			if($param2 == 'delete') {
 				if($param3) {
 					$edit = $this->Crud->read_single('id', $param3, $table);
-                    //echo var_dump($edit);
 					if(!empty($edit)) {
 						foreach($edit as $e) {
 							$data['d_id'] = $e->id;
 						}
 					}
-					
-					if($this->request->getMethod() == 'post'){
-						$del_id =  $this->request->getVar('d_partner_id');
-                        $code = $this->Crud->read_field('id', $del_id, 'user', 'fullname');
-						$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-						$action = $by.' deleted Administrator ('.$code.')';
-							
-                        if($this->Crud->deletes('id', $del_id, $table) > 0) {
 
-							///// store activities
-							$this->Crud->activity('user', $del_id, $action);
-							
+					if($this->request->getMethod() == 'post'){
+						$del_id = $this->request->getVar('d_parent_id');
+						if($this->Crud->deletes('id', $del_id, $table) > 0) {
+							if($this->Crud->check('parent_id', $del_id,  'child') > 0){
+								$child = $this->Crud->read_single('parent_id',$del_id,  'child');
+								if(!empty($child)){
+									foreach($child as $c){
+										 $this->Crud->deletes('id', $c->id, 'child');
+									}
+								}
+							}
 							echo $this->Crud->msg('success', 'Record Deleted');
 							echo '<script>location.reload(false);</script>';
 						} else {
 							echo $this->Crud->msg('danger', 'Please try later');
-						}
-						die;	
+						}	
+						exit;	
 					}
 				}
 			} else {
@@ -82,158 +86,71 @@ class Accounts extends BaseController {
 							foreach($edit as $e) {
 								$data['e_id'] = $e->id;
 								$data['e_fullname'] = $e->fullname;
-								$data['e_email'] = $e->email;
 								$data['e_phone'] = $e->phone;
-								$data['e_country_id'] = $e->country_id;
-								$data['e_state_id'] = $e->state_id;
-								$data['e_lga_id'] = $e->lga_id;
-								$data['e_address'] = $e->address;
-								$data['e_ban'] = $e->activate;
-								$data['e_img'] = $e->img_id;
-								$data['e_logo'] = $e->logo;
-								
+								$data['e_email'] = $e->email;
+								$data['e_pin'] = $e->pin;
+								$data['e_ban'] = $e->ban;
 							}
 						}
 					}
 				}
 
-				//profile view
-				if($param2 == 'profile') {
-					$vendor_id = $param3;
-					$data['v_id'] = $vendor_id;
-					$data['fullname'] = $this->Crud->read_field('id', $vendor_id, 'user', 'fullname');
-					$data['v_phone'] = $this->Crud->read_field('id', $vendor_id, 'user', 'phone');
-					$data['v_dob'] = $this->Crud->read_field('id', $vendor_id, 'user', 'dob');
-					$data['reg_date'] = $this->Crud->read_field('id', $vendor_id, 'user', 'reg_date');
-					$data['v_email'] = $this->Crud->read_field('id', $vendor_id, 'user', 'email');
-
-					$v_img_id = $this->Crud->read_field('id', $vendor_id, 'user', 'img_id');
-					$data['v_img'] = site_url($this->Crud->image($v_img_id, 'big'));
-
-					$v_status = $this->Crud->read_field('id', $vendor_id, 'user', 'activate');
-					if(!empty($v_status)) { $v_status = '<span class="text-success">VERIFIED</span>'; } else { $v_status = '<span class="text-danger">UNVERIFIED</span>'; }
-					$data['v_status'] = $v_status;
-
-					$data['v_address'] = $this->Crud->read_field('id', $vendor_id, 'user', 'address');
-
-					$v_state_id = $this->Crud->read_field('id', $vendor_id, 'user', 'state_id');
-					$data['v_state'] = $this->Crud->read_field('id', $v_state_id, 'state', 'name');
-
-					$v_country_id = $this->Crud->read_field('id', $vendor_id, 'user', 'country_id');
-					$data['v_country'] = $this->Crud->read_field('id', $v_country_id, 'country', 'name');
-					
-				}
-				
 				if($this->request->getMethod() == 'post'){
-					$user_i =  $this->request->getVar('user_id');
-					$fullname =  $this->request->getVar('fullname');
-					$email =  $this->request->getVar('email');
-					$phone =  $this->request->getVar('phone');
-					$country_id =  $this->request->getVar('country_id');
-					$lga_id =  $this->request->getVar('lga');
-					$state =  $this->request->getVar('state');
-					$img =  $this->request->getVar('img');
-					$password =  $this->request->getVar('password');
-					$logo_id =  $this->request->getVar('logo');
-					$address =  $this->request->getVar('address');
-					$ban =  $this->request->getVar('ban');
+					$user_id = $this->request->getVar('user_id');
+					$fullname = $this->request->getVar('fullname');
+					$email = $this->request->getVar('email');
+					$phone = $this->request->getVar('phone');
+					$pin = $this->request->getVar('pin');
+					$ban = $this->request->getVar('ban');
+					$password = $this->request->getVar('password');
 
-					//// Image upload
-					if(file_exists($this->request->getFile('pics'))) {
-						$path = 'assets/backend/images/users/'.$log_id.'/';
-						$file = $this->request->getFile('pics');
-						$getImg = $this->Crud->img_upload($path, $file);
-						
-						if(!empty($getImg->path)) $img_id = $this->Crud->save_image($log_id, $getImg->path);
-					} elseif(empty($img) && $img == 0){
-						echo $this->Crud->msg('warning', 'Please Select Image');
-						die;
-					} else {
-						$img_id = $img;
-					}
-
-					if(file_exists($this->request->getFile('logo'))) {
-						$path = 'assets/backend/images/users/'.$log_id.'/';
-						$file = $this->request->getFile('logo');
-						$getImg = $this->Crud->img_upload($path, $file);
-						
-						if(!empty($getImg->path)) $logo = $this->Crud->save_image($log_id, $getImg->path);
-					} elseif(empty($logo_id) && $logo_id == 0){
-						echo $this->Crud->msg('warning', 'Please Select Logo');
-						die;
-					} else {
-						$logo = $logo_id;
-					}
-
-					
+					// echo $pin;die;
+					$ins_data['fullname'] = $fullname;
+					$ins_data['email'] = $email;
+					$ins_data['phone'] = $phone;
+					$ins_data['pin'] = $pin;
+					$ins_data['ban'] = $ban;
+					if(!empty($password))$ins_data['password'] = md5($password);
+					$role_id = $this->Crud->read_field('name', 'User', 'access_role', 'id');
+				
 					// do create or update
-					if($user_i) {
-						if($password) { $upd_data['password'] = md5($password); }
-						$upd_data = array(
-							'fullname' => $fullname,
-							'email' => $email,
-							'phone' => $phone,
-							'address' => $address,
-							'country_id' => $country_id,
-							'state_id' => $state,
-							'lga_id' => $lga_id,
-							'activate' => $ban,
-							'logo' => $logo,
-							'img_id' => $img_id
-							
-						);
-						$upd_rec = $this->Crud->updates('id', $user_i, $table, $upd_data);
-						if($upd_rec > 0) {
+					if ($user_id) {
+						$upd_rec = $this->Crud->updates('id', $user_id, $table, $ins_data);
+						if ($upd_rec > 0) {
 							///// store activities
+							$code = $this->Crud->read_field('id', $user_id, $table, 'fullname');
 							$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-							$code = $this->Crud->read_field('id', $user_i, 'user', 'fullname');
-							$action = $by.' updated Partner ('.$code.') Record';
-							$this->Crud->activity('user', $user_i, $action);
+							$action = $by.' updated Parent '.$code.' Record';
+							$this->Crud->activity('account', $user_id, $action);
 
-							echo $this->Crud->msg('success', 'Updated');
+							echo $this->Crud->msg('success', 'Record Updated');
 							echo '<script>location.reload(false);</script>';
 						} else {
-							echo $this->Crud->msg('info', 'No Changes');	
+							echo $this->Crud->msg('info', 'No Changes');
 						}
-                        die;
 					} else {
-						if($this->Crud->check2('fullname', $fullname, 'email', $email, $table) > 0) {
-							echo $this->Crud->msg('warning', 'Record Already Exist');
-						} else {
-							if($password) { $ins_data['password'] = md5($password); }
-							$ins_data = array(
-								'fullname' => $fullname,
-								'email' => $email,
-								'phone' => $phone,
-								'address' => $address,
-								'country_id' => $country_id,
-								'state_id' => $state,
-								'lga_id' => $lga_id,
-								'password' => md5($password),
-								'role_id' => 3,
-								'is_partner' => 1,
-								'activate' => $ban,
-								'reg_date' => date(fdate),
-								'logo' => $logo,
-								'img_id' => $img_id
-							
-							);
-							$ins_rec = $this->Crud->create($table, $ins_data);
-							if($ins_rec > 0) {
-								echo $this->Crud->msg('success', 'Record Created');
+						if($this->Crud->check('email', $email, 'user') > 0){
+							echo $this->Crud->msg('danger', 'Email Already Taken');
+						} elseif($this->Crud->check('phone', $phone, 'user') > 0){
+							echo $this->Crud->msg('danger', 'Phone Number Already Taken');
+						} else{
+							$ins_data['reg_date'] = date(fdate);
+							$ins_data['role_id'] = $role_id;
+
+							$user_id = $this->Crud->create('user', $ins_data);
+							if($user_id > 0) {
 								///// store activities
-								$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-								$code = $this->Crud->read_field('id', $ins_rec, 'user', 'fullname');
-								$action = $by.' created Partner ('.$code.') Record';
-								$this->Crud->activity('user', $ins_rec, $action);
+								$action = $fullname.' created an Account';
+								$this->Crud->activity('account', $user_id, $action);
+
+								echo $this->Crud->msg('success', 'Record Created');
 								echo '<script>location.reload(false);</script>';
 							} else {
-								echo $this->Crud->msg('danger', 'Please try later');	
-							}	
+								echo $this->Crud->msg('info', 'No Changes');
+							}
 						}
-
-					}die;
-						
+					}
+					die;	
 				}
 			}
 		}
@@ -245,126 +162,117 @@ class Accounts extends BaseController {
 
 			$rec_limit = 25;
 			$item = '';
-            if(empty($limit)) {$limit = $rec_limit;}
+			$counts = 0;
+
+			if(empty($limit)) {$limit = $rec_limit;}
 			if(empty($offset)) {$offset = 0;}
 			
-			if(!empty($this->request->getPost('state_id'))) { $state_id = $this->request->getPost('state_id'); } else { $state_id = ''; }
-			if(!empty($this->request->getPost('status'))) { $status = $this->request->getPost('status'); } else { $status = ''; }
+			if(!empty($this->request->getPost('ban'))) { $ban = $this->request->getPost('ban'); } else { $ban = ''; }
 			$search = $this->request->getPost('search');
-
-			$items = '
-				<div class="nk-tb-item nk-tb-head">
-					<div class="nk-tb-col"><span class="sub-text">Fueling Station</span></div>
-					<div class="nk-tb-col"><span class="sub-text">Contact</span></div>
-					<div class="nk-tb-col tb-col-mb"><span class="sub-text">Address</span></div>
-					<div class="nk-tb-col tb-col-md"><span class="sub-text">Date Joined</span></div>
-					<div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
-				</div><!-- .nk-tb-item -->
-				
-			';
-
-            //echo $status;
-			$log_id = $this->session->get('fls_id');
+			if (!empty($this->request->getPost('start_date'))) {$start_date = $this->request->getPost('start_date');} else {$start_date = '';}
+			if (!empty($this->request->getPost('end_date'))) {$end_date = $this->request->getPost('end_date');} else {$end_date = '';}
+			$log_id = $this->session->get('plx_id');
 			if(!$log_id) {
 				$item = '<div class="text-center text-muted">Session Timeout! - Please login again</div>';
 			} else {
-				$all_rec = $this->Crud->filter_partner('', '', $log_id, $state_id, $status, $search);
+				$all_rec = $this->Crud->filter_parent('', '', $log_id, $search, $ban, $start_date, $end_date);
 				if(!empty($all_rec)) { $counts = count($all_rec); } else { $counts = 0; }
-				$query = $this->Crud->filter_partner($limit, $offset, $log_id, $state_id, $status, $search);
-				$data['count'] = $counts;
+				$query = $this->Crud->filter_parent($limit, $offset, $log_id, $search, $ban, $start_date, $end_date);
+
 				if(!empty($query)) {
 					foreach($query as $q) {
 						$id = $q->id;
 						$fullname = $q->fullname;
 						$email = $q->email;
 						$phone = $q->phone;
-						$address = $q->address;
-						$state = $this->Crud->read_field('id', $q->state_id, 'state', 'name');
-						$country = $this->Crud->read_field('id', $q->country_id, 'country', 'name');
-						$city = $this->Crud->read_field('id', $q->lga_id, 'city', 'name');
-						$img = $this->Crud->image($q->logo, 'big');
-						$activate = $q->activate;
-						$u_role = $this->Crud->read_field('id', $q->role_id, 'access_role', 'name');
-						$reg_date = date('M d, Y', strtotime($q->reg_date));
+						$ban = $q->ban;
+						$sub_id = $this->Crud->read_field('user_id', $id, 'sub', 'sub_id');
+						$subscription = $this->Crud->read_field('id', $sub_id, 'subscription', 'name');
+						$reg_date = date('M d, Y h:i A', strtotime($q->reg_date));
 
-						$approved = '';
-						if($activate == 1) { 
-							$color = 'success';
-							$approve_text = 'Account Activated';
-							$approved = '<span class="text-primary"><i class="ri-check-circle-line"></i></span> '; 
+						$s_date =  $this->Crud->read_field('user_id', $id, 'sub', 'start_date');
+						$e_date =  $this->Crud->read_field('user_id', $id, 'sub', 'end_date');
+						
+						
+						$start_date = date('M d, Y', strtotime($s_date));
+						$end_date = date('M d, Y', strtotime($e_date));
+
+						// count children
+						$children = $this->db->table('child')->where('parent_id', $q->id)->countAllResults();
+
+						if(empty($ban) && $ban == 0){
+							$b = '<span class="text-success font-size-12">ACCOUNT ACTIVE</span>';
 						} else {
-							$color = 'danger';
-							$approve_text = 'Account Deactivated';
+							$b = '<span class="text-danger font-size-12">ACCOUNT BANNED</span>';
 						}
-
+						
 						// add manage buttons
 						if($role_u != 1) {
 							$all_btn = '';
 						} else {
 							$all_btn = '
-								<div class="text-right">
-									<li><a href="javascript:;" class="text-primary pop" pageTitle="Manage '.$fullname.'" pageName="'.site_url($mod.'/manage/edit/'.$id).'">
-										<i class="ni ni-edit-alt"></i> Edit
-									</a></li>
-									<li><a href="javascript:;" class="text-danger pop" pageTitle="Delete '.$fullname.'" pageName="'.site_url($mod.'/manage/delete/'.$id).'">
-										<i class="ni ni-trash-alt"></i> Delete
-									</a></li>
+								<div class="textright">
+									<a href="javascript:;" class="text-info pop m-b-5 m-r-5" pageTitle="Reset '.$fullname.' Details" pageName="'.base_url('accounts/parents/manage/edit/'.$id).'" pageSize="modal-lg">
+										<i class="anticon anticon-rollback"></i> EDIT
+									</a>
+									<a href="javascript:;" class="text-danger pop m-b-5 m-l-5  m-r-5" pageTitle="Delete '.$fullname.' Record" pageName="'.base_url('accounts/parents/manage/delete/'.$id).'" pageSize="modal-sm">
+										<i class="anticon anticon-delete"></i> DELETE
+									</a>
+									<a href="javascript:;" class="text-success pop m-b-5 m-l-5" pageTitle="View '.$fullname.' Children" pageName="'.base_url('accounts/parents/manage/view/'.$id).'" pageSize="modal-lg">
+										<i class="anticon anticon-eye"></i> VIEW
+									</a>
+									
+								</div>
+							';
+						}
+						
+						$sub = '';
+						if(!empty($sub_id)){
+							$sub = '
+							<div class="text-muted font-size-12">'.strtoupper($subscription).'</div>
+								<div class="font-size-14">
+									<span class="text-success font-size-12">'.$start_date.'</span> 
+									<i class="anticon anticon-arrow-right"></i> 
+									<span class="text-danger font-size-12">'.$end_date.'</span>
 								</div>
 							';
 						}
 
 						$item .= '
-							<div class="nk-tb-item">
-								<div class="nk-tb-col">
-									<div class="user-card">
-										<div class="user-avatar ">
-											<img alt="" src="'.site_url($img).'" height="40px"/>
-										</div>
-										<div class="user-info">
-											<span class="tb-lead">'.ucwords($fullname).' <span class="dot dot-success d-md-none ms-1"></span></span>
+							<li class="list-group-item">
+								<div class="row p-t-10">
+									<div class="col-12 col-md-6 m-b-10">
+										<div class="single">
+											<div class="text-muted font-size-12">'.$reg_date.'</div>
+											<b class="font-size-16 text-primary">'.ucwords($fullname).'</b>
+											<div class="small text-muted">'.number_format($children).' Children</div>
+											<div class="small text-muted">'.$phone.'</div>
+											<div class="small text-email">'.$email.'</div>
+											'.$b.'
 										</div>
 									</div>
+									<div class="col-12 col-md-4 m-b-5">
+										'.$sub.'
+									</div>
+									<div class="col-12 col-md-2">
+										<b class="font-size-12">'.$all_btn.'</b>
+									</div>
 								</div>
-								<div class="nk-tb-col tb-col	">
-									<span class="text-dark"><b>'.$phone.'</b></span><br>
-									<span>'.$email.'</span>
-								</div>
-								<div class="nk-tb-col tb-col-mb">
-									<span>'.ucwords($address).'</span><br>
-									<span class="tb-amount">'.$country.'</span><span class="text-info">'.$state.'&rarr; '.$city.'</span>
-								</div>
-								<div class="nk-tb-col tb-col-md">
-									<span class="tb-amount">'.$reg_date.'</span>
-								</div>
-								<div class="nk-tb-col nk-tb-col-tools">
-									<ul class="nk-tb-actions gx-1">
-										<li>
-											<div class="drodown">
-												<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-												<div class="dropdown-menu dropdown-menu-end">
-													<ul class="link-list-opt no-bdr">
-														'.$all_btn.'
-													</ul>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div><!-- .nk-tb-item -->
+							</li>
 						';
 					}
 				}
 			}
 			
 			if(empty($item)) {
-				$resp['item'] = $items.'
+				$resp['item'] = '
 					<div class="text-center text-muted">
 						<br/><br/><br/><br/>
-						<i class="ni ni-users" style="font-size:150px;"></i><br/><br/>No Filling Station Returned
+						<i class="anticon anticon-team" style="font-size:150px;"></i><br/><br/>No Parents Returned
 					</div>
 				';
 			} else {
-				$resp['item'] = $items . $item;
+				$resp['item'] = $item;
 			}
 
 			$resp['count'] = $counts;
@@ -384,52 +292,47 @@ class Accounts extends BaseController {
 			die;
 		}
 
-		if($param1 == 'manage') { // view for form data posting
-			return view($mod.'_form', $data);
+        if($param1 == 'manage') { // view for form data posting
+			return view('account/parents_form', $data);
 		} else { // view for main page
-			
-			$data['title'] = 'Fueling Station | '.app_name;
-			$data['page_active'] = $mod;
-			return view($mod, $data);
-		}
+            $data['title'] = 'Parents | '.app_name;
+            $data['page_active'] = 'accounts/parents';
+            return view('account/parents', $data);
+        }
     }
 
-	//Customer
-	public function customer($param1='', $param2='', $param3='') {
-		// check session login
-		if($this->session->get('fls_id') == ''){
-			$request_uri = uri_string();
-			$this->session->set('fls_redirect', $request_uri);
-			return redirect()->to(site_url('auth'));
-		} 
+	//// CHILDREN
+    public function children($param1='', $param2='', $param3='') {
+        // check login
+        $log_id = $this->session->get('plx_id');
+        if(empty($log_id)) return redirect()->to(site_url('auth'));
 
-        $mod = 'accounts/customer';
-
-        $log_id = $this->session->get('fls_id');
         $role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
         $role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-        $role_c = $this->Crud->module($role_id, $mod, 'create');
-        $role_r = $this->Crud->module($role_id, $mod, 'read');
-        $role_u = $this->Crud->module($role_id, $mod, 'update');
-        $role_d = $this->Crud->module($role_id, $mod, 'delete');
+        $role_c = $this->Crud->module($role_id, 'accounts/children', 'create');
+        $role_r = $this->Crud->module($role_id, 'accounts/children', 'read');
+        $role_u = $this->Crud->module($role_id, 'accounts/children', 'update');
+        $role_d = $this->Crud->module($role_id, 'accounts/children', 'delete');
         if($role_r == 0){
-            return redirect()->to(site_url('dashboard'));	
+            return redirect()->to(site_url('profile'));	
         }
+
         $data['log_id'] = $log_id;
         $data['role'] = $role;
         $data['role_c'] = $role_c;
-       
-		$table = 'user';
-		$form_link = site_url($mod);
-		if($param1){$form_link .= '/'.$param1;}
-		if($param2){$form_link .= '/'.$param2.'/';}
-		if($param3){$form_link .= $param3;}
+
+        $table = 'child';
+
+		$form_link = site_url('accounts/children/');
+		if($param1){$form_link .= $param1.'/';}
+		if($param2){$form_link .= $param2.'/';}
+		if($param3){$form_link .= $param3.'/';}
 		
 		// pass parameters to view
 		$data['param1'] = $param1;
 		$data['param2'] = $param2;
 		$data['param3'] = $param3;
-		$data['form_link'] = $form_link;
+		$data['form_link'] = rtrim($form_link, '/');
 		
 		// manage record
 		if($param1 == 'manage') {
@@ -437,30 +340,28 @@ class Accounts extends BaseController {
 			if($param2 == 'delete') {
 				if($param3) {
 					$edit = $this->Crud->read_single('id', $param3, $table);
-                    //echo var_dump($edit);
 					if(!empty($edit)) {
 						foreach($edit as $e) {
 							$data['d_id'] = $e->id;
 						}
 					}
-					
-					if($this->request->getMethod() == 'post'){
-						$del_id =  $this->request->getVar('d_customer_id');
-                        $code = $this->Crud->read_field('id', $del_id, 'user', 'fullname');
-						$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-						$action = $by.' deleted Customer ('.$code.')';
-							
-                        if($this->Crud->deletes('id', $del_id, $table) > 0) {
 
-							///// store activities
-							$this->Crud->activity('user', $del_id, $action);
+					if($this->request->getMethod() == 'post'){
+						$del_id = $this->request->getVar('d_child_id');
+						///// store activities
+						$code = $this->Crud->read_field('id', $del_id, $table, 'name');
+						$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
+						$action = $by.' deleted Child '.$code.' Record';
+
+						if($this->Crud->deletes('id', $del_id, $table) > 0) {
 							
+							$this->Crud->activity('account', $del_id, $action);
 							echo $this->Crud->msg('success', 'Record Deleted');
 							echo '<script>location.reload(false);</script>';
 						} else {
 							echo $this->Crud->msg('danger', 'Please try later');
 						}
-						die;	
+						exit;	
 					}
 				}
 			} else {
@@ -471,456 +372,69 @@ class Accounts extends BaseController {
 						if(!empty($edit)) {
 							foreach($edit as $e) {
 								$data['e_id'] = $e->id;
-								$data['e_fullname'] = $e->fullname;
-								$data['e_email'] = $e->email;
-								$data['e_phone'] = $e->phone;
-								$data['e_country_id'] = $e->country_id;
-								$data['e_state_id'] = $e->state_id;
-								$data['e_role_id'] = $e->role_id;
-								$data['e_lga_id'] = $e->lga_id;
-								$data['e_address'] = $e->address;
-								$data['e_ban'] = $e->activate;
-								$data['e_img'] = $e->img_id;
-								
+								$data['e_name'] = $e->name;
+								$data['e_parent_id'] = $e->parent_id;
+								$data['e_age_id'] = $e->age_id;
 							}
 						}
 					}
 				}
 
-				//profile view
-				if($param2 == 'profile') {
-					$vendor_id = $param3;
-					$data['v_id'] = $vendor_id;
-					$data['fullname'] = $this->Crud->read_field('id', $vendor_id, 'user', 'fullname');
-					$data['v_phone'] = $this->Crud->read_field('id', $vendor_id, 'user', 'phone');
-					$data['v_dob'] = $this->Crud->read_field('id', $vendor_id, 'user', 'dob');
-					$data['reg_date'] = $this->Crud->read_field('id', $vendor_id, 'user', 'reg_date');
-					$data['v_email'] = $this->Crud->read_field('id', $vendor_id, 'user', 'email');
-
-					$v_img_id = $this->Crud->read_field('id', $vendor_id, 'user', 'img_id');
-					$data['v_img'] = site_url($this->Crud->image($v_img_id, 'big'));
-
-					$v_status = $this->Crud->read_field('id', $vendor_id, 'user', 'activate');
-					if(!empty($v_status)) { $v_status = '<span class="text-success">VERIFIED</span>'; } else { $v_status = '<span class="text-danger">UNVERIFIED</span>'; }
-					$data['v_status'] = $v_status;
-
-					$data['v_address'] = $this->Crud->read_field('id', $vendor_id, 'user', 'address');
-
-					$v_state_id = $this->Crud->read_field('id', $vendor_id, 'user', 'state_id');
-					$data['v_state'] = $this->Crud->read_field('id', $v_state_id, 'state', 'name');
-
-					$v_country_id = $this->Crud->read_field('id', $vendor_id, 'user', 'country_id');
-					$data['v_country'] = $this->Crud->read_field('id', $v_country_id, 'country', 'name');
-					
-				}
-				
 				if($this->request->getMethod() == 'post'){
-					$user_i =  $this->request->getVar('user_id');
-					$fullname =  $this->request->getVar('fullname');
-					$email =  $this->request->getVar('email');
-					$phone =  $this->request->getVar('phone');
-					$country_id =  $this->request->getVar('country_id');
-					$lga_id =  $this->request->getVar('lga');
-					$state =  $this->request->getVar('state');
-					$password =  $this->request->getVar('password');
-					$address =  $this->request->getVar('address');
-					$ban =  $this->request->getVar('ban');
+					$child_id = $this->request->getVar('child_id');
+					$name = $this->request->getVar('name');
+					$parent_id = $this->request->getVar('parent_id');
+					$age_id = $this->request->getVar('age_id');
+					
 
+					$ins_data['name'] = $name;
+					$ins_data['parent_id'] = $parent_id;
+					$ins_data['age_id'] = $age_id;
 					
 					
 					// do create or update
-					if($user_i) {
-						if($password) { $upd_data['password'] = md5($password); }
-						$upd_data = array(
-							'fullname' => $fullname,
-							'email' => $email,
-							'phone' => $phone,
-							'address' => $address,
-							'country_id' => $country_id,
-							'state_id' => $state,
-							'lga_id' => $lga_id,
-							'activate' => $ban
-							
-						);
-						$upd_rec = $this->Crud->updates('id', $user_i, $table, $upd_data);
+					if($child_id) {
+						$upd_rec = $this->Crud->updates('id', $child_id, $table, $ins_data);
 						if($upd_rec > 0) {
 							///// store activities
+							$code = $this->Crud->read_field('id', $child_id, $table, 'name');
 							$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-							$code = $this->Crud->read_field('id', $user_i, 'user', 'fullname');
-							$action = $by.' updated Customer ('.$code.') Record';
-							$this->Crud->activity('user', $user_i, $action);
+							$action = $by.' updated Child '.$code.' Record';
+							$this->Crud->activity('account', $child_id, $action);
 
-							echo $this->Crud->msg('success', 'Updated');
+							echo $this->Crud->msg('success', 'Record Updated');
 							echo '<script>location.reload(false);</script>';
 						} else {
 							echo $this->Crud->msg('info', 'No Changes');	
 						}
-                        die;
-					}
 						
-				}
-			}
-		}
-
-        // record listing
-		if($param1 == 'load') {
-			$limit = $param2;
-			$offset = $param3;
-
-			$rec_limit = 25;
-			$item = '';
-            if(empty($limit)) {$limit = $rec_limit;}
-			if(empty($offset)) {$offset = 0;}
-			
-			if(!empty($this->request->getPost('state_id'))) { $state_id = $this->request->getPost('state_id'); } else { $state_id = ''; }
-			if(!empty($this->request->getPost('status'))) { $status = $this->request->getPost('status'); } else { $status = ''; }
-			$search = $this->request->getPost('search');
-
-			$items = '
-				<div class="nk-tb-item nk-tb-head">
-					<div class="nk-tb-col"><span class="sub-text">Fueling Station</span></div>
-					<div class="nk-tb-col"><span class="sub-text">Contact</span></div>
-					<div class="nk-tb-col tb-col-mb"><span class="sub-text">Address</span></div>
-					<div class="nk-tb-col tb-col-md"><span class="sub-text">Date Joined</span></div>
-					<div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
-				</div><!-- .nk-tb-item -->
-				
-			';
-
-            //echo $status;
-			$log_id = $this->session->get('fls_id');
-			if(!$log_id) {
-				$item = '<div class="text-center text-muted">Session Timeout! - Please login again</div>';
-			} else {
-				$all_rec = $this->Crud->filter_customer('', '', $log_id, $state_id, $status, $search);
-				if(!empty($all_rec)) { $counts = count($all_rec); } else { $counts = 0; }
-				$query = $this->Crud->filter_customer($limit, $offset, $log_id, $state_id, $status, $search);
-				$data['count'] = $counts;
-				if(!empty($query)) {
-					foreach($query as $q) {
-						$id = $q->id;
-						$fullname = $q->fullname;
-						$email = $q->email;
-						$phone = $q->phone;
-						$address = $q->address;
-						$state = $this->Crud->read_field('id', $q->state_id, 'state', 'name');
-						$country = $this->Crud->read_field('id', $q->country_id, 'country', 'name');
-						$city = $this->Crud->read_field('id', $q->lga_id, 'city', 'name');
-						$img = $this->Crud->image($q->logo, 'big');
-						$activate = $q->activate;
-						$u_role = $this->Crud->read_field('id', $q->role_id, 'access_role', 'name');
-						$reg_date = date('M d, Y', strtotime($q->reg_date));
-
-						$approved = '';
-						if($activate == 1) { 
-							$color = 'success';
-							$approve_text = 'Account Activated';
-							$approved = '<span class="text-primary"><i class="ri-check-circle-line"></i></span> '; 
-						} else {
-							$color = 'danger';
-							$approve_text = 'Account Deactivated';
-						}
-
-						// add manage buttons
-						if($role_u != 1) {
-							$all_btn = '';
-						} else {
-							$all_btn = '
-								<div class="text-right">
-									<li><a href="javascript:;" class="text-primary pop" pageTitle="Manage '.$fullname.'" pageName="'.site_url($mod.'/manage/edit/'.$id).'">
-										<i class="ni ni-edit-alt"></i> Edit
-									</a></li>
-									<li><a href="javascript:;" class="text-danger pop" pageTitle="Delete '.$fullname.'" pageName="'.site_url($mod.'/manage/delete/'.$id).'">
-										<i class="ni ni-trash-alt"></i> Delete
-									</a></li>
-								</div>
-							';
-						}
-
-						$item .= '
-							<div class="nk-tb-item">
-								<div class="nk-tb-col">
-									<div class="user-card">
-										<div class="user-avatar ">
-											<img alt="" src="'.site_url($img).'" height="40px"/>
-										</div>
-										<div class="user-info">
-											<span class="tb-lead">'.ucwords($fullname).' <span class="dot dot-success d-md-none ms-1"></span></span>
-										</div>
-									</div>
-								</div>
-								<div class="nk-tb-col tb-col	">
-									<span class="text-dark"><b>'.$phone.'</b></span><br>
-									<span>'.$email.'</span>
-								</div>
-								<div class="nk-tb-col tb-col-mb">
-									<span>'.ucwords($address).'</span><br>
-									<span class="tb-amount">'.$country.'</span><span class="text-info">'.$state.'&rarr; '.$city.'</span>
-								</div>
-								<div class="nk-tb-col tb-col-md">
-									<span class="tb-amount">'.$reg_date.'</span>
-								</div>
-								<div class="nk-tb-col nk-tb-col-tools">
-									<ul class="nk-tb-actions gx-1">
-										<li>
-											<div class="drodown">
-												<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-												<div class="dropdown-menu dropdown-menu-end">
-													<ul class="link-list-opt no-bdr">
-														'.$all_btn.'
-													</ul>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div><!-- .nk-tb-item -->
-						';
-					}
-				}
-			}
-			
-			if(empty($item)) {
-				$resp['item'] = $items.'
-					<div class="text-center text-muted">
-						<br/><br/><br/><br/>
-						<i class="ni ni-users" style="font-size:150px;"></i><br/><br/>No Filling Station Returned
-					</div>
-				';
-			} else {
-				$resp['item'] = $items . $item;
-			}
-
-			$resp['count'] = $counts;
-
-			$more_record = $counts - ($offset + $rec_limit);
-			$resp['left'] = $more_record;
-
-			if($counts > ($offset + $rec_limit)) { // for load more records
-				$resp['limit'] = $rec_limit;
-				$resp['offset'] = $offset + $limit;
-			} else {
-				$resp['limit'] = 0;
-				$resp['offset'] = 0;
-			}
-
-			echo json_encode($resp);
-			die;
-		}
-
-		if($param1 == 'manage') { // view for form data posting
-			return view($mod.'_form', $data);
-		} else { // view for main page
-			
-			$data['title'] = 'Customers | '.app_name;
-			$data['page_active'] = $mod;
-			return view($mod, $data);
-		}
-    }
-
-	//Fueling Station Staff
-	public function staff($param1='', $param2='', $param3='') {
-		// check session login
-		if($this->session->get('fls_id') == ''){
-			$request_uri = uri_string();
-			$this->session->set('fls_redirect', $request_uri);
-			return redirect()->to(site_url('auth'));
-		} 
-
-        $mod = 'accounts/staff';
-
-        $log_id = $this->session->get('fls_id');
-        $role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
-        $role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-        $role_c = $this->Crud->module($role_id, $mod, 'create');
-        $role_r = $this->Crud->module($role_id, $mod, 'read');
-        $role_u = $this->Crud->module($role_id, $mod, 'update');
-        $role_d = $this->Crud->module($role_id, $mod, 'delete');
-        if($role_r == 0){
-            return redirect()->to(site_url('dashboard'));	
-        }
-        $data['log_id'] = $log_id;
-        $data['role'] = $role;
-        $data['role_c'] = $role_c;
-       
-		$table = 'user';
-		$form_link = site_url($mod);
-		if($param1){$form_link .= '/'.$param1;}
-		if($param2){$form_link .= '/'.$param2.'/';}
-		if($param3){$form_link .= $param3;}
-		
-		// pass parameters to view
-		$data['param1'] = $param1;
-		$data['param2'] = $param2;
-		$data['param3'] = $param3;
-		$data['form_link'] = $form_link;
-		
-		// manage record
-		if($param1 == 'manage') {
-			// prepare for delete
-			if($param2 == 'delete') {
-				if($param3) {
-					$edit = $this->Crud->read_single('id', $param3, $table);
-                    //echo var_dump($edit);
-					if(!empty($edit)) {
-						foreach($edit as $e) {
-							$data['d_id'] = $e->id;
-						}
-					}
-					
-					if($this->request->getMethod() == 'post'){
-						$del_id =  $this->request->getVar('d_staff_id');
-                        $code = $this->Crud->read_field('id', $del_id, 'user', 'fullname');
-						$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-						$action = $by.' deleted Staff ('.$code.')';
-							
-                        if($this->Crud->deletes('id', $del_id, $table) > 0) {
-
-							///// store activities
-							$this->Crud->activity('user', $del_id, $action);
-							
-							echo $this->Crud->msg('success', 'Record Deleted');
-							echo '<script>location.reload(false);</script>';
-						} else {
-							echo $this->Crud->msg('danger', 'Please try later');
-						}
-						die;	
-					}
-				}
-			} else {
-				// prepare for edit
-				if($param2 == 'edit') {
-					if($param3) {
-						$edit = $this->Crud->read_single('id', $param3, $table);
-						if(!empty($edit)) {
-							foreach($edit as $e) {
-								$data['e_id'] = $e->id;
-								$data['e_fullname'] = $e->fullname;
-								$data['e_email'] = $e->email;
-								$data['e_phone'] = $e->phone;
-								$data['e_country_id'] = $e->country_id;
-								$data['e_state_id'] = $e->state_id;
-								$data['e_lga_id'] = $e->lga_id;
-								$data['e_branch_id'] = $e->branch_id;
-								$data['e_role_id'] = $e->role_id;
-								$data['e_address'] = $e->address;
-								$data['e_ban'] = $e->activate;
-								$data['e_img'] = $e->img_id;
-								$data['e_logo'] = $e->logo;
-								
-							}
-						}
-					}
-				}
-
-				//profile view
-				if($param2 == 'profile') {
-					$vendor_id = $param3;
-					$data['v_id'] = $vendor_id;
-					$data['fullname'] = $this->Crud->read_field('id', $vendor_id, 'user', 'fullname');
-					$data['v_phone'] = $this->Crud->read_field('id', $vendor_id, 'user', 'phone');
-					$data['v_dob'] = $this->Crud->read_field('id', $vendor_id, 'user', 'dob');
-					$data['reg_date'] = $this->Crud->read_field('id', $vendor_id, 'user', 'reg_date');
-					$data['v_email'] = $this->Crud->read_field('id', $vendor_id, 'user', 'email');
-
-					$v_img_id = $this->Crud->read_field('id', $vendor_id, 'user', 'img_id');
-					$data['v_img'] = site_url($this->Crud->image($v_img_id, 'big'));
-
-					$v_status = $this->Crud->read_field('id', $vendor_id, 'user', 'activate');
-					if(!empty($v_status)) { $v_status = '<span class="text-success">VERIFIED</span>'; } else { $v_status = '<span class="text-danger">UNVERIFIED</span>'; }
-					$data['v_status'] = $v_status;
-
-					$data['v_address'] = $this->Crud->read_field('id', $vendor_id, 'user', 'address');
-
-					$v_state_id = $this->Crud->read_field('id', $vendor_id, 'user', 'state_id');
-					$data['v_state'] = $this->Crud->read_field('id', $v_state_id, 'state', 'name');
-
-					$v_country_id = $this->Crud->read_field('id', $vendor_id, 'user', 'country_id');
-					$data['v_country'] = $this->Crud->read_field('id', $v_country_id, 'country', 'name');
-					
-				}
-				
-				if($this->request->getMethod() == 'post'){
-					$user_i =  $this->request->getVar('user_id');
-					$fullname =  $this->request->getVar('fullname');
-					$email =  $this->request->getVar('email');
-					$phone =  $this->request->getVar('phone');
-					$country_id =  $this->request->getVar('country_id');
-					$lga_id =  $this->request->getVar('lga');
-					$state =  $this->request->getVar('state');
-					$branch =  $this->request->getVar('branch');
-					$password =  $this->request->getVar('password');
-					$role =  $this->request->getVar('role');
-					$ban =  $this->request->getVar('ban');
-					$partner_id =  $this->Crud->read_field('id', $branch, 'branch', 'partner_id');
-					
-					
-					// do create or update
-					if($user_i) {
-						if($password) { $upd_data['password'] = md5($password); }
-						$upd_data = array(
-							'fullname' => $fullname,
-							'email' => $email,
-							'phone' => $phone,
-							'branch_id' => $branch,
-							'country_id' => $country_id,
-							'state_id' => $state,
-							'lga_id' => $lga_id,
-							'activate' => $ban,
-							'role_id' => $role
-							
-						);
-						$upd_rec = $this->Crud->updates('id', $user_i, $table, $upd_data);
-						if($upd_rec > 0) {
-							///// store activities
-							$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-							$code = $this->Crud->read_field('id', $user_i, 'user', 'fullname');
-							$action = $by.' updated Staff ('.$code.') Record';
-							$this->Crud->activity('user', $user_i, $action);
-
-							echo $this->Crud->msg('success', 'Updated');
-							echo '<script>location.reload(false);</script>';
-						} else {
-							echo $this->Crud->msg('info', 'No Changes');	
-						}
-                        die;
 					} else {
-						if($this->Crud->check2('fullname', $fullname, 'email', $email, $table) > 0) {
-							echo $this->Crud->msg('warning', 'Record Already Exist');
+						if($this->Crud->check2('name', $name, 'parent_id', $parent_id, $table) > 0) {
+							echo $this->Crud->msg('warning', 'Child`s name already exist for this Parent');
 						} else {
-							if($password) { $ins_data['password'] = md5($password); }
-							$ins_data = array(
-								'fullname' => $fullname,
-								'email' => $email,
-								'phone' => $phone,
-								'branch_id' => $branch,
-								'country_id' => $country_id,
-								'state_id' => $state,
-								'partner_id' => $partner_id,
-								'lga_id' => $lga_id,
-								'password' => md5($password),
-								'role_id' => $role,
-								'is_staff' => 1,
-								'activate' => $ban,
-								'reg_date' => date(fdate)
-							
-							);
-							$ins_rec = $this->Crud->create($table, $ins_data);
-							if($ins_rec > 0) {
-								echo $this->Crud->msg('success', 'Record Created');
-								///// store activities
-								$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-								$code = $this->Crud->read_field('id', $ins_rec, 'user', 'fullname');
-								$action = $by.' created Staff ('.$code.') Record';
-								$this->Crud->activity('user', $ins_rec, $action);
-								echo '<script>location.reload(false);</script>';
+							if($this->Crud->check('parent_id', $parent_id, $table) > 3){
+								echo $this->Crud->msg('danger', 'Maximum number of Children per Parent is 3');
 							} else {
-								echo $this->Crud->msg('danger', 'Please try later');	
-							}	
-						}
+								$ins_data['reg_date'] = date(fdate);
+								$ins_rec = $this->Crud->create($table, $ins_data);
+								if($ins_rec > 0) {
+									///// store activities
+									$code = $this->Crud->read_field('id', $ins_rec, $table, 'name');
+									$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
+									$action = $by.' created Child '.$code.' Record';
+									$this->Crud->activity('account', $ins_rec, $action);
 
-					}die;
-						
+									echo $this->Crud->msg('success', 'Record Created');
+									echo '<script>location.reload(false);</script>';
+								} else {
+									echo $this->Crud->msg('danger', 'Please try later');	
+								}	
+							}
+							
+						}
+					}
+
+					die;	
 				}
 			}
 		}
@@ -932,126 +446,96 @@ class Accounts extends BaseController {
 
 			$rec_limit = 25;
 			$item = '';
-            if(empty($limit)) {$limit = $rec_limit;}
+			$counts = 0;
+
+			if(empty($limit)) {$limit = $rec_limit;}
 			if(empty($offset)) {$offset = 0;}
 			
-			if(!empty($this->request->getPost('state_id'))) { $state_id = $this->request->getPost('state_id'); } else { $state_id = ''; }
-			if(!empty($this->request->getPost('status'))) { $status = $this->request->getPost('status'); } else { $status = ''; }
+			if(!empty($this->request->getPost('age_id'))) { $ageID = $this->request->getPost('age_id'); } else { $ageID = ''; }
+			if(!empty($this->request->getPost('parent_id'))) { $parentID = $this->request->getPost('parent_id'); } else { $parentID = ''; }
+			if (!empty($this->request->getPost('start_date'))) {$start_date = $this->request->getPost('start_date');} else {$start_date = '';}
+			if (!empty($this->request->getPost('end_date'))) {$end_date = $this->request->getPost('end_date');} else {$end_date = '';}
+			
 			$search = $this->request->getPost('search');
 
-			$items = '
-				<div class="nk-tb-item nk-tb-head">
-					<div class="nk-tb-col"><span class="sub-text">Fueling Station</span></div>
-					<div class="nk-tb-col"><span class="sub-text">Contact</span></div>
-					<div class="nk-tb-col tb-col-mb"><span class="sub-text">Address</span></div>
-					<div class="nk-tb-col tb-col-md"><span class="sub-text">Date Joined</span></div>
-					<div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
-				</div><!-- .nk-tb-item -->
-				
-			';
-
-            //echo $status;
-			$log_id = $this->session->get('fls_id');
+			$log_id = $this->session->get('plx_id');
 			if(!$log_id) {
 				$item = '<div class="text-center text-muted">Session Timeout! - Please login again</div>';
 			} else {
-				$all_rec = $this->Crud->filter_staff('', '', $log_id, $state_id, $status, $search);
-				if(!empty($all_rec)) { $counts = count($all_rec); } else { $counts = 0; }
-				$query = $this->Crud->filter_staff($limit, $offset, $log_id, $state_id, $status, $search);
-				$data['count'] = $counts;
+				$all_rec = $this->Crud->filter_children('', '', $log_id, $ageID, $parentID, $search, $start_date, $end_date);
+				if(!empty($all_rec)) { $counts = count($all_rec); }
+				$query = $this->Crud->filter_children($limit, $offset, $log_id, $ageID, $parentID, $search, $start_date, $end_date);
+
 				if(!empty($query)) {
 					foreach($query as $q) {
 						$id = $q->id;
-						$fullname = $q->fullname;
-						$email = $q->email;
-						$phone = $q->phone;
-						$address = $q->address;
-						$state = $this->Crud->read_field('id', $q->state_id, 'state', 'name');
-						$country = $this->Crud->read_field('id', $q->country_id, 'country', 'name');
-						$city = $this->Crud->read_field('id', $q->lga_id, 'city', 'name');
-						$img = $this->Crud->image($q->logo, 'big');
-						$activate = $q->activate;
-						$u_role = $this->Crud->read_field('id', $q->role_id, 'access_role', 'name');
-						$reg_date = date('M d, Y', strtotime($q->reg_date));
+						$name = $q->name;
+						$avatar = $q->avatar;
+						$age = $this->Crud->read_field('id', $q->age_id, 'age', 'name');
+						$parent = $this->Crud->read_field('id', $q->parent_id, 'user', 'fullname');
+						$reg_date = date('M d, Y h:i A', strtotime($q->reg_date));
 
-						$approved = '';
-						if($activate == 1) { 
-							$color = 'success';
-							$approve_text = 'Account Activated';
-							$approved = '<span class="text-primary"><i class="ri-check-circle-line"></i></span> '; 
-						} else {
-							$color = 'danger';
-							$approve_text = 'Account Deactivated';
+						// count children
+						// $children = $this->db->table('child')->where('parent_id', $q->id)->countAllResults();
+						
+						if(empty($avatar)){
+							$avatar = 'assets/images/avatar.png';
 						}
-
 						// add manage buttons
+						$all_btn = '';
 						if($role_u != 1) {
 							$all_btn = '';
 						} else {
 							$all_btn = '
 								<div class="text-right">
-									<li><a href="javascript:;" class="text-primary pop" pageTitle="Manage '.$fullname.'" pageName="'.site_url($mod.'/manage/edit/'.$id).'">
-										<i class="ni ni-edit-alt"></i> Edit
-									</a></li>
-									<li><a href="javascript:;" class="text-danger pop" pageTitle="Delete '.$fullname.'" pageName="'.site_url($mod.'/manage/delete/'.$id).'">
-										<i class="ni ni-trash-alt"></i> Delete
-									</a></li>
+									<a href="javascript:;" class="text-danger pop" pageTitle="Delete '.$name.' Details" pageName="'.base_url('accounts/children/manage/delete/'.$id).'" pageSize="modal-sm">
+										<i class="anticon anticon-delete"></i> DELETE
+									</a>
+									<a href="javascript:;" class="text-primary pop" pageTitle="Edit '.$name.' Details" pageName="'.base_url('accounts/children/manage/edit/'.$id).'" pageSize="modal-md">
+										<i class="anticon anticon-edit"></i> EDIT
+									</a>
 								</div>
 							';
 						}
 
 						$item .= '
-							<div class="nk-tb-item">
-								<div class="nk-tb-col">
-									<div class="user-card">
-										<div class="user-avatar ">
-											<img alt="" src="'.site_url($img).'" height="40px"/>
-										</div>
-										<div class="user-info">
-											<span class="tb-lead">'.ucwords($fullname).' <span class="dot dot-success d-md-none ms-1"></span></span>
+							<li class="list-group-item">
+								<div class="row p-t-10">
+									<div class="col-2 col-md-1">
+										<img alt="" src="'.site_url($avatar).'" class="p-1 avatar" />
+									</div>
+									<div class="col-10 col-md-5 m-b-10">
+										<div class="single">
+											<div class="text-muted font-size-12">'.$reg_date.'</div>
+											<b class="font-size-16 text-primary">'.$name.'</b>
+											<div class="small text-muted">'.$parent.'</div>
 										</div>
 									</div>
+									<div class="col-7 col-md-4 m-b-5">
+										<div class="text-muted font-size-12">AGE</div>
+										<div class="font-size-14">
+											'.$age.'
+										</div>
+									</div>
+									<div class="col-5 col-md-2">
+										<b class="font-size-14">'.$all_btn.'</b>
+									</div>
 								</div>
-								<div class="nk-tb-col tb-col	">
-									<span class="text-dark"><b>'.$phone.'</b></span><br>
-									<span>'.$email.'</span>
-								</div>
-								<div class="nk-tb-col tb-col-mb">
-									<span>'.ucwords($address).'</span><br>
-									<span class="tb-amount">'.$country.'</span><span class="text-info">'.$state.'&rarr; '.$city.'</span>
-								</div>
-								<div class="nk-tb-col tb-col-md">
-									<span class="tb-amount">'.$reg_date.'</span>
-								</div>
-								<div class="nk-tb-col nk-tb-col-tools">
-									<ul class="nk-tb-actions gx-1">
-										<li>
-											<div class="drodown">
-												<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-												<div class="dropdown-menu dropdown-menu-end">
-													<ul class="link-list-opt no-bdr">
-														'.$all_btn.'
-													</ul>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div><!-- .nk-tb-item -->
+							</li>
 						';
 					}
 				}
 			}
 			
 			if(empty($item)) {
-				$resp['item'] = $items.'
+				$resp['item'] = '
 					<div class="text-center text-muted">
 						<br/><br/><br/><br/>
-						<i class="ni ni-users" style="font-size:150px;"></i><br/><br/>No Filling Station Returned
+						<i class="anticon anticon-team" style="font-size:150px;"></i><br/><br/>No Children Returned
 					</div>
 				';
 			} else {
-				$resp['item'] = $items . $item;
+				$resp['item'] = $item;
 			}
 
 			$resp['count'] = $counts;
@@ -1071,74 +555,17 @@ class Accounts extends BaseController {
 			die;
 		}
 
-		if($param1 == 'manage') { // view for form data posting
-			return view($mod.'_form', $data);
+		$data['parents'] = $this->Crud->read_single_order('role_id', 3, 'user', 'fullname', 'ASC');
+		$data['ages'] = $this->Crud->read_order('age', 'id', 'ASC');
+
+        if($param1 == 'manage') { // view for form data posting
+			return view('account/children_form', $data);
 		} else { // view for main page
-			
-			$data['title'] = 'Staff | '.app_name;
-			$data['page_active'] = $mod;
-			return view($mod, $data);
-		}
+            $data['title'] = 'Children | '.app_name;
+            $data['page_active'] = 'accounts/children';
+            return view('account/children', $data);
+        }
     }
 
-	public function get_state($country){
-		if(empty($country)){
-			echo '<label for="activate">State</label>
-			<input type="text" class="form-control" name="state" id="state" readonly placeholder="Select Country First">';
-		} else {
-			$state = $this->Crud->read_single_order('country_id', $country, 'state', 'name', 'asc');
-			echo '<label for="activate">State</label>
-				<select class="form-select js-select2" data-search="on" id="state" name="state" onchange="lgaa();">
-					<option value="">Select</option>
-			';
-			foreach($state as $qr) {
-				$hid = '';
-				$sel = '';
-				echo '<option value="'.$qr->id.'" '.$sel.'>'.$qr->name.'</option>';
-			}
-			echo '</select>
-			<script> $(".js-select2").select2();</script>';
-		}
-	}
-
-	public function get_lga($state){
-		if(empty($state)){
-			echo '<label for="activate">Local Goverment Area</label>
-			<input type="text" class="form-control" name="lga" id="lga" readonly placeholder="Select State First">';
-		} else {
-			$state = $this->Crud->read_single_order('state_id', $state, 'city', 'name', 'asc');
-			echo '<label for="activate">Local Goverment Area</label>
-				<select class="form-select js-select2" data-search="on" id="lga" name="lga" onchange="branc();">
-					<option value="">Select</option>
-			';
-			foreach($state as $qr) {
-				$hid = '';
-				$sel = '';
-				echo '<option value="'.$qr->id.'" '.$sel.'>'.$qr->name.'</option>';
-			}
-			echo '</select>
-			<script> $(".js-select2").select2();</script>';
-		}
-	}
-
-	public function get_branch($state){
-		if(empty($state)){
-			echo '<label for="activate">Branch</label>
-			<input type="text" class="form-control" name="branch" id="branch" readonly placeholder="Select LGA First">';
-		} else {
-			$state = $this->Crud->read_single_order('city_id', $state, 'branch', 'name', 'asc');
-			echo '<label for="activate">Branch</label>
-				<select class="form-select js-select2" data-search="on" id="branch" name="branch" onchange="load();">
-					<option value="">Select</option>
-			';
-			foreach($state as $qr) {
-				$hid = '';
-				$sel = '';
-				echo '<option value="'.$qr->id.'" '.$sel.'>'.$qr->name.'</option>';
-			}
-			echo '</select>
-			<script> $(".js-select2").select2();</script>';
-		}
-	}
-
+	
 }
