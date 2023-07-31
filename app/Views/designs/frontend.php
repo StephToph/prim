@@ -90,22 +90,31 @@
                                         <a href="<?=site_url(); ?>" class="nav-link active">Home</a>
                                     </li>
 									<li class="nav-item">
+                                        <a href="#about_us" class="nav-link">About</a>
+                                    </li>
+									<li class="nav-item">
                                         <a href="<?=site_url(); ?>" class="nav-link ">Scholarship</a>
                                     </li>
 									<li class="nav-item">
-                                        <a href="<?=site_url(); ?>" class="nav-link ">Blogs</a>
+                                        <a href="#team" class="nav-link ">Our Teams</a>
                                     </li>
 									<li class="nav-item">
-										<a href="contact.html" class="nav-link">Contact</a>
+                                        <a href="#blog" class="nav-link ">Blogs</a>
+                                    </li>
+									<li class="nav-item">
+                                        <a href="#faq" class="nav-link ">FAQs</a>
+                                    </li>
+									<li class="nav-item">
+										<a href="#contact" class="nav-link">Contact</a>
 									</li>
 								</ul>
 								<div class="others-option">
-									<a href="tel:+800-987-65-43" class="contact-number">
+									<a href="tel:+229 63376861" class="contact-number">
 										<i class="fa fa-phone"></i> 
-										+800-987-65-43
+										+229 63376861
 									</a>
 									<a class="default-btn" href="javascript:;">
-										Get Started
+										Apply Now
 									</a>
 								</div>
 							</div>
@@ -120,10 +129,10 @@
         <?=$this->renderSection('content');?>
 
 		<!-- Start Footer Top Area -->
-		<section class="footer-top-area pt-100 pb-70">
+		<section class="footer-top-area pt-100 pb-70" >
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6">
+					<div class="col-lg-8 col-md-6">
 						<div class="single-widget">
 							<a href="<?=site_url(); ?>">
 								<img src="<?=site_url(); ?>assets/logos.jpeg" alt="White-Logo" style="height:67px">
@@ -131,12 +140,8 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua. Quis ipsum suspendisse ultrices gravida.</p>
 							<ul class="address">
 								<li>
-									<i class="fa fa-map-marker"></i>
-									32 st Kilda Road, Melbourne VIC, 3004 Australia
-								</li>
-								<li>
 									<i class="fa fa-phone"></i>
-									<a href="tel:+123(456)123">+123(456)123</a>
+									<a href="tel:+229 63376861">+229 63376861</a>
 								</li>
 								<li>
 									<i class="fa fa-envelope"></i>
@@ -145,32 +150,29 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-3 col-6">
+					<div class="col-lg-4 col-6">
 						<div class="single-widget">
 							<h3>Links</h3>
 							<ul class="links">
-								<li>
-									<a href="<?=site_url(); ?>">Home</a>
+								<li >
+									<a href="<?=site_url(); ?>" class="nav-link active">Home</a>
 								</li>
 								<li>
-									<a href="service.html">Service</a>
+									<a href="#about_us" class="nav-link">About</a>
 								</li>
-								<li>
-									<a href="about.html">About Us</a>
+								<li class="nav-item">
+									<a href="<?=site_url(); ?>" class="nav-link ">Scholarship</a>
 								</li>
-								<li>
-									<a href="testimonial.html">Testimonial</a>
+								<li class="nav-item">
+									<a href="#blog" class="nav-link ">Blogs</a>
 								</li>
-								<li>
-									<a href="blog.html">Blog</a>
-								</li>
-								<li>
-									<a href="contact.html">Contact Us</a>
+								<li class="nav-item">
+									<a href="#contact" class="nav-link">Contact</a>
 								</li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-3 col-6">
+					<!-- <div class="col-lg-3 col-6">
 						<div class="single-widget">
 							<h3>Support</h3>
 							<ul class="links">
@@ -194,7 +196,7 @@
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section>
@@ -272,6 +274,21 @@
 		<script src="<?=site_url(); ?>assets/public/assets/js/ajaxchimp.min.js"></script>
         <!-- Custom JS -->
         <script src="<?=site_url(); ?>assets/public/assets/js/custom.js"></script>
+		<script>
+			$(document).ready(function() {
+				// Smooth scroll function
+				$('a[href^="#"]').on('click', function(event) {
+					event.preventDefault();
+					var target = $($(this).attr('href'));
+					if (target.length) {
+					$('html, body').animate({
+						scrollTop: target.offset().top
+					}, 1000); // Change the value (in milliseconds) to control the speed of the scroll
+					}
+				});
+				});
+
+		</script>
     </body>
 
 </html>

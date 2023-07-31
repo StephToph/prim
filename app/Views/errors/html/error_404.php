@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="<?=app_name;?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="./images/favicon.png">
-    <!-- Page Title  -->
-    <title>Error 404 | <?=app_name;?></title>
-    <!-- StyleSheets  -->
-    <link rel="stylesheet" href="<?=site_url();?>/assets/backend/css/main.css">
-    <link id="skin-default" rel="stylesheet" href="<?=site_url();?>assets/backend/css/skins/theme-blue.css">
-    <link id="skin-default" rel="stylesheet" href="<?=site_url();?>/assets/backend/css/theme.css">
+    <title>Error Page</title>
+    <link rel="shortcut icon" href="<?php echo site_url() ?>assets/images/favicon.png">
+    <link href="<?php echo site_url() ?>assets/css/app.min.css?v=7" rel="stylesheet">
 </head>
 
-<body class="nk-body bg-white npc-default pg-error">
-    <div class="nk-app-root">
-        <div class="nk-main ">
-            <div class="nk-wrap nk-wrap-nosidebar">
-                <div class="nk-content ">
-                    <div class="nk-block nk-block-middle wide-md mx-auto">
-                        <div class="nk-block-content nk-error-ld text-center">
-                            <img class="nk-error-gfx" src="<?=site_url();?>/assets/backend/images/gfx/error-404.svg" alt="">
-                            <div class="wide-xs mx-auto">
-                                <h3 class="nk-error-title">Oops! Why you’re here?</h3>
-                                <p class="nk-error-text">We are very sorry for inconvenience. It looks like you’re try to access a page that either has been deleted or never existed.</p>
-                                <a href="<?=site_url('dashboard');?>" class="btn btn-lg btn-primary mt-2">Back To Home</a>
+<body>
+    <div class="app">
+        <div class="container-fluid">
+            <div class="d-flex full-height p-v-20 flex-column justify-content-between">
+                <div class="d-none d-md-flex p-h-40">
+                    <img src="<?php echo site_url() ?>assets/images/footer-logo.png" alt="" height="50px">
+                </div>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-8 m-h-auto">
+                            <div class="text-center m-b-50">
+                                <img class="img-fluiStack(
+                                    children: [
+                                        
+                                    ]
+                                )d w-90" src="<?php echo site_url() ?>assets/images/others/error-2.png" alt="">
+                                <h2 class="font-weight-light font-size-30 m-t-60 m-b-20">Whoops! Looks like you got lost</h2>
+                                <p class="w-70 lh-1-8 m-h-auto font-size-17">We couldnt find what you were looking for.</p>
+								<a href="<?php echo site_url(); ?>" class="btn btn-primary btn-tone"><i class="anticon anticon-arrow-left"></i> Go Back</a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +35,5 @@
             </div>
         </div>
     </div>
-    
-    <script src="<?=site_url();?>/assets/backend/js/bundle.js"></script>
-    <script src="<?=site_url();?>/assets/backend/js/scripts.js"></script>
+</body>
 </html>

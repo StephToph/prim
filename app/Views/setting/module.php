@@ -3,60 +3,39 @@
     $this->Crud = new Crud();
 ?>
 
-<?=$this->extend('designs/backend');?>
-<?=$this->section('title');?>
-    <?=$title;?>
-<?=$this->endSection();?>
+<?php echo $this->extend('designs/backend'); ?>
+<?php echo $this->section('title'); ?>
+    <?php echo $title; ?>
+<?php echo $this->endSection(); ?>
 
-<?=$this->section('content');?>
-    <div class="nk-content ">
-        <div class="container-fluid">
-            <div class="nk-content-inner">
-                <div class="nk-content-body">
-                    <div class="nk-block-head nk-block-head-sm">
-                        <div class="nk-block-between">
-                            <div class="nk-block-head-content">
-                                <h3 class="nk-block-title page-title">Modules</h3>
-                                <div class="nk-block-des text-soft">
-                                    <p>Manage application modules</p>
-                                </div>
-                            </div>
-                            <div class="nk-block-head-content">
-                                <div class="toggle-wrap nk-block-tools-toggle">
-                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="toggle-expand-content" data-content="pageMenu">
-                                        <ul class="nk-block-tools g-3">
-                                            <li class="nk-block-tools-opt">
-                                                <a href="javascript:;" class="float-right btn btn-primary pop" pageTitle="Add Module" pageName="<?php echo base_url('settings/modules/manage'); ?>" pageSize="">
-                                                    <em class="icon ni ni-plus-sm"></em> Add
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<?php echo $this->section('content'); ?>
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            Modules
+                            <a href="javascript:;" class="float-right btn btn-primary pop" pageTitle="Add Module" pageName="<?php echo base_url('settings/modules/manage'); ?>" pageSize="">
+                                <i class="anticon anticon-plus"></i> Add
+                            </a>
+                        </h4>
 
-                    <div class="nk-block">
-                        <div class="row g-gs">
-                            <div class="col-xxl-6">
-                                <div class="row g-gs">
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-inner table-responsive">
-                                                <table id="dtable" class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Module</th>
-                                                            <th width="120px"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody> </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table id="dtable" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Module</th>
+                                                <th width="120px"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -64,5 +43,5 @@
                 </div>
             </div>
         </div>
-    </div>
-<?=$this->endSection();?>
+    </div> 
+<?php echo $this->endSection(); ?>

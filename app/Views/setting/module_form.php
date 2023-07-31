@@ -42,14 +42,14 @@
                 </div>
             </div>
 
-            <div class="col-sm-5">
+            <div class="col-sm-7">
                 <div class="form-group">
                     <label for="link">Link</label>
                     <input class="form-control" type="text" id="link" name="link" value="<?php if(!empty($e_link)){echo $e_link;} ?>" required>
                 </div>
             </div>
 
-            <div class="col-sm-5">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <label for="icon">Icon</label>
                     <input class="form-control" type="text" id="icon" name="icon" value="<?php if(!empty($e_icon)){echo $e_icon;} ?>">
@@ -74,7 +74,9 @@
     <?php } ?>
 <?php echo form_close(); ?>
 
-<script src="<?php echo site_url(); ?>assets/backend/js/jsform.js"></script>
+<script src="<?php echo site_url(); ?>assets/js/jsform.js"></script>
 <script>
-    $('.select2').select2();
+    $(function() {
+        $('.select2').select2();
+    });
 </script>

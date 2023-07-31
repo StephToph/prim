@@ -10,7 +10,7 @@ class Settings extends BaseController {
 	/////// MODULES
 	public function modules($param1='', $param2='', $param3='') {
 		// check login
-        $log_id = $this->session->get('ang_id');
+        $log_id = $this->session->get('plx_id');
         if(empty($log_id)) return redirect()->to(site_url('auth'));
 
 		$role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
@@ -167,10 +167,10 @@ class Settings extends BaseController {
 				$all_btn = '
 					<div class="text-center">
 						<a href="javascript:;" class="text-primary pop" pageTitle="Manage '.$name.'" pageName="'.site_url('settings/modules/manage/edit/'.$id).'">
-							<em class="icon ni ni-edit"></em>
+							<i class="anticon anticon-edit"></i>
 						</a>&nbsp;
 						<a href="javascript:;" class="text-danger pop" pageTitle="Delete '.$name.'" pageName="'.site_url('settings/modules/manage/delete/'.$id).'">
-							<em class="icon ni ni-trash-alt"></em>
+							<i class="anticon anticon-delete"></i>
 						</a>
 					</div>
 				';
@@ -213,12 +213,12 @@ class Settings extends BaseController {
 	/////// ROLES
 	public function roles($param1='', $param2='', $param3='') {
 		// check login
-        $log_id = $this->session->get('ang_id');
+        $log_id = $this->session->get('plx_id');
         if(empty($log_id)) return redirect()->to(site_url('auth'));
 
 		$role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
 		$role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-		$permit = array('developer');
+		$permit = array('developer', 'administrator');
 		if(!in_array(strtolower($role), $permit)) return redirect()->to(site_url('dashboard'));
 
         $data['log_id'] = $log_id;
@@ -313,7 +313,12 @@ class Settings extends BaseController {
 			$column_order = array('name');
 			$column_search = array('name');
 			$order = array('id' => 'desc');
-			$where = '';
+			if($role == 'developer') {
+				$where = '';
+			} else {
+				$where = array('name!='=>'developer');
+			}
+			
 			
 			// load data into table
 			$list = $this->Crud->datatable_load($table, $column_order, $column_search, $order, $where);
@@ -328,10 +333,10 @@ class Settings extends BaseController {
 				$all_btn = '
 					<div class="text-center">
 						<a class="text-primary pop" href="javascript:;" pageTitle="Manage '.$name.'" pageName="'.site_url('settings/roles/manage/edit/'.$id).'">
-							<em class="icon ni ni-edit"></em>
+							<i class="anticon anticon-edit"></i>
 						</a>&nbsp;
 						<a class="text-danger pop" href="javascript:;" pageTitle="Delete '.$name.'" pageName="'.site_url('settings/roles/manage/delete/'.$id).'">
-							<em class="icon ni ni-trash"></em>
+							<i class="anticon anticon-delete"></i>
 						</a>
 					</div>
 				';
@@ -375,15 +380,16 @@ class Settings extends BaseController {
 	/////// ACCESS CRUD
 	public function access() {
 		// check login
-        $log_id = $this->session->get('ang_id');
+        $log_id = $this->session->get('plx_id');
         if(empty($log_id)) return redirect()->to(site_url('auth'));
 
 		$role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
 		$role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-		$permit = array('developer');
+		$permit = array('developer', 'administrator');
 		if(!in_array(strtolower($role), $permit)) return redirect()->to(site_url('dashboard'));
 
         $data['log_id'] = $log_id;
+		$data['role'] = $role;
 
 		$data['allrole'] = $this->Crud->read('access_role');
 			
@@ -397,15 +403,16 @@ class Settings extends BaseController {
 	/////// APP SETTINGS
 	public function app() {
 		// check login
-        $log_id = $this->session->get('ang_id');
+        $log_id = $this->session->get('plx_id');
         if(empty($log_id)) return redirect()->to(site_url('auth'));
 
 		$role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
 		$role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-		$permit = array('developer');
+		$permit = array('developer', 'administrator');
 		if(!in_array(strtolower($role), $permit)) return redirect()->to(site_url('dashboard'));
 
         $data['log_id'] = $log_id;
+		$data['role'] = $role;
 
 		$data['settings'] = $this->Crud->read_order('setting', 'name', 'asc');
 			
@@ -427,7 +434,7 @@ class Settings extends BaseController {
 		}
 
 		$parent = '
-			<select id="parent_id" name="parent_id" class="form-select select2" required>
+			<select id="parent_id" name="parent_id" class="select2" required>
 				<option value="0">None</option>
 				'.$parent.'
 			</select>
@@ -444,7 +451,7 @@ class Settings extends BaseController {
 			$role_id = $this->request->getVar('role_id');
 
 			if($role_id) {
-				$log_id = $this->session->get('ang_id');
+				$log_id = $this->session->get('plx_id');
 				$log_role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
 				$log_role = $this->Crud->read_field('id', $log_role_id, 'access_role', 'name');
 
