@@ -359,84 +359,44 @@
         <section class="blog-area pb-100" id="blog">
 			<div class="container">
 				<div class="section-title">
-					<span>News</span>
+					<span>Blog</span>
 					<h2>Latest News</h2>
 				</div>
 
 				<div class="row">
 					<div class="blog-wrap owl-carousel owl-theme">
-						<div class="single-blog-post">
-							<div class="post-image">
-								<a href="#">
-									<img src="<?=site_url(); ?>assets/public/assets/img/blog/1.jpg" alt="image">
-								</a>
-							</div>
-							<div class="post-content">
-								<div class="date">
-									<i class="fa fa-calendar"></i> 
-									<span>12 September 2019</span>
+						<?php
+							$blog = $this->Crud->read_single('status', 0, 'blog');
+							if(!empty($blog)){
+								foreach($blog as $b){
+									$img = $b->image;
+									if(empty($img) || !file_exists($img)){
+										$img = 'assets/blog.jpg';
+									}
+							
+						?>
+							<div class="single-blog-post">
+								<div class="post-image">
+									<a href="<?=site_url('home/blog/'.$b->id); ?>">
+										<img src="<?=site_url($img); ?>" alt="image" style="height:300px">
+									</a>
 								</div>
-								<h3>
-									<a href="#">Successful Growth In Business 2019</a>
-								</h3>
-								<p>Luis ipsum suspendisse ultrices. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-								<a href="blog-details.html" class="default-btn">Read More</a>
-							</div>
-						</div>
-						<div class="single-blog-post">
-							<div class="post-image">
-								<a href="#">
-									<img src="<?=site_url(); ?>assets/public/assets/img/blog/2.jpg" alt="image">
-								</a>
-							</div>
-							<div class="post-content">
-								<div class="date">
-									<i class="fa fa-calendar"></i> 
-									<span>13 October 2019</span>
+								<div class="post-content">
+									<div class="date">
+										<i class="fa fa-calendar"></i> 
+										<span><?=date('d F Y', strtotime($b->reg_date)); ?></span>
+									</div>
+									<h3>
+										<a href="<?=site_url('home/blog/'.$b->id); ?>"><?=ucwords($b->title); ?></a>
+									</h3>
+									<p><?=ucwords($b->content); ?></p>
+									<a href="<?=site_url('home/blog/'.$b->id); ?>" class="default-btn">Read More</a>
 								</div>
-								<h3>
-									<a href="#">Seminar for Business Development</a>
-								</h3>
-								<p>Luis ipsum suspendisse ultrices. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-								<a href="blog-details.html" class="default-btn">Read More</a>
 							</div>
-						</div>
-						<div class="single-blog-post">
-							<div class="post-image">
-								<a href="#">
-									<img src="<?=site_url(); ?>assets/public/assets/img/blog/3.jpg" alt="image">
-								</a>
-							</div>
-							<div class="post-content">
-								<div class="date">
-									<i class="fa fa-calendar"></i> 
-									<span>14 November 2019</span>
-								</div>
-								<h3>
-									<a href="#">10 Strategies to Manage Financial Forecast</a>
-								</h3>
-								<p>Luis ipsum suspendisse ultrices. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-								<a href="blog-details.html" class="default-btn">Read More</a>
-							</div>
-						</div>
-						<div class="single-blog-post">
-							<div class="post-image">
-								<a href="#">
-									<img src="<?=site_url(); ?>assets/public/assets/img/blog/4.jpg" alt="image">
-								</a>
-							</div>
-							<div class="post-content">
-								<div class="date">
-									<i class="fa fa-calendar"></i> 
-									<span>14 November 2019</span>
-								</div>
-								<h3>
-									<a href="#">Tips for Achieving Success in Your Business</a>
-								</h3>
-								<p>Luis ipsum suspendisse ultrices. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-								<a href="blog-details.html" class="default-btn">Read More</a>
-							</div>
-						</div>
+						
+						<?php
+						}
+					}?>
 					</div>
 				</div>
 			</div>
@@ -458,55 +418,23 @@
 								<div class="col-lg-12">
 									<div class="faq-accordion">
 										<ul class="accordion">
-											<li class="accordion-item">
-												<a class="accordion-title active" href="javascript:void(0)">
-													<i class="fa fa-arrow-right"></i>
-													How to change partner gray image to color?
-												</a>
-												<p class="accordion-content show">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
-											</li>
-											<li class="accordion-item">
-												<a class="accordion-title" href="javascript:void(0)">
-													<i class="fa fa-arrow-right"></i>
-													Where do I add my email address in the caldera form?
-												</a>
-												<p class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
-											</li>
+											<?php
+												$blog = $this->Crud->read_single('status', 0, 'faq');
+												if(!empty($blog)){
+													foreach($blog as $b){
+												
+											?>
 											<li class="accordion-item">
 												<a class="accordion-title" href="javascript:void(0)">
 													<i class="fa fa-arrow-right"></i>
-													Page showing 404 but this page still there?
+													<?=ucwords($b->title); ?>
 												</a>
-												<p class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
+												<p class="accordion-content"><?=ucwords($b->content); ?></p>
 											</li>
-											<li class="accordion-item">
-												<a class="accordion-title" href="javascript:void(0)">
-													<i class="fa fa-arrow-right"></i>
-													How to increase upload_max_filesize?
-												</a>
-												<p class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
-											</li>
-											<li class="accordion-item">
-												<a class="accordion-title" href="javascript:void(0)">
-													<i class="fa fa-arrow-right"></i>
-													How to change partner gray image to color?
-												</a>
-												<p class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
-											</li>
-											<li class="accordion-item">
-												<a class="accordion-title" href="javascript:void(0)">
-													<i class="fa fa-arrow-right"></i>
-													Where do I add my email address in the caldera form?
-												</a>
-												<p class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
-											</li>
-											<li class="accordion-item">
-												<a class="accordion-title" href="javascript:void(0)">
-													<i class="fa fa-arrow-right"></i>
-													Page showing 404 but this page still there?
-												</a>
-												<p class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis deleniti nisi necessitatibus, dolores voluptates quam blanditiis fugiat doloremque? Excepturi, minus rem error aut necessitatibus quasi voluptates assumenda ipsum provident tenetur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni nesciunt consectetur sed, tempore, corporis ea maiores libero.</p>
-											</li>
+											<?php
+												}
+											}?>
+											
 										</ul>
 									</div>
 								</div>
