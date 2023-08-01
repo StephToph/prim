@@ -87,10 +87,10 @@
 										</ul>
 									</li> -->
 									<li class="nav-item">
-                                        <a href="<?=site_url(); ?>" class="nav-link active">Home</a>
+                                        <a href="<?=site_url(); ?>" class="nav-link <?php if($page_active == 'home')echo 'active'; ?>">Home</a>
                                     </li>
 									<li class="nav-item">
-                                        <a href="#about_us" class="nav-link">About</a>
+                                        <a href="<?=site_url(); ?>#about_us" class="nav-link">About</a>
                                     </li>
 									<li class="nav-item">
                                         <a href="<?=site_url(); ?>" class="nav-link ">Scholarship</a>
@@ -99,7 +99,7 @@
                                         <a href="#team" class="nav-link ">Our Teams</a>
                                     </li>
 									<li class="nav-item">
-                                        <a href="#blog" class="nav-link ">Blogs</a>
+                                        <a href="#blog" class="nav-link  <?php if($page_active == 'blog')echo 'active'; ?>">Blogs</a>
                                     </li>
 									<li class="nav-item">
                                         <a href="#faq" class="nav-link ">FAQs</a>
@@ -134,7 +134,7 @@
 				<div class="row">
 					<div class="col-lg-8 col-md-6">
 						<div class="single-widget">
-							<a href="<?=site_url(); ?>">
+							<a href="<?=site_url(); ?>auth">
 								<img src="<?=site_url(); ?>assets/logos.jpeg" alt="White-Logo" style="height:67px">
 							</a>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua. Quis ipsum suspendisse ultrices gravida.</p>
@@ -145,7 +145,7 @@
 								</li>
 								<li>
 									<i class="fa fa-envelope"></i>
-									<a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#2048454c4c4f60504552550e434f4d"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91a1b4a3a4ffb2bebc">[email&#160;protected]</span></a>
+									<a href="javascript:;"><span class="__cf_email__">Email</span></a>
 								</li>
 							</ul>
 						</div>

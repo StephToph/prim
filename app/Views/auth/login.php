@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $title; ?></title>
-    <link rel="shortcut icon" href="<?php echo site_url() ?>assets/images/favicon.png">
-    <link href="<?php echo site_url() ?>assets/css/app.min.css?v=5" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo site_url() ?>assets/favicon.jpeg">
+    <link href="<?php echo site_url() ?>assets/backend/css/app.min.css?v=5" rel="stylesheet">
 </head>
 
 <body>
     <div class="app">
         <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
-            style="background-image: url('<?php echo site_url() ?>assets/images/others/login-3.png')">
+            style="background-image: url('<?php echo site_url() ?>assets/backend/images/others/login-3.png')">
             <div class="d-flex flex-column justify-content-between w-100">
                 <div class="container d-flex h-100">
                     <div class="row align-items-center w-100">
@@ -20,7 +20,7 @@
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <div class="text-center m-b-30">
-                                        <a href="<?php echo site_url(); ?>"><img class="img-fluid" alt="" src="<?php echo site_url() ?>assets/images/logo-dark.png" style="max-width:100%;"></a>
+                                        <a href="<?php echo site_url(); ?>"><img class="img-fluid" alt="" src="<?php echo site_url() ?>assets/logo.png" style="max-width:100%;"></a>
                                     </div>
                                     <?php echo form_open_multipart(site_url('auth/login'), array('id'=>'bb_ajax_form', 'class'=>'')); ?>
                                         <div id="bb_ajax_msg"></div>
@@ -59,8 +59,8 @@
         </div>
     </div>
 
-    <script src="<?php echo site_url() ?>assets/js/vendors.min.js"></script>
-    <script src="<?php echo site_url() ?>assets/js/app.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/jsform.js"></script>
+    <script src="<?php echo site_url() ?>assets/backend/js/vendors.min.js"></script>
+    <script src="<?php echo site_url() ?>assets/backend/js/app.min.js"></script>
+    <script src="<?php echo site_url(); ?>assets/backend/js/jsform.js"></script>
 </body>
 </html>

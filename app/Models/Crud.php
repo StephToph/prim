@@ -104,6 +104,28 @@ class Crud extends Model {
         $db->close();
 	}
 
+	public function read2_order($field, $value, $field2, $value2, $table, $or_field, $or_value, $limit='', $offset='') {
+		$db = db_connect();
+        $builder = $db->table($table);
+
+		$builder->orderBy($or_field, $or_value);
+        $builder->where($field, $value);
+		$builder->where($field2, $value2);
+
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+	}
+
     public function read2($field, $value, $field2, $value2, $table, $or_field='id', $or_value='DESC', $limit='', $offset='') {
 		$db = db_connect();
         $builder = $db->table($table);
@@ -228,15 +250,7 @@ class Crud extends Model {
         $db->close();
 	}
 
-    public function check0($table){
-		$db = db_connect();
-        $builder = $db->table($table);
-        
-        return $builder->countAllResults();
-        $db->close();
-	}
-
-	public function check($field, $value, $table){
+    public function check($field, $value, $table){
 		$db = db_connect();
         $builder = $db->table($table);
         
@@ -264,20 +278,6 @@ class Crud extends Model {
         $builder->where($field, $value);
         $builder->where($field2, $value2);
         $builder->where($field3, $value3);
-
-        return $builder->countAllResults();
-        $db->close();
-	}
-
-	public function checks($field, $value, $field2, $value2, $field3, $value3, $field4, $value4, $field5, $value5, $table){
-		$db = db_connect();
-        $builder = $db->table($table);
-        
-        $builder->where($field, $value);
-        $builder->where($field2, $value2);
-        $builder->where($field3, $value3);
-		$builder->where($field4, $value4);
-        $builder->where($field5, $value5);
 
         return $builder->countAllResults();
         $db->close();
@@ -376,13 +376,15 @@ class Crud extends Model {
         $db->close();
 	}
  
-	public function datatable_count($table, $where='', $field='', $value='') {
+	public function datatable_count($table, $where='') {
 		$db = db_connect();
         $builder = $db->table($table);
         
 		// where clause
 		if(!empty($where)) {
-			$builder->where($field, $value);
+			foreach($where as $key=>$value) {
+				$builder->where($key, $value);
+			}
 		}
 
         return $builder->countAllResults();
@@ -394,26 +396,33 @@ class Crud extends Model {
     //////////////////// NOTIFICATION CRUD ///////////////////////
 	public function msg($type = '', $text = ''){
 		if($type == 'success'){
-			$icon = 'ni ni-check-c';
+			$icon = 'anticon anticon-check-circle';
 			$icon_text = 'Successful!';
 		} else if($type == 'info'){
-			$icon = 'ri-information-line ';
+			$icon = 'anticon anticon-info-circle';
 			$icon_text = 'Head up!';
 		} else if($type == 'warning'){
-			$icon = 'ri-error-warning-line ';
+			$icon = 'anticon anticon-exclamation-circle';
 			$icon_text = 'Please check!';
 		} else if($type == 'danger'){
-			$icon = 'ri-close-circle-line ';
+			$icon = 'anticon anticon-close-circle';
 			$icon_text = 'Oops!';
 		}
 		
 		return '
-			<div class="alert alert-'.$type.' alert-dismissible fade show" role="alert">
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				<div class="d-flex justify-content-start align-items-center">
-					<i class="'.$icon.'" style="font-size:50px; margin-right:10px;"></i>
-					<div>'.$text.'</div>
+			<div class="alert alert-'.$type.' alert-dismissible">
+				<div class="d-flex justify-content-start">
+					<span class="alert-icon m-r-20 font-size-30">
+						<i class="'.$icon.'"></i>
+					</span>
+					<div>
+						<div class="alert-heading"><b>'.$icon_text.'</b></div>
+						<p>'.$text.'</p>
+					</div>
 				</div>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  			<span aria-hidden="true">×</span>
+				</button>
 			</div>
 		';	
 	}
@@ -427,13 +436,16 @@ class Crud extends Model {
 
 	public function rave_key($type='', $server='') {
 		if($server == 'test') {
-			if($type == 'encryption') return 'FLWSECK_TEST996eada5e6e9';
-			if($type == 'secret') return 'FLWSECK_TEST-515b1c5d609f89da24d5f256562b588f-X';
-			return 'FLWPUBK_TEST-23d0dac840d0f3028893d2761462a39b-X';
+			// if($type == 'encryption') return 'FLWSECK_TEST02ec36b8fb09';
+			// if($type == 'secret') return 'FLWSECK_TEST-055034f67c5a29532b2d9424631442a4-X';
+			// return 'FLWPUBK_TEST-d28ee7274d4a3a7bff3ad0a9a74089e2-X';
+			if($type == 'encryption') return 'FLWSECK_TEST611ac22da7b0';
+			if($type == 'secret') return 'FLWSECK_TEST-775f459edecfd7e0d3cbc683f4f7050e-X';
+			return 'FLWPUBK_TEST-6235656366b21894488153b48df11a1e-X';
 		}
-		// if($type == 'encryption') return '34b4f9e2604cbee6b044f85e';
-		// if($type == 'secret') return 'FLWSECK-34b4f9e2604c6d80ca5ddad043084daa-X';
-		// return 'FLWPUBK-fd6c33da431b9f0af1bbad6aa4a7dda1-X';
+		if($type == 'encryption') return '34b4f9e2604cbee6b044f85e';
+		if($type == 'secret') return 'FLWSECK-34b4f9e2604c6d80ca5ddad043084daa-X';
+		return 'FLWPUBK-fd6c33da431b9f0af1bbad6aa4a7dda1-X';
 	}
 
 	public function rave_get($link, $server='') {
@@ -531,6 +543,63 @@ class Crud extends Model {
 	}
 	//////////////////// END FLUTTERWAVE //////////////////
 
+	//////////////////// KINGSPAY //////////////////
+	public function kpay_post($link, $data) {
+		// create a new cURL resource
+		$curl = curl_init();
+
+		$sandbox = $this->read_field('name', 'sandbox', 'setting', 'value');
+		if($sandbox == 'yes') {
+			$key = $this->read_field('name', 'test_key', 'setting', 'value');
+		} else { 
+			$key = $this->read_field('name', 'live_key', 'setting', 'value');
+		}
+
+		$link = 'https://api.kingspay-gs.com/api/'.$link;
+		
+		$chead = array();
+		$chead[] = 'Content-Type: application/json';
+		$chead[] = 'Authorization: Bearer '.$key;
+
+		// set URL and other appropriate options
+		curl_setopt($curl, CURLOPT_URL, $link);
+		// curl_setopt($curl, CURLOPT_HEADER, 0);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $chead);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		// curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+		// grab URL and pass it to the browser
+		$result = curl_exec($curl);
+
+		// close cURL resource, and free up system resources
+		curl_close($curl);
+
+		return $result;
+	}
+
+	public function kpay_get($payID) {
+		// create a new cURL resource
+		$curl = curl_init();
+
+		$link = 'https://api.kingspay-gs.com/api/payment/'.$payID;
+
+		// set URL and other appropriate options
+		curl_setopt($curl, CURLOPT_URL, $link);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+		// grab URL and pass it to the browser
+		$result = curl_exec($curl);
+
+		// close cURL resource, and free up system resources
+		curl_close($curl);
+
+		return $result;
+	}
+	//////////////////// END KINGSPAY //////////////////
+
     //////////////////// FILE UPLOAD //////////////////
     public function file_validate() {
         $validationRule = [
@@ -548,6 +617,25 @@ class Crud extends Model {
             return true;
         }
     }
+
+	///Name to Image
+	public function image_name($fullname){
+		$str_cou = str_word_count($fullname);
+		if($str_cou == 1){
+			$wors = substr($fullname, 0, 1);
+		} else {
+			$wors = '';
+			$wor = explode(' ', $fullname);
+			$i = 0;
+			foreach($wor as $words){
+				if($i < 2){$wors .= substr($words, 0, 1);}
+				$i++;
+			}
+			
+		}
+
+		return $wors;
+	}
 
     public function img_upload($path, $file, $width=0, $height=0, $ratio=true, $ration_by='width') {
         // file data
@@ -574,14 +662,14 @@ class Crud extends Model {
 
     public function save_image($log_id, $path, $name='', $type='') {
         $reg_data['user_id'] = $log_id;
-        $reg_data['path'] = $path;
+        $reg_data['pics'] = $path;
         $reg_data['pics_small'] = $path;
         $reg_data['pics_square'] = $path;
         $reg_data['reg_date'] = date(fdate);
-        return $this->create('file', $reg_data);
+        return $this->create('image', $reg_data);
     }
 
-	public function file_upload($path, $file, $width=0, $height=0, $ratio=true, $ration_by='width') {
+	public function file_upload($path, $file) {
         // file data
         $name = $file->getName();
         $type = $file->getClientMimeType();
@@ -605,6 +693,7 @@ class Crud extends Model {
         $reg_data['user_id'] = $log_id;
         $reg_data['path'] = $path;
         $reg_data['ext'] = $ext;
+        $reg_data['size'] = $size;
         $reg_data['reg_date'] = date(fdate);
         return $this->create('file', $reg_data);
     }
@@ -634,201 +723,22 @@ class Crud extends Model {
 		
 		return $date_left;
 	}
-
-	
-	public function date_range1($firstDate, $col1, $secondDate, $col2,$col3, $val3, $table, $limit='', $offset=''){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		 
-		 $builder->orderBy('id', 'ASC');
-		// limit query
-		if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-			$query = $builder->get();
-		}
-
-		// return query
-		return $query->getResult();
-		$db->close();
-	}
-
-	public function date_range($firstDate, $col1, $secondDate, $col2, $table, $limit='', $offset=''){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		   $builder->orderBy('id', 'ASC');
-		   // limit query
-		   if($limit && $offset) {
-			   $query = $builder->get($limit, $offset);
-		   } else if($limit) {
-			   $query = $builder->get($limit);
-		   } else {
-			   $query = $builder->get();
-		   }
-   
-		   // return query
-		   return $query->getResult();
-		   $db->close();
-	}
-
-	public function date_range2($firstDate, $col1, $secondDate, $col2, $col3, $val3, $col4, $val4, $table, $limit='', $offset=''){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where($col4, $val4);		
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		   $builder->orderBy('id', 'DESC');
-		   // limit query
-		   if($limit && $offset) {
-			   $query = $builder->get($limit, $offset);
-		   } else if($limit) {
-			   $query = $builder->get($limit);
-		   } else {
-			   $query = $builder->get();
-		   }
-   
-		   // return query
-		   return $query->getResult();
-		   $db->close();
-	}
-
-	public function date_range3($firstDate, $col1, $secondDate, $col2, $col3, $val3, $col4, $val4, $col5, $val5, $table, $limit='', $offset=''){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where($col4, $val4);		
-		$builder->where($col5, $val5);		
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		   $builder->orderBy('id', 'DESC');
-		   // limit query
-		   if($limit && $offset) {
-			   $query = $builder->get($limit, $offset);
-		   } else if($limit) {
-			   $query = $builder->get($limit);
-		   } else {
-			   $query = $builder->get();
-		   }
-   
-		   // return query
-		   return $query->getResult();
-		   $db->close();
-	}
-
-	public function date_check($firstDate, $col1, $secondDate, $col2, $table){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		$builder->orderBy('id', 'DESC');
-
-        return $builder->countAllResults();
-        $db->close();
-	}
-
-	
-
-	public function date_group_check1($firstDate, $col1, $secondDate, $col2, $col3, $val3, $group, $table){
-		$db = db_connect();
-		$db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
-        $builder = $db->table($table);
-
-		$builder->groupBy($group);
-		$builder->where($col3, $val3);
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		$builder->orderBy('id', 'DESC');
-
-        return $builder->countAllResults();
-        $db->close();
-	}
-
-	public function date_check1($firstDate, $col1, $secondDate, $col2, $col3, $val3, $table){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		   $builder->orderBy('id', 'DESC');
-
-		   return $builder->countAllResults();
-		   $db->close();
-	}
-
-	public function date_check2($firstDate, $col1, $secondDate, $col2, $col3, $val3, $col4, $val4, $table){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where($col4, $val4);		
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		$builder->orderBy('id', 'DESC');
-
-		return $builder->countAllResults();
-		$db->close();
-	}
-
-	public function date_check3($firstDate, $col1, $secondDate, $col2, $col3, $val3, $col4, $val4, $col5, $val5, $table){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where($col4, $val4);		
-		$builder->where($col5, $val5);		
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		   $builder->orderBy('id', 'DESC');
-
-		   return $builder->countAllResults();
-		   $db->close();
-	}
-
-	public function date_check4($firstDate, $col1, $secondDate, $col2, $col3, $val3, $col4, $val4, $col5, $val5,$col6, $val6, $table){
-		$db = db_connect();
-        $builder = $db->table($table);
-
-		$builder->where($col3, $val3);
-		$builder->where($col4, $val4);		
-		$builder->where($col5, $val5);
-		$builder->where($col6, $val6);		
-		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
-   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
-		   $builder->orderBy('id', 'DESC');
-
-		   return $builder->countAllResults();
-		   $db->close();
-	}
 	//////////////////// END DATETIME ///////////////////////
 
 	//////////////////// IMAGE DATA //////////////////
 	public function image($id, $size='small') {
 		if($id) {
 			if($size == 'small') {
-				$path = $this->read_field('id', $id, 'file', 'pics_small');
+				$path = $this->read_field('id', $id, 'image', 'pics_small');
 			} else if($size == 'big') {
-				$path = $this->read_field('id', $id, 'file', 'path');
+				$path = $this->read_field('id', $id, 'image', 'pics');
 			} else {
-				$path = $this->read_field('id', $id, 'file', 'pics_square');
+				$path = $this->read_field('id', $id, 'image', 'pics_square');
 			}
 		} 
 
 		if(empty($path) || !file_exists($path)) {
-			$path = 'assets/backend/images/avatar.png';
+			$path = 'assets/images/avatar.png';
 		}
 
 		return $path;
@@ -840,12 +750,12 @@ class Crud extends Model {
 		if($id) {
 			$ext = $this->read_field('id', $id, 'file', 'ext');
 			$ext = str_replace('x', '', $ext);
-			$path = 'assets/backend/images/docs/'.$ext.'-128.png';
+			$path = 'assets/images/docs/'.$ext.'-128.png';
 		} 
 
 		if(empty($path) || !file_exists($path)) {
-			$path = 'assets/backend/images/docs/txt-128.png';
-		} 
+			$path = 'assets/images/docs/txt-128.png';
+		}
 
 		return $path;
 	}
@@ -873,6 +783,28 @@ class Crud extends Model {
 		if($emailServ->send()) return true;
 		return false;
 	}
+	public function mailgun($body) {
+		$ch = curl_init();
+
+		$mailgun_domain = 'mg.pcdl4kids.com';
+
+		$link = 'https://api.mailgun.net/v3/'.$mailgun_domain.'/messages';
+		$mailgun_key = $this->read_field('name', 'mailgun', 'setting', 'value');
+
+		curl_setopt($ch, CURLOPT_URL, $link);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+		curl_setopt($ch, CURLOPT_USERPWD, 'api' . ':' . $mailgun_key);
+
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		curl_close($ch);
+
+		return $result;
+	}
 	//////////////////// END SEND EMAIL //////////////////
 
 	public function title() {
@@ -891,212 +823,6 @@ class Crud extends Model {
 			'Junior',
 		);
 	}
-
-	public static function wordsToNumber(string $input) {
-        static $delims = " \-,.!?:;\\/&\(\)\[\]";
-        static $tokens = [
-            'zero'        => ['val' => '0', 'power' => 1],
-            'a'           => ['val' => '1', 'power' => 1],
-            'first'       => ['val' => '1', 'power' => 1],
-            '1st'       => ['val' => '1', 'power' => 1],
-            'one'         => ['val' => '1', 'power' => 1],
-            'second'      => ['val' => '2', 'power' => 1],
-            '2nd'      => ['val' => '2', 'power' => 1],
-            'two'         => ['val' => '2', 'power' => 1],
-            'third'       => ['val' => '3', 'power' => 1],
-            '3rd'       => ['val' => '3', 'power' => 1],
-            'three'       => ['val' => '3', 'power' => 1],
-            'fourth'      => ['val' => '4', 'power' => 1],
-            '4th'      => ['val' => '4', 'power' => 1],
-            'four'       => ['val' => '4', 'power' => 1],
-            'fifth'       => ['val' => '5', 'power' => 1],
-            '5th'       => ['val' => '5', 'power' => 1],
-            'five'        => ['val' => '5', 'power' => 1],
-            'sixth'       => ['val' => '6', 'power' => 1],
-            '6th'       => ['val' => '6', 'power' => 1],
-            'six'         => ['val' => '6', 'power' => 1],
-            'seventh'     => ['val' => '7', 'power' => 1],
-            '7th'     => ['val' => '7', 'power' => 1],
-            'seven'       => ['val' => '7', 'power' => 1],
-            'eighth'      => ['val' => '8', 'power' => 1],
-            '8th'      => ['val' => '8', 'power' => 1],
-            'eight'       => ['val' => '8', 'power' => 1],
-            'ninth'       => ['val' => '9', 'power' => 1],
-            '9th'       => ['val' => '9', 'power' => 1],
-            'nine'        => ['val' => '9', 'power' => 1],
-            'tenth'       => ['val' => '10', 'power' => 1],
-            '10th'       => ['val' => '10', 'power' => 1],
-            'ten'         => ['val' => '10', 'power' => 10],
-            'eleventh'    => ['val' => '11',  'power' => 10],
-            '11th'    => ['val' => '11',  'power' => 10],
-            'eleven'      => ['val' => '11', 'power' => 10],
-            'twelveth'    => ['val' => '12',  'power' => 10],
-            '12th'    => ['val' => '12',  'power' => 10],
-            'twelfth'    => ['val' => '12',  'power' => 10],
-            'twelve'      => ['val' => '12', 'power' => 10],
-            'thirteenth'  => ['val' => '13',  'power' => 10],
-            '13th'  => ['val' => '13',  'power' => 10],
-            'thirteen'    => ['val' => '13', 'power' => 10],
-            'fourteenth'  => ['val' => '14',  'power' => 10],
-            '14th'  => ['val' => '14',  'power' => 10],
-            'fourteen'    => ['val' => '14', 'power' => 10],
-            'fifteenth'   => ['val' => '15',  'power' => 10],
-            '15th'   => ['val' => '15',  'power' => 10],
-            'fifteen'     => ['val' => '15', 'power' => 10],
-            'sixteenth'   => ['val' => '16',  'power' => 10],
-            '16th'   => ['val' => '16',  'power' => 10],
-            'sixteen'     => ['val' => '16', 'power' => 10],
-            'seventeenth' => ['val' => '17',  'power' => 10],
-            '17th' => ['val' => '17',  'power' => 10],
-            'seventeen'   => ['val' => '17', 'power' => 10],
-            'eighteenth'  => ['val' => '18',  'power' => 10],
-            '18th'  => ['val' => '18',  'power' => 10],
-            'eighteen'    => ['val' => '18', 'power' => 10],
-            'nineteenth'  => ['val' => '19',  'power' => 10],
-            '19th'  => ['val' => '19',  'power' => 10],
-            'nineteen'    => ['val' => '19', 'power' => 10],
-            'twentieth'   => ['val' => '20',  'power' => 10],
-            '20th'   => ['val' => '20',  'power' => 10],
-            'twenty'      => ['val' => '20', 'power' => 10],
-            'twenty first'   => ['val' => '21',  'power' => 10],
-            '21st'   => ['val' => '21',  'power' => 10],
-            'twenty one' => ['val' => '21', 'power' => 10],
-            'twenty second '   => ['val' => '22',  'power' => 10],
-            '22nd'   => ['val' => '22',  'power' => 10],
-            'twenty two'      => ['val' => '22', 'power' => 10],
-            'twenty third'   => ['val' => '23',  'power' => 10],
-            '23rd'   => ['val' => '23',  'power' => 10],
-            'twenty three'      => ['val' => '23', 'power' => 10],
-            'twenty fourth'   => ['val' => '24',  'power' => 10],
-            '24th'   => ['val' => '24',  'power' => 10],
-            'twenty four'      => ['val' => '24', 'power' => 10],
-            'twenty fifth'   => ['val' => '25',  'power' => 10],
-            '25th'   => ['val' => '25',  'power' => 10],
-            'twenty five'      => ['val' => '25', 'power' => 10],
-            'twenty sixth'   => ['val' => '26',  'power' => 10],
-            '26th'   => ['val' => '26',  'power' => 10],
-            'twenty six'      => ['val' => '26', 'power' => 10],
-            'twenty seventh'   => ['val' => '27',  'power' => 10],
-            '27th'   => ['val' => '27',  'power' => 10],
-            'twenty seven'      => ['val' => '27', 'power' => 10],
-            'twenty eighth'   => ['val' => '28',  'power' => 10],
-            '28th'   => ['val' => '28',  'power' => 10],
-            'twenty eight'      => ['val' => '28', 'power' => 10],
-            'twenty nineth'   => ['val' => '29',  'power' => 10],
-            '29th'   => ['val' => '29',  'power' => 10],
-            'twenty nine'      => ['val' => '29', 'power' => 10],
-            'thirtieth'   => ['val' => '30',  'power' => 10],
-            '30th'   => ['val' => '30',  'power' => 10],
-            'thirty first'   => ['val' => '31',  'power' => 10],
-            '31st'   => ['val' => '31',  'power' => 10],
-            'thirty one'      => ['val' => '31', 'power' => 10],
-            'thirty'      => ['val' => '30', 'power' => 10],
-            'forty'       => ['val' => '40', 'power' => 10],
-            'fourty'      => ['val' => '40', 'power' => 10], // common misspelling
-            'fifty'       => ['val' => '50', 'power' => 10],
-            'sixty'       => ['val' => '60', 'power' => 10],
-            'seventy'     => ['val' => '70', 'power' => 10],
-            'eighty'      => ['val' => '80', 'power' => 10],
-            'ninety'      => ['val' => '90', 'power' => 10],
-            'hundred'     => ['val' => '100', 'power' => 100],
-            'thousand'    => ['val' => '1000', 'power' => 1000],
-            'million'     => ['val' => '1000000', 'power' => 1000000],
-            'billion'     => ['val' => '1000000000', 'power' => 1000000000],
-            'and'           => ['val' => '', 'power' => null],
-        ];
-        $powers = array_column($tokens, 'power', 'val');
-
-        $mutate = function ($parts) use (&$mutate, $powers){
-            $stack = new \SplStack;
-            $sum   = 0;
-            $last  = null;
-
-            foreach ($parts as $idx => $arr) {
-                $part = $arr['val'];
-
-                if (!$stack->isEmpty()) {
-                    $check = $last ?? $part;
-
-                    if ((float)$stack->top() < 20 && (float)$part < 20 ?? (float)$part < $stack->top() ) { //пропускаем спец числительные
-                        return $stack->top().(isset($parts[$idx - $stack->count()]['suffix']) ? $parts[$idx - $stack->count()]['suffix'] : '')." ".$mutate(array_slice($parts, $idx));
-                    }
-                    if (isset($powers[$check]) && $powers[$check] <= $arr['power'] && $arr['power'] <= 10) { //но добавляем степени (сотни, тысячи, миллионы итп)
-                        return $stack->top().(isset($parts[$idx - $stack->count()]['suffix']) ? $parts[$idx - $stack->count()]['suffix'] : '')." ".$mutate(array_slice($parts, $idx));
-                    }
-                    if ($stack->top() > $part) {
-                        if ($last >= 1000) {
-                            $sum += $stack->pop();
-                            $stack->push($part);
-                        } else {
-                            // twenty one -> "20 1" -> "20 + 1"
-                            $stack->push($stack->pop() + (float) $part);
-                        }
-                    } else {
-                        $current = $stack->pop();
-                        if (is_numeric($current)) {
-                            $stack->push($current * (float) $part);
-                        } else {
-                            $stack->push($part);
-                        }
-                    }
-                } else {
-                    $stack->push($part);
-                }
-
-                $last = $part;
-            }
-
-            return $sum + $stack->pop();
-        };
-
-        $prepared = preg_split('/(['.$delims.'])/', $input, -1, PREG_SPLIT_DELIM_CAPTURE);
-
-        //Замена на токены
-        foreach ($prepared as $idx => $word) {
-            if (is_array($word)) {continue;}
-            $maybeNumPart = trim(strtolower($word));
-            if (isset($tokens[$maybeNumPart])) {
-                $item = $tokens[$maybeNumPart];
-                if (isset($prepared[$idx+1])) {
-                    $maybeDelim = $prepared[$idx+1];
-                    if ($maybeDelim === " ") {
-                        $item['delim'] = $maybeDelim;
-                        unset($prepared[$idx + 1]);
-                    } elseif ($item['power'] == null && !isset($tokens[$maybeDelim])) {
-                        continue;
-                    }
-                }
-                $prepared[$idx] = $item;
-            }
-        }
-
-        $result      = [];
-        $accumulator = [];
-
-        $getNumeral = function () use ($mutate, &$accumulator, &$result) {
-            $last        = end($accumulator);
-            $result[]    = $mutate($accumulator).(isset($last['suffix']) ? $last['suffix'] : '').(isset($last['delim']) ? $last['delim'] : '');
-            $accumulator = [];
-        };
-
-        foreach ($prepared as $part) {
-            if (is_array($part)) {
-                $accumulator[] = $part;
-            } else {
-                if (!empty($accumulator)) {
-                    $getNumeral();
-                }
-                $result[] = $part;
-            }
-        }
-        if (!empty($accumulator)) {
-            $getNumeral();
-        }
-
-        return implode('', array_filter($result));
- 
-    }
-
 
     public function to_number($text) {
 		$number = preg_replace('/\s+/', '', $text); // remove all in between white spaces
@@ -1133,507 +859,7 @@ class Crud extends Model {
 		return ($naira ? $naira . 'naira' : '') . $kobo;
 	}
 
-	///Name to Image
-	public function image_name($fullname){
-		$str_cou = str_word_count($fullname);
-		if($str_cou == 1){
-			$wors = substr($fullname, 0, 1);
-		} else {
-			$wors = '';
-			$wor = explode(' ', $fullname);
-			$i = 0;
-			foreach($wor as $words){
-				if($i < 2){$wors .= substr($words, 0, 1);}
-				$i++;
-			}
-			
-		}
-
-		return $wors;
-	}
-
-    /// filter user
-    public function filter_user($limit='', $offset='', $log_id, $state_id='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('user');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-		if(!empty($state_id)) $builder->where('state_id', $state_id);
-		
-        if(!empty($search)) {
-            $builder->like('fullname', $search);
-			$builder->orLike('email', $search);
-			$builder->orLike('phone', $search);
-        }
-
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	//////////////////////////filter admin//////////////////////////////////
-    public function filter_admin($limit='', $offset='', $log_id, $state_id='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('user');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-		$builder->where('role_id', 2);
-
-		if(!empty($status)){
-			if($status != 'all') { 
-				if($status == 'activated')$builder->where('activate', 1);
-				if($status == 'pending')$builder->where('activate', 0);
-			}
-		} 
-		
-        if(!empty($search)) {
-            $builder->like('fullname', $search);
-			$builder->orLike('email', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	//////////////////////////filter support//////////////////////////////////
-    public function filter_rhapsody($limit='', $offset='', $log_id, $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('rhapsody');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-
-		if(!empty($status)){
-			if($status != 'all') { 
-				$builder->where('status', $status);
-			}
-		} 
-		
-        if(!empty($search)) {
-            $builder->like('title', $search);
-			$builder->orLike('content', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-		
-    }
-
-	public function filter_language($limit='', $offset='', $log_id, $search='') {
-        $db = db_connect();
-        $builder = $db->table('language');
-
-        // build query
-		$builder->orderBy('name', 'ASC');
-
-        if(!empty($search)) {
-            $builder->like('name', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-
-	}
-
-	//// filter wallet
-	public function filter_wallet($limit='', $offset='', $user_id, $product_id='',$station_id='',  $country_id='',$state='',  $lga='',$branch='', $search='', $start_date='', $end_date) {
-		$db = db_connect();
-        $builder = $db->table('wallet');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-
-		// build query
-		$role_id = $this->read_field('id', $user_id, 'user', 'role_id');
-		$role = strtolower($this->read_field('id', $role_id, 'access_role', 'name'));
-		if($role != 'developer' && $role != 'administrator'){
-			if($role == 'partner') {
-				$builder->where('station_id', $user_id);
-
-			} else {
-				if($role == 'manager'){
-					$branch_id = $this->read_field('id', $user_id, 'user', 'branch_id');
-					$builder->where('branch_id', $branch_id);
-				} 
-			} 
-		} else {
-			$builder->where('user_id', $user_id);
-		} 
-		// filter
-		if(!empty($search)) {
-            $builder->like('amount', $search);
-        }
-		if(!empty($product_id) && $product_id != 'all') { $query = $builder->where('product_id', $product_id); }
-		if(!empty($station_id) && $station_id != 'all') { $query = $builder->where('station_id', $station_id); }
-		if(!empty($country_id) && $country_id != 'all') { $query = $builder->where('country_id', $country_id); }
-		if(!empty($state) && $state != 'all') { $query = $builder->where('state_id', $state); }
-		if(!empty($lga) && $lga != 'all') { $query = $builder->where('lga_id', $lga); }
-		if(!empty($branch) && $branch != 'all') { $query = $builder->where('branch_id', $branch); }
-		
-		if(!empty($start_date) && !empty($end_date)){
-			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
-			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
-		}
-
-		// limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-	}
-	
-
-	//////////////////////////filter pump//////////////////////////////////
-    
-	public function filter_pump($limit='', $offset='', $log_id, $partner='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('pump');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role != 'Developer' && $role != 'Administrator'){
-			$builder->where('user_id', $log_id);
-		}
-
-		if(!empty($partner) && $partner != 'all') $builder->where('user_id', $partner);
-		
-        if(!empty($search)) {
-            $builder->like('name', $search);
-        }
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-	//////////////////////////filter branch//////////////////////////////////
-    
-	public function filter_branch($limit='', $offset='', $log_id, $partner='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('branch');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role != 'Developer' && $role != 'Administrator'){
-			$builder->where('partner_id', $log_id);
-		}
-
-		if(!empty($partner) && $partner != 'all') $builder->where('partner_id', $partner);
-		
-        if(!empty($search)) {
-            $builder->like('name', $search);
-			$builder->orLike('address', $search);
-        }
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	//////////////////////////filter admin//////////////////////////////////
-    public function filter_customers($limit='', $offset='', $log_id, $state_id='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('user');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-		$builder->where('role_id', 4);
-
-		if(!empty($status)){
-			if($status != 'all') { 
-				if($status == 'activated')$builder->where('activate', 1);
-				if($status == 'pending')$builder->where('activate', 0);
-			}
-		} 
-		
-        if(!empty($search)) {
-            $builder->like('fullname', $search);
-			$builder->orLike('email', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	//////////////////////////filter partner//////////////////////////////////
-    public function filter_partner($limit='', $offset='', $log_id, $state_id='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('user');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-		//$builder->where('role_id', 3);
-		$builder->where('is_partner', 1);
-
-		if(!empty($status)){
-			if($status != 'all') { 
-				if($status == 'activated')$builder->where('activate', 1);
-				if($status == 'pending')$builder->where('activate', 0);
-			}
-		} 
-		
-        if(!empty($search)) {
-            $builder->like('fullname', $search);
-			$builder->like('email', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	//////////////////////////filter partner//////////////////////////////////
-    public function filter_staff($limit='', $offset='', $log_id, $state_id='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('user');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$branch_id = $this->read_field('id', $log_id, 'user', 'branch_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role != 'Developer' && $role != 'Administrator'){
-			if($role == 'Manager'){
-				$builder->where('branch_id', $branch_id);
-			} else {
-				$builder->where('partner_id', $log_id);
-			}
-		}
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-		$builder->where('is_staff', 1);
-		//$builder->where('is_partner', 1);
-
-		if(!empty($status)){
-			if($status != 'all') { 
-				if($status == 'activated')$builder->where('activate', 1);
-				if($status == 'pending')$builder->where('activate', 0);
-			}
-		} 
-		
-        if(!empty($search)) {
-            $builder->like('fullname', $search);
-			$builder->like('email', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	
-	public function filter_quiz($limit='', $offset='', $log_id, $search='') {
-        $db = db_connect();
-        $builder = $db->table('quiz');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Instructor'){
-			$builder->where('instructor', $log_id);
-		}
-        if(!empty($search)) {
-            $builder->like('name', $search);
-			$builder->orLike('instruction', $search);
-        }
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	
-	/// timspan
-	public function timespan($datetime) {
-        $difference = time() - $datetime;
-        $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
-        $lengths = array("60","60","24","7","4.35","12","10");
-
-        if ($difference > 0) { 
-            $ending = 'ago';
-        } else { 
-            $difference = -$difference;
-            $ending = 'to go';
-        }
-		
-		for($j = 0; $difference >= $lengths[$j]; $j++) {
-            $difference /= $lengths[$j];
-        } 
-        $difference = round($difference);
-
-        if($difference != 1) { 
-            $period = strtolower($periods[$j].'s');
-        } else {
-            $period = strtolower($periods[$j]);
-        }
-
-        return "$difference $period $ending";
-	}
-
-	//////// Location Distance
-	public function getDistance($addressFrom, $addressTo, $unit = ''){
-		// Google API key
-		$apiKey = 'AIzaSyAx0GVgtUc8BYdE7Vd4ijUW2n0786pwCSo';
-		
-		// Change address format
-		$formattedAddrFrom    = str_replace(' ', '+', $addressFrom);
-		$formattedAddrTo     = str_replace(' ', '+', $addressTo);
-		
-		// Geocoding API request with start address
-		$geocodeFrom = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key='.$apiKey);
-		$outputFrom = json_decode($geocodeFrom);
-		
-		// Geocoding API request with end address
-		$geocodeTo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false&key='.$apiKey);
-		$outputTo = json_decode($geocodeTo);
-		if(!empty($outputTo->error_message)){
-			return $outputTo->error_message;
-		}
-
-		if(!empty($outputFrom->error_message) || !empty($outputTo->error_message)){
-			return 0;
-		}
-		
-		// Get latitude and longitude from the geodata
-		if(!empty($outputFrom->results[0]) && !empty($outputTo->results[0])){
-			$latitudeFrom    = $outputFrom->results[0]->geometry->location->lat;
-			$longitudeFrom    = $outputFrom->results[0]->geometry->location->lng;
-			$latitudeTo        = $outputTo->results[0]->geometry->location->lat;
-			$longitudeTo    = $outputTo->results[0]->geometry->location->lng;
-			
-			// Calculate distance between latitude and longitude
-			$theta    = $longitudeFrom - $longitudeTo;
-			$dist    = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-			$dist    = acos($dist);
-			$dist    = rad2deg($dist);
-			$miles    = $dist * 60 * 1.1515;
-			
-			// Convert unit and return distance
-			$unit = strtoupper($unit);
-			if($unit == "K") {
-				return round($miles * 1.609344, 2);
-			} elseif($unit == "M") {
-				return round($miles * 1609.344, 2);
-			} else {
-				return round($miles, 2);
-			}
-		} else {
-			// return 0 if distance not found
-			return 0;
-		}
-	}
-
-	////// store activities
+	/// store activities
 	public function activity($item, $item_id, $action) {
 		$ins['item'] = $item;
 		$ins['item_id'] = $item_id;
@@ -1642,9 +868,209 @@ class Crud extends Model {
 		return $this->create('activity', $ins);
 	}
 
+	
+    /// filter parents
+    public function filter_parent($limit='', $offset='', $log_id='', $search='', $ban='', $start_date='', $end_date= '') {
+        $db = db_connect();
+        $builder = $db->table('user');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+        if(!empty($search)) {
+            $builder->like('fullname', $search);
+			$builder->orLike('email', $search);
+        }
+
+		$builder->where('role_id', 3);
+		if($ban != 'all') $builder->where('ban', $ban);
+		
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+
+	public function filter_blog($limit='', $offset='', $log_id='', $search='', $status='', $start_date='', $end_date= '') {
+        $db = db_connect();
+        $builder = $db->table('blog');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+        if(!empty($search)) {
+            $builder->like('title', $search);
+			$builder->orLike('content', $search);
+        }
+
+		if($status != 'all') $builder->where('status', $status);
+		
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+
+	public function filter_faq($limit='', $offset='', $log_id='', $search='', $status='', $start_date='', $end_date= '') {
+        $db = db_connect();
+        $builder = $db->table('faq');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+        if(!empty($search)) {
+            $builder->like('title', $search);
+			$builder->orLike('content', $search);
+        }
+
+		if($status != 'all') $builder->where('status', $status);
+		
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+
+	/// filter coupon
+    public function filter_coupon($limit='', $offset='', $log_id='', $search='', $start_date='', $end_date='', $sub_id='') {
+        $db = db_connect();
+		$db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+        $builder = $db->table('coupon');
+
+		$builder->orderBy('id', 'DESC');
+		$builder->groupBy('code');
+
+
+        if(!empty($search)) {
+            $builder->like('code', $search);
+        }
+		if($sub_id != 'all') $builder->where('sub_id', $sub_id);
+		
+
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+
+	/// filter subscription
+    public function filter_subscribe($limit='', $offset='', $log_id='', $payment='', $sub_id='', $start_date='', $end_date='') {
+        $db = db_connect();
+        $builder = $db->table('sub');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+        if(!empty($payment) && $payment != 'all') {
+            if($payment == 'card')$builder->where('response !=', NULL);
+			if($payment == 'coupon')$builder->where('coupon_id >', '0');
+        }
+
+		if($sub_id != 'all') $builder->where('sub_id', $sub_id);
+		
+
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+		
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+
+	/// filter children
+    public function filter_children($limit='', $offset='', $log_id='', $age_id='', $parent_id='', $search='', $start_date='', $end_date='') {
+        $db = db_connect();
+        $builder = $db->table('child');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+		if(!empty($age_id)) { $builder->where('age_id', $age_id); }
+		if(!empty($parent_id)) { $builder->where('parent_id', $parent_id); }
+
+        if(!empty($search)) {
+            $builder->like('name', $search);
+        }
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+		
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
 
 	//// filter activities
-	public function filter_activity($limit='', $offset='', $user_id, $search='', $start_date='', $end_date) {
+	public function filter_activity($limit='', $offset='', $user_id='', $search='', $start_date='', $end_date='') {
 		$db = db_connect();
         $builder = $db->table('activity');
 		// build query
@@ -1673,215 +1099,6 @@ class Crud extends Model {
         return $query->getResult();
         $db->close();
 	}
-
-	public function filter_chapter($limit='', $offset='', $log_id, $course, $search='') {
-        $db = db_connect();
-        $builder = $db->table('course_chapter');
-
-		$builder->where('course_id', $course);
-		
-        if(!empty($search)) {
-            $builder->like('title', $search);
-        }
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	public function filter_assignment($limit='', $offset='', $log_id, $search='') {
-        $db = db_connect();
-        $builder = $db->table('assignment');
-		
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Instructor'){
-			$builder->where('instructor', $log_id);
-		}
-        if(!empty($search)) {
-            $builder->like('name', $search);
-			$builder->orLike('details', $search);
-        }
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	public function filter_enrollments($limit='', $offset='', $log_id, $course, $instructor, $search='') {
-        $db = db_connect();
-        $builder = $db->table('enrolment');
-		
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Instructor'){
-			$builder->where('instructor_id', $log_id);
-		}
-        if(!empty($instructor) && $instructor != 'all') {
-            $builder->where('instructor_id', $instructor);
-        }
-		if(!empty($course) && $course != 'all') {
-			$builder->where('course_id', $course);
-        }
-		if(!empty($search)) {
-            $builder->like('schedule', $search);
-			$builder->orLike('amount', $search);
-        }
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	public function filter_quiz_question($limit='', $offset='', $log_id, $course, $search='') {
-        $db = db_connect();
-        $builder = $db->table('quiz_question');
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-		$builder->like('quiz_id', $course);
-        if(!empty($search)) {
-            $builder->like('question', $search);
-        }
-
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	public function filter_category($limit='', $offset='', $log_id, $course, $search='') {
-        $db = db_connect();
-        $builder = $db->table('categories');
-		// build query
-		$builder->orderBy('id', 'DESC');
-		
-		if(!empty($search)) {
-            $builder->like('name', $search);
-        }
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-
-	 /// filter resources
-	 public function filter_resources($limit='', $offset='', $log_id, $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('resources');
-
-        // build query
-		$builder->orderBy('id', 'DESC');
-		if(!empty($status)) $builder->where('approved', $status);
-		
-        if(!empty($search)) {
-            $builder->like('title', $search);
-			$builder->orLike('summary', $search);
-			$builder->orLike('content', $search);
-        }
-
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	 /// filter resources
-	 public function filter_courses($limit='', $offset='', $log_id, $programme='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('course');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Instructor'){
-			$builder->where('instructors', $log_id);
-		}
-        // build query
-		$builder->orderBy('id', 'DESC');
-		if(!empty($status)) $builder->where('publish', $status);
-		
-		if(!empty($programme)) $builder->where('is_programme', $programme);
-		
-        if(!empty($search)) {
-            $builder->like('title', $search);
-			$builder->orLike('details', $search);
-        }
-
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
 
 	/// filter claim form
     public function filter_claim_form($limit='', $offset='', $log_id='', $search='') {
@@ -1912,128 +1129,18 @@ class Crud extends Model {
         $db->close();
     }
 
-    /// filter product
-    public function filter_product($limit='', $offset='', $log_id='', $search='') {
+    /// filter partners
+    public function filter_partner($limit='', $offset='', $log_id='', $search='') {
         $db = db_connect();
-        $builder = $db->table('product');
+        $builder = $db->table('user');
 
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Instructor'){
-			$builder->where('user_id', $log_id);
-		}
         // build query
 		$builder->orderBy('id', 'DESC');
+        $builder->where('is_partner', 1);
 
         if(!empty($search)) {
-            $builder->like('name', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	/// filter order
-    public function filter_order($limit='', $offset='', $log_id, $status='', $product_id='',$station_id='',  $country_id='',$state='',  $lga='',$branch='', $search='', $start_date='', $end_date) {
-        $db = db_connect();
-        $builder = $db->table('order');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Partner'){
-			$builder->where('partner_id', $log_id);
-		}
-        // build query
-		$builder->orderBy('id', 'DESC');
-
-        if(!empty($status) && $status != 'all') {
-            $builder->like('status', $status);
-        }
-		if(!empty($search)) {
-            $builder->like('code', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	/// filter order
-    public function filter_sales($limit='', $offset='', $log_id, $status='', $product_id='',$station_id='',  $country_id='',$state='',  $lga='',$branch='', $search='', $start_date='', $end_date) {
-        $db = db_connect();
-        $builder = $db->table('order');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Partner'){
-			$builder->where('partner_id', $log_id);
-		} else{
-			$partner_id = $this->Crud->read_field('id', $log_id, 'user', 'partner_id');
-			$branch_id = $this->Crud->read_field('id', $log_id, 'user', 'branch_id');
-			$builder->where('partner_id', $partner_id);
-			$builder->where('branch_id', $branch_id);
-		}
-        // build query
-		$builder->orderBy('id', 'DESC');
-
-        if(!empty($status) && $status != 'all') {
-            $builder->like('status', $status);
-        }
-		if(!empty($search)) {
-            $builder->like('code', $search);
-        }
-		
-        // limit query
-        if($limit && $offset) {
-			$query = $builder->get($limit, $offset);
-		} else if($limit) {
-			$query = $builder->get($limit);
-		} else {
-            $query = $builder->get();
-        }
-
-        // return query
-        return $query->getResult();
-        $db->close();
-    }
-
-	/// filter scholar
-    public function filter_scholar($limit='', $offset='', $log_id='', $status='', $search='') {
-        $db = db_connect();
-        $builder = $db->table('scholarship');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Sponsor'){
-			$builder->orderBy('sponsor_id', $log_id);
-		}
-        // build query
-		$builder->orderBy('id', 'DESC');
-
-        if(!empty($status) && $status != 'all') {
-            $builder->like('status', $status);
-        }
-		if(!empty($search)) {
-            $builder->like('name', $search);
+            $builder->like('company', $search);
+            $builder->orLike('email', $search);
         }
 		
         // limit query
@@ -2051,21 +1158,17 @@ class Crud extends Model {
     }
 
     /// filter corporates
-    public function filter_reels($limit='', $offset='', $log_id='', $search='') {
+    public function filter_corporate($limit='', $offset='', $log_id='', $search='') {
         $db = db_connect();
-        $builder = $db->table('tv');
+        $builder = $db->table('user');
 
         // build query
 		$builder->orderBy('id', 'DESC');
-
-		$role_id = $this->read_field('id', $log_id, 'user', 'role_id');
-		$role = $this->read_field('id', $role_id, 'access_role', 'name');
-		if($role == 'Instructor'){
-			$builder->where('user_id', $log_id);
-		}
+        $builder->where('is_corporate', 1);
 
         if(!empty($search)) {
-            $builder->like('instructor', $search);
+            $builder->like('company', $search);
+            $builder->orLike('email', $search);
         }
 		
         // limit query
@@ -2089,8 +1192,7 @@ class Crud extends Model {
 
         // build query
 		$builder->orderBy('id', 'DESC');
-        //$builder->where('is_customer', 1);
-		$builder->where('role_id', 4);
+        $builder->where('is_customer', 1);
 
         if(!empty($search)) {
             $builder->like('firstname', $search);
@@ -2153,6 +1255,49 @@ class Crud extends Model {
         $db->close();
     }
 
+	public function date_range($firstDate, $col1, $secondDate, $col2, $table, $limit='', $offset=''){
+		$db = db_connect();
+        $builder = $db->table($table);
+
+		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
+   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
+		   $builder->orderBy('id', 'DESC');
+		   // limit query
+		   if($limit && $offset) {
+			   $query = $builder->get($limit, $offset);
+		   } else if($limit) {
+			   $query = $builder->get($limit);
+		   } else {
+			   $query = $builder->get();
+		   }
+   
+		   // return query
+		   return $query->getResult();
+		   $db->close();
+	}
+
+	public function date_range1($firstDate, $col1, $secondDate, $col2,$col3, $val3, $table, $limit='', $offset=''){
+		$db = db_connect();
+        $builder = $db->table($table);
+
+		$builder->where($col3, $val3);
+		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') >= '".$firstDate."'",NULL,FALSE);
+   		$builder->where("DATE_FORMAT(".$col1.",'%Y-%m-%d') <= '".$secondDate."'",NULL,FALSE);
+		 
+		 $builder->orderBy('id', 'DESC');
+		// limit query
+		if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+			$query = $builder->get();
+		}
+
+		// return query
+		return $query->getResult();
+		$db->close();
+	}
 	/// filter payments
     public function filter_payment($limit='', $offset='', $log_id='', $search='') {
 		// get user type
@@ -2160,17 +1305,19 @@ class Crud extends Model {
 		$role = $this->read_field('id', $role_id, 'access_role', 'name');
 
         $db = db_connect();
-        $builder = $db->table('payment');
+        $builder = $db->table('transaction');
 
         // build query
 		$builder->orderBy('id', 'DESC');
-		if($role == 'Instructor'){
-			$builder->where('instructor_id', $log_id);
-		}
+		$builder->select('transaction.*, premium.code AS policy_number')
+			->join('premium', 'premium.trans_id = transaction.id');
+
         if(!empty($search)) {
-            $builder->like('item', trim($search));
+            $builder->like('tnx_ref', trim($search));
         }
 
+		if($role == 'Customer') $builder->where('transaction.user_id', $log_id);
+		
         // limit query
         if($limit && $offset) {
 			$query = $builder->get($limit, $offset);
@@ -2219,13 +1366,70 @@ class Crud extends Model {
         $db->close();
     }
 
+	
+	//Filter Announements
+	public function filter_announcement($limit='', $offset='', $user_id='', $search='') {
+		$db = db_connect();
+        $builder = $db->table('announcement');
+
+		// build query
+		$role_id = $this->read_field('id', $user_id, 'user', 'role_id');
+		$role = strtolower($this->read_field('id', $role_id, 'access_role', 'name'));
+		
+		if(!empty($search)) {
+            $builder->like('title', $search);
+			$builder->orLike('content', $search);
+        }
+		// build query
+		$builder->orderBy('id', 'DESC');
+		
+		
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+	}
+	/// timspan
+	public function timespan($datetime) {
+        $difference = time() - $datetime;
+        $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+        $lengths = array("60","60","24","7","4.35","12","10");
+
+        if ($difference > 0) { 
+            $ending = 'ago';
+        } else { 
+            $difference = -$difference;
+            $ending = 'to go';
+        }
+		
+		for($j = 0; $difference >= $lengths[$j]; $j++) {
+            $difference /= $lengths[$j];
+        } 
+        $difference = round($difference);
+
+        if($difference != 1) { 
+            $period = strtolower($periods[$j].'s');
+        } else {
+            $period = strtolower($periods[$j]);
+        }
+
+        return "$difference $period $ending";
+	}
+
 
     //////////////////// MODULE ///////////////////////
 	public function module($role, $module, $type) {
 		$result = 0;
 		
 		$mod_id = $this->read_field('link', $module, 'access_module', 'id');
-		
 		$crud = $this->read_field('role_id', $role, 'access', 'crud');
 		if($mod_id) {
 			if(!empty($crud)) {

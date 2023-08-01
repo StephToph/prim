@@ -45,4 +45,4 @@
     <?php } ?>
 <?php echo form_close(); ?>
 
-<script src="<?php echo site_url(); ?>assets/js/jsform.js"></script>
+<script src="<?php echo site_url(); ?>assets/backend/js/jsform.js"></script>
