@@ -50,7 +50,7 @@ defined('DECADE') || define('DECADE', 315360000);
  |
  | Provide simple customize global contants values
  */
-defined('app_name') || define('app_name', 'PrimRose Consult');
+defined('app_name') || define('app_name', 'Primrose Consult');
 defined('app_meta_desc') || define('app_meta_desc', '...your Loveworld Buddy');
 defined('app_email') || define('app_email', 'support@loveworldbuddy.com');
 defined('app_website') || define('app_website', '');

@@ -967,6 +967,38 @@ class Crud extends Model {
         $db->close();
     }
 
+	public function filter_school($limit='', $offset='', $log_id='', $search='', $status='', $start_date='', $end_date= '') {
+        $db = db_connect();
+        $builder = $db->table('school');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+        if(!empty($search)) {
+            $builder->like('name', $search);
+			$builder->orLike('description', $search);
+        }
+
+		if($status != 'all') $builder->where('scholarship_status', $status);
+		
+		if(!empty($start_date) && !empty($end_date)){
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+		}
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+
 	/// filter coupon
     public function filter_coupon($limit='', $offset='', $log_id='', $search='', $start_date='', $end_date='', $sub_id='') {
         $db = db_connect();
