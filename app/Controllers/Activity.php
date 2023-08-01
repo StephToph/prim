@@ -7,15 +7,15 @@ class Activity extends BaseController {
     /////// ACTIVITIES
 	public function index($param1='', $param2='', $param3='') {
 		// check session login
-		if($this->session->get('ang_id') == ''){
+		if($this->session->get('plx_id') == ''){
 			$request_uri = uri_string();
-			$this->session->set('ang_redirect', $request_uri);
+			$this->session->set('plx_redirect', $request_uri);
 			return redirect()->to(site_url('auth'));
 		} 
 
         $mod = 'activity';
 
-        $log_id = $this->session->get('ang_id');
+        $log_id = $this->session->get('plx_id');
         $role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
         $role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
         $role_c = $this->Crud->module($role_id, $mod, 'create');
@@ -29,13 +29,7 @@ class Activity extends BaseController {
         $data['role'] = $role;
         $data['role_c'] = $role_c;
 		
-        $data['fullname'] = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
-        $data['email'] = $this->Crud->read_field('id', $log_id, 'user', 'email');
-        $data['dob'] = $this->Crud->read_field('id', $log_id, 'user', 'dob');
-        $data['phone'] = $this->Crud->read_field('id', $log_id, 'user', 'phone');
-        $data['reg_date'] = $this->Crud->read_field('id', $log_id, 'user', 'reg_date');
-        $country_id = $this->Crud->read_field('id', $log_id, 'user', 'country_id');
-        $data['country_id'] = $this->Crud->read_field('id', $country_id, 'country', 'name');
+		
 		$table = 'activity';
 
         $form_link = site_url($mod);
@@ -85,23 +79,23 @@ class Activity extends BaseController {
 						$timespan = $this->Crud->timespan(strtotime($q->reg_date));
 
 						$icon = 'solution';
-						if($type == 'rhapsody') $icon = 'template';
-						if($type == 'branch') $icon = 'reports-alt';
+						if($type == 'blog') $icon = 'book';
+						if($type == 'school') $icon = 'shop';
 						if($type == 'business') $icon = 'briefcase';
 						if($type == 'ecommerce') $icon = 'bag';
 						if($type == 'user') $icon = 'users';
 						if($type == 'pump') $icon = 'cc-secure';
-						if($type == 'authentication') $icon = 'setting-alt-fill';
+						if($type == 'authentication') $icon = 'login';
 						if($type == 'enrolment') $icon = 'property-add';
 						if($type == 'scholarship') $icon = 'award';
 
 						$item .= '
                         <li class="list-group-item">
-                            <div class="row pt-7">
-                                <div class="col-1 p-1">
-                                    <em class="icon ni ni-'.$icon.' text-muted" style="font-size:50px;"></em>
+                            <div class="row p-t-15">
+                                <div class="col-1 p-2 m-t-2 m-b-2">
+                                    <em class="anticon anticon-'.$icon.' p-2 text-muted" style="font-size:50px;"></em>
                                 </div>
-                                <div class="col-11 mb-2" >
+                                <div class="col-11 m-b-2" >
                                     '.$action.' <small>on '.$reg_date.'</small>
                                     <div class="text-muted small text-right" align="right">'.$timespan.'</div>
                                  </div>
@@ -115,7 +109,7 @@ class Activity extends BaseController {
 				$resp['item'] = '
 					<div class="text-center text-muted">
 						<br/><br/><br/><br/>
-						<em class="icon ni ni-property" style="font-size:150px;"></em><br/><br/>No Activity Returned
+						<em class="icon anticon anticon-property" style="font-size:150px;"></em><br/><br/>No Activity Returned
 					</div>
 				';
 			} else {
