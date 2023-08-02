@@ -113,7 +113,7 @@
 										<i class="fa fa-phone"></i> 
 										+229 63376861
 									</a>
-									<a class="default-btn" href="javascript:;">
+									<a class="default-btn" href="<?=site_url('apply'); ?>">
 										Apply Now
 									</a>
 								</div>
@@ -273,6 +273,8 @@
 		<!-- Ajaxchimp Min JS -->
 		<script src="<?=site_url(); ?>assets/public/assets/js/ajaxchimp.min.js"></script>
         <!-- Custom JS -->
+		
+		<script src="<?php echo site_url(); ?>assets/public/assets/js/jsform.js"></script>
         <script src="<?=site_url(); ?>assets/public/assets/js/custom.js"></script>
 		<script>
 			$(document).ready(function() {
