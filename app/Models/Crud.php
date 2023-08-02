@@ -475,31 +475,57 @@ class Crud extends Model {
 		return $result;
 	}
 
-	public function rave_inline($redir='', $customize='', $amount=0, $customer='', $meta='', $sub='',  $server='live', $options='card,account,ussd', $curr='NGN') {
-		$publicKey = $this->rave_key('public', $server);
-		$txref = 'PR-'.time().rand();
+	
+	public function rave_inline($ref='', $email='', $amount=0, $redir='', $server='live', $options='card,account,ussd', $curr='NGN') {
+		$publicKey = 'pk_live_95061f69e52faac7b09f422ca264ad5b7798e47c';
+		// $publicKey = 'pk_test_64c9ff4c5109eb46a3249e6d23dd2b9110a4aa48';
+		
+		$txref = 'EB-'.time().rand();
 		$amount = $this->to_number($amount);
-
-		return '
-			<script src="https://checkout.flutterwave.com/v3.js"></script>
+		$icon = '<div class="col-sm-12 text-center"><span class="fa fa-spinner fa-spin" style="font-size:38px;"></span></div>';
+		return '<script src="https://js.paystack.co/v1/inline.js"></script>
 			<script>
-				function ravePay() {
-					FlutterwaveCheckout({
-						public_key: "'.$publicKey.'",
-						tx_ref: "'.$txref.'",
-						amount: '.$amount.',
-						currency: "'.$curr.'",
-						payment_options: "'.$options.'",
-						redirect_url: "'.$redir.'",
-						customer: '.json_encode($customer).',
-						meta: '.json_encode($meta).',
-						subaccounts: '.json_encode($sub).',
-						customizations: '.json_encode($customize).',
+			
+				function payWithPaystack() {
+					
+					
+        
+					let handler = PaystackPop.setup({
+						key: "'.$publicKey.'",
+						email: "'.$email.'",
+						amount:"'.$amount.'",
+						currency:"'.$curr.'",
+    					ref: "'.$ref.'",
+						onClose: function(){
+							console.log("Window closed Transaction Not Completed.");
+						},
+						callback: function(response){
+							var status= response.status;
+							var trans= response.trans;
+							var ref= response.reference;
+
+							$.ajax({
+								url: "'.site_url('home/apply/transact').'",
+								data: { status: status, trans: trans, ref: ref },
+            					method: "post",
+							
+								success: function (data) {
+							
+								    $("#bb_ajax_msg").html(data);
+							
+								}
+							
+							  });
+							
+						}
 					});
+					
+  					handler.openIframe();
 				}
 			</script>
 		';
 	}
+
 
 	public function rave_save($user_id, $tnx_id, $item_id='', $item='') {
 		$trans_id = 0;

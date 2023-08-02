@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('login', 'Auth::login');
 $routes->get('logout', 'Auth::logout');
+$routes->get('apply', 'Home::apply');
 $routes->get('profile', 'Auth::profile');
 
 /*
