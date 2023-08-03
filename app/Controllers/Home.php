@@ -179,16 +179,57 @@ class Home extends BaseController {
                     $by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
                     $action = $by.' Completed Applications';
                     $this->Crud->activity('application', $ins_res, $action);
-                    $email = 'tofunmi015@gmail.com';
-                    $name = 'Admin';
-                    //Send to Email
-                    // Headers
-                    
+                    $email =  $this->Crud->read_field('id', $log_id, 'user', 'email');
+                    $name =  $this->Crud->read_field('id', $log_id, 'user', 'fullname');
+                    $phone =  $this->Crud->read_field('id', $log_id, 'user', 'phone');
+                    $school =  $this->Crud->read_field('id', $school_id, 'school', 'name');
+                    $course =  $this->Crud->read_field('id', $dept_id, 'department', 'name');
+                        
+				    $subject = 'Admission Application Form';
+                    $to = 'admin@primroseconsult.com';
+                    $message .= "Name: ".strtoupper($by)."\n";
+                    $message .= "Email: $email\n";
+                    $message .= "Phone: $phone\n";
+                    $message .= "Gender: ".$gender."\n";
+                    $message .= "Date of Birth: $dob\n";
+                    $message .= "School Chosen: $school\n";
+                    $message .= "Course: $course\n";
 
-                    $to = 'tophsteve@gmail.com';
-                    $subject = 'Admission Application';
-                    $body = 'teste';
-                    $mailSent = $this->Crud->send_email($to, $subject, $body);
+                    // Boundary for multipart/mixed content
+                    $boundary = md5(time());
+
+                    // Headers
+                    $headers = "From: ".strtoupper($name)." <$email>\r\n";
+                    $headers .= "MIME-Version: 1.0\r\n";
+                    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+                    // Message content
+                    $body = "--$boundary\r\n";
+                    $body .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
+                    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+                    $body .= "$message\r\n";
+
+                    // Attachments
+                    $attachmentPaths = [$result, $passport];
+
+                    foreach ($attachmentPaths as $attachmentPath) {
+                        $attachmentName = basename($attachmentPath);
+                        
+                        $fileContent = file_get_contents($attachmentPath);
+                        $fileContent = chunk_split(base64_encode($fileContent));
+                        
+                        $body .= "--$boundary\r\n";
+                        $body .= "Content-Type: application/pdf; name=\"$attachmentName\"\r\n";
+                        $body .= "Content-Transfer-Encoding: base64\r\n";
+                        $body .= "Content-Disposition: attachment; filename=\"$attachmentName\"\r\n\r\n";
+                        $body .= $fileContent."\r\n";
+                    }
+
+                    $body .= "--$boundary--\r\n";
+
+                    // Send email
+                    $mailSent = mail($to, $subject, $body, $headers);
+
 
                     if($mailSent > 0) {
                         // unlink(base_url($img));
@@ -213,10 +254,10 @@ class Home extends BaseController {
     }
 
     function sends(){
-        $to = 'tofunmi015@gmail.com';
+        $to = 'admin@primroseconsult.com';
         $subject = 'Test Email';
         $message = 'This is a test email sent from PHP.';
-        $headers = 'From: your_email@example.com';
+        $headers = 'From: tofunmi015@gmail.com';
 
         if (mail($to, $subject, $message, $headers)) {
             echo 'Email sent successfully.';
