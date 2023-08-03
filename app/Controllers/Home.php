@@ -134,32 +134,75 @@ class Home extends BaseController {
         $data['param2'] = $param2;
        
         if($this->request->getMethod() == 'post'){
-            $firstname = $this->request->getPost('firstname');
-            $lastname = $this->request->getPost('lastname');
-            $email = $this->request->getPost('email');
-            $phone = $this->request->getPost('phone');
-            $password = $this->request->getPost('password');
-            $confirm = $this->request->getPost('confirm');
-           
-            if($this->Crud->check('email', $email, 'user') > 0 || $this->Crud->check('phone', $phone, 'user') > 0){
+            $school_id = $this->request->getPost('school_id');
+            $gender = $this->request->getPost('gender');
+            $dept_id = $this->request->getPost('dept_id');
+            $dob = $this->request->getPost('dob');
+            $passport = '';
+            $result = '';
+
+            /// upload image
+            if(file_exists($this->request->getFile('pics'))) {
+                $path = 'assets/backend/images/application/';
+                $file = $this->request->getFile('pics');
+                $getImg = $this->Crud->img_upload($path, $file);
+                $passport = $getImg->path;
+            }
+
+             /// upload result
+             if(file_exists($this->request->getFile('result'))) {
+                $path = 'assets/backend/images/application/';
+                $file = $this->request->getFile('result');
+                $getImg = $this->Crud->file_upload($path, $file);
+                $result = $getImg->path;
+            }
+
+            if(empty($passport) || empty($result)){
+                echo $this->Crud->msg('danger', 'Please Upload Passport and Waec Result');
+                die;
+            }
+            if($this->Crud->check('user_id', $log_id, 'application') == 0){
                 echo $this->Crud->msg('danger', 'Email Already Exist');
             } else{
-                if($password != $confirm){
-                    echo $this->Crud->msg('danger', 'Passwords dont Match. Try Again');
-                } else {
-                    $name = $lastname.' '.$firstname;
-                    $ins['fullname'] = $name;
-                    $ins['email'] = $email;
-                    $ins['phone'] = $phone;
-                    $ins['password'] = md5($password);
-                    $ins['role_id'] = $this->Crud->read_field('name', 'Student', 'access_role', 'id');
-                    $ins_res = $this->Crud->create('user', $ins);
-                    if($ins_res > 0){
-                        echo '<script>payWithPaystack();</script>';
-                    } else{
-                        echo $this->Crud->msg('danger', 'Try Again Later');
+                
+                $ins['school_id'] = $school_id;
+                $ins['gender'] = $gender;
+                $ins['dob'] = $dob;
+                $ins['user_id'] = $log_id;
+                $ins['department'] = $dept_id;
+                $ins['result'] = $result;
+                $ins['passport'] = $passport;
+                $ins['reg_date'] = date(fdate);
+                $ins_res = $this->Crud->create('application', $ins);
+                if($ins_res > 0){
+                    ///// store activities
+                    $by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
+                    $action = $by.' Completed Applications';
+                    $this->Crud->activity('application', $ins_res, $action);
+                    $email = 'tofunmi015@gmail.com';
+                    $name = 'Admin';
+                    //Send to Email
+                    // Headers
+                    
+
+                    $to = 'tophsteve@gmail.com';
+                    $subject = 'Admission Application';
+                    $body = 'teste';
+                    $mailSent = $this->Crud->send_email($to, $subject, $body);
+
+                    if($mailSent > 0) {
+                        // unlink(base_url($img));
+                        echo $this->Crud->msg('success', 'The email message was sent.');
+                    } else {
+                        echo $this->Crud->msg('danger', 'The email message was not sent.<br>Try again Later!');
                     }
+
+                    echo $this->Crud->msg('success', 'Application Submitted');
+                    // echo '<script>location.reload(false);</script>';
+                } else{
+                    echo $this->Crud->msg('danger', 'Try Again Later');
                 }
+            
             }
             die;
         }
@@ -169,5 +212,22 @@ class Home extends BaseController {
         return view('home/application', $data);
     }
 
+    function sends(){
+        $to = 'tofunmi015@gmail.com';
+        $subject = 'Test Email';
+        $message = 'This is a test email sent from PHP.';
+        $headers = 'From: your_email@example.com';
 
+        if (mail($to, $subject, $message, $headers)) {
+            echo 'Email sent successfully.';
+        } else {
+            echo 'Failed to send email.';
+        }
+
+        if (!mail($to, $subject, $message, $headers)) {
+            $lastError = error_get_last(); 
+            var_dump($lastError);
+            echo 'Failed to send email. Error: ';
+        }
+    }
 }
