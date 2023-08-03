@@ -307,4 +307,221 @@ class Dashboard extends BaseController {
             return view('setup/school', $data);
         }
     }
+
+	
+    public function department($param1='', $param2='', $param3='') {
+        // check login
+        $log_id = $this->session->get('plx_id');
+        if(empty($log_id)) return redirect()->to(site_url('auth'));
+
+        $role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
+        $role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
+        $role_c = $this->Crud->module($role_id, 'dashboard/department', 'create');
+        $role_r = $this->Crud->module($role_id, 'dashboard/department', 'read');
+        $role_u = $this->Crud->module($role_id, 'dashboard/department', 'update');
+        $role_d = $this->Crud->module($role_id, 'dashboard/department', 'delete');
+        if($role_r == 0){
+            return redirect()->to(site_url('dashboard'));	
+        }
+
+        $data['log_id'] = $log_id;
+        $data['role'] = $role;
+        $data['role_c'] = $role_c;
+
+        $table = 'department';
+
+		$form_link = site_url('dashboard/department/');
+		if($param1){$form_link .= $param1.'/';}
+		if($param2){$form_link .= $param2.'/';}
+		if($param3){$form_link .= $param3.'/';}
+		
+		// pass parameters to view
+		$data['param1'] = $param1;
+		$data['param2'] = $param2;
+		$data['param3'] = $param3;
+		$data['form_link'] = rtrim($form_link, '/');
+		
+		// manage record
+		if($param1 == 'manage') {
+			// prepare for delete
+			if($param2 == 'delete') {
+				if($param3) {
+					$edit = $this->Crud->read_single('id', $param3, $table);
+					if(!empty($edit)) {
+						foreach($edit as $e) {
+							$data['d_id'] = $e->id;
+						}
+					}
+
+					if($this->request->getMethod() == 'post'){
+						$del_id = $this->request->getVar('d_dept_id');
+						if($this->Crud->deletes('id', $del_id, $table) > 0) {
+							
+							echo $this->Crud->msg('success', 'School Deleted');
+							echo '<script>location.reload(false);</script>';
+						} else {
+							echo $this->Crud->msg('danger', 'Please try later');
+						}	
+						exit;	
+					}
+				}
+			} else {
+				// prepare for edit
+				if($param2 == 'edit') {
+					if($param3) {
+						$edit = $this->Crud->read_single('id', $param3, $table);
+						if(!empty($edit)) {
+							foreach($edit as $e) {
+								$data['e_id'] = $e->id;
+								$data['e_name'] = $e->name;
+							}
+						}
+					}
+				}
+
+				if($this->request->getMethod() == 'post'){
+					$dept_id = $this->request->getVar('dept_id');
+					$name = $this->request->getVar('name');
+
+					$ins_data['name'] = $name;
+					
+					$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
+					
+					// do create or update
+					if ($dept_id) {
+						$upd_rec = $this->Crud->updates('id', $dept_id, $table, $ins_data);
+						if ($upd_rec > 0) {
+							///// store activities
+							$code = $this->Crud->read_field('id', $dept_id, $table, 'name');
+							$by = $this->Crud->read_field('id', $log_id, 'user', 'fullname');
+							$action = $by.' updated Department '.$code.' Record';
+							$this->Crud->activity('department', $dept_id, $action);
+
+							echo $this->Crud->msg('success', 'Department Updated');
+							echo '<script>location.reload(false);</script>';
+						} else {
+							echo $this->Crud->msg('info', 'No Changes');
+						}
+					} else {
+						
+
+						$user_id = $this->Crud->create('department', $ins_data);
+						if($user_id > 0) {
+							///// store activities
+							$action = $by.' created Department';
+							$this->Crud->activity('department', $user_id, $action);
+
+							echo $this->Crud->msg('success', 'Department Created');
+							echo '<script>location.reload(false);</script>';
+						} else {
+							echo $this->Crud->msg('info', 'No Changes');
+						}
+					
+					}
+					die;	
+				}
+			}
+		}
+
+        // record listing
+		if($param1 == 'load') {
+			$limit = $param2;
+			$offset = $param3;
+
+			$rec_limit = 25;
+			$item = '';
+			$counts = 0;
+
+			if(empty($limit)) {$limit = $rec_limit;}
+			if(empty($offset)) {$offset = 0;}
+			
+			$search = $this->request->getPost('search');
+			$log_id = $this->session->get('plx_id');
+			if(!$log_id) {
+				$item = '<div class="text-center text-muted">Session Timeout! - Please login again</div>';
+			} else {
+				$all_rec = $this->Crud->filter_dept('', '', $log_id, $search);
+				if(!empty($all_rec)) { $counts = count($all_rec); } else { $counts = 0; }
+				$query = $this->Crud->filter_dept($limit, $offset, $log_id, $search);
+
+				if(!empty($query)) {
+					foreach($query as $q) {
+						$id = $q->id;
+						$title = $q->name;
+						
+						
+						// add manage buttons
+						if($role_u != 1) {
+							$all_btn = '';
+						} else {
+							$all_btn = '
+								<div class="textright">
+									<a href="javascript:;" class="text-info pop m-b-5 m-r-5" pageTitle="Edit '.$title.' Details" pageName="'.base_url('dashboard/department/manage/edit/'.$id).'" pageSize="modal-md">
+										<i class="anticon anticon-rollback"></i> EDIT
+									</a>
+									<a href="javascript:;" class="text-danger pop m-b-5 m-l-5  m-r-5" pageTitle="Delete '.$title.' Record" pageName="'.base_url('dashboard/department/manage/delete/'.$id).'" pageSize="modal-sm">
+										<i class="anticon anticon-delete"></i> DELETE
+									</a>
+									
+								</div>
+							';
+						}
+						
+
+						$item .= '
+						<li class="list-group-item">
+							<div class="row p-t-10">
+								<div class="col-8 col-md-9 m-b-10">
+									<div class="single">
+										<b class="font-size-16 text-primary">'.strtoupper($title).'</b>
+									</div>
+								</div>
+								<div class="col-12 col-md-2 m-b-5">
+									<div class="single">
+										<div class="text-muted font-size-14">'.$all_btn.'</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						';
+					}
+				}
+			}
+			
+			if(empty($item)) {
+				$resp['item'] = '
+					<div class="text-center text-muted">
+						<br/><br/><br/><br/>
+						<i class="anticon anticon-contacts" style="font-size:150px;"></i><br/><br/>No Department/Course Returned
+					</div>
+				';
+			} else {
+				$resp['item'] = $item;
+			}
+
+			$resp['count'] = $counts;
+
+			$more_record = $counts - ($offset + $rec_limit);
+			$resp['left'] = $more_record;
+
+			if($counts > ($offset + $rec_limit)) { // for load more records
+				$resp['limit'] = $rec_limit;
+				$resp['offset'] = $offset + $limit;
+			} else {
+				$resp['limit'] = 0;
+				$resp['offset'] = 0;
+			}
+
+			echo json_encode($resp);
+			die;
+		}
+
+        if($param1 == 'manage') { // view for form data posting
+			return view('setup/dept_form', $data);
+		} else { // view for main page
+            $data['title'] = 'Department/Courses - '.app_name;
+            $data['page_active'] = 'dashboard/department';
+            return view('setup/dept', $data);
+        }
+    }
 }

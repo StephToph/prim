@@ -477,8 +477,8 @@ class Crud extends Model {
 
 	
 	public function rave_inline($ref='', $email='', $amount=0, $redir='', $server='live', $options='card,account,ussd', $curr='NGN') {
-		$publicKey = 'pk_live_95061f69e52faac7b09f422ca264ad5b7798e47c';
-		// $publicKey = 'pk_test_64c9ff4c5109eb46a3249e6d23dd2b9110a4aa48';
+		// <!-- $publicKey = 'pk_live_95061f69e52faac7b09f422ca264ad5b7798e47c';
+		$publicKey = 'pk_test_64c9ff4c5109eb46a3249e6d23dd2b9110a4aa48';
 		
 		$txref = 'EB-'.time().rand();
 		$amount = $this->to_number($amount);
@@ -1011,6 +1011,30 @@ class Crud extends Model {
 			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
 			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
 		}
+        // limit query
+        if($limit && $offset) {
+			$query = $builder->get($limit, $offset);
+		} else if($limit) {
+			$query = $builder->get($limit);
+		} else {
+            $query = $builder->get();
+        }
+
+        // return query
+        return $query->getResult();
+        $db->close();
+    }
+	public function filter_dept($limit='', $offset='', $log_id='', $search='') {
+        $db = db_connect();
+        $builder = $db->table('department');
+
+        // build query
+		$builder->orderBy('id', 'DESC');
+
+        if(!empty($search)) {
+            $builder->like('name', $search);
+        }
+
         // limit query
         if($limit && $offset) {
 			$query = $builder->get($limit, $offset);
