@@ -197,47 +197,15 @@ class Home extends BaseController {
                     $message .= "School Chosen: $school\n";
                     $message .= "Course: $course\n";
 
-                    // Boundary for multipart/mixed content
-                    $boundary = md5(time());
-
-                    // Headers
-                    $headers = "From: ".strtoupper($name)." <$email>\r\n";
-                    $headers .= "MIME-Version: 1.0\r\n";
-                    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
-
-                    // Message content
-                    $body = "--$boundary\r\n";
-                    $body .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
-                    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-                    $body .= "$message\r\n";
-
+                    
                     // Attachments
                     $attachmentPaths = [$result, $passport];
 
-                    foreach ($attachmentPaths as $attachmentPath) {
-                        $attachmentName = basename($attachmentPath);
-                        
-                        $fileContent = file_get_contents($attachmentPath);
-                        $fileContent = chunk_split(base64_encode($fileContent));
-                        
-                        $body .= "--$boundary\r\n";
-                        $body .= "Content-Type: application/pdf; name=\"$attachmentName\"\r\n";
-                        $body .= "Content-Transfer-Encoding: base64\r\n";
-                        $body .= "Content-Disposition: attachment; filename=\"$attachmentName\"\r\n\r\n";
-                        $body .= $fileContent."\r\n";
-                    }
-
-                    $body .= "--$boundary--\r\n";
-
-                    // Send email
-                    $mailSent = mail($to, $subject, $body, $headers);
-
-
-                    if($mailSent > 0) {
-                        // unlink(base_url($img));
-                        echo $this->Crud->msg('success', 'The email message was sent.');
+                    $send_mail = $this->sendEmail($email, $name, $subject, $message, $attachmentPaths);
+                    if($this->sendEmail($email, $name, $subject, $message, $attachmentPaths)){
+                        echo $this->Crud->msg('success', 'Email Sent');
                     } else {
-                        echo $this->Crud->msg('danger', 'The email message was not sent.<br>Try again Later!');
+                        echo $this->Crud->msg('danger', 'Email not Sent');
                     }
 
                     echo $this->Crud->msg('success', 'Application Submitted');
@@ -289,38 +257,8 @@ class Home extends BaseController {
         }
     }
 
-    public function sendEmail() {
+    public function sendEmail($from='', $from_name='', $subject='', $message='', $files = '') {
         
-        // Your DKIM key pair (replace these with your actual keys)
-        $privateKey = '-----BEGIN RSA PRIVATE KEY-----
-        MIIEpQIBAAKCAQEAuPaSrZIAXPaN8CO2Qj296x6zh+cJOlzEK7CHrCtHHAnxX+c4
-        R17YgbhYUdd97jeXPGC8/kO/DCSDII2vhSAtS/zev7/Btl/WiMrxMidw96qXOHYd
-        646wAToEDNJYU/7JLTxPW/xtsuAaqIw6WUL6t6epqh3LQCY8UdzgVkKwWzYqCaOr
-        eRbHUf0XAkpKO5EIv5jOFKUoyZ1Dx7KxLLNAZKMTe2GFE/hXbZXQA0Im7joJuI24
-        k0kNj/oVCa8huE0ju3+Xg06J79JrZkKyx20m+wWjMO5CT3A/TF2Zi6P0TkuABeBv
-        yc4UjCCTAiYqNBsgdwB7bA8y6dmLnEdTUyd85QIDAQABAoIBAERmix+9Gn1GgH8J
-        9eDRTGai1+muOu9mVvWBNusopgdsdeLtcxaRsKdoMOEzO9LYpAkkDUBKdWBcMFHd
-        k8c7ewTa4tUuaMi08HVt93yAsXolj/7FT5NJFTWe6tiDAT8uvd8IqqBt3XOFBNbH
-        5NwVtPot+sR6eCuk+DGd6Sh9SRKxeC0ksdc0uCe9WACMP/44CY2KLOJGw/ilFkkb
-        3TA/w9Wy4f8CPVJXzbXB4YDkjAIekWON4tQnOutIvlLvBKfmnOvnkKhNW4N5uk24
-        Z99xriOhbw8j1t9mp7hTL1cgGwpvEWUUZq1R3D6cBR0xgmgJre9knvyS/tymBzDc
-        m7n32IECgYEA3IEe0Mpj5bH0L4BoLv9tV+zx7q9lDXZz8S4Xl4FEq3A/WdRKAuTT
-        ZQ0GiU7UMAUfTZaIK94ziWweBC4CpohxI4qb9/mXt7/T7uH+U5iuwCasXAOrOMSz
-        DEKZ7WTBkzT7MO7rFYofW6GscGq13uT6TfJty5ijVu2hS4MmOtgaHSkCgYEA1rzR
-        FgvguwuBiMKcAYUmL5ofY8OEO/Lxuzuoo33q13wdKz8GTw3Wp55LAY1zyR/Vs540
-        onH3p4UgHZRBS1PoSYMweOEnIG2KfPHsLT5GmlHhrcGzszBDWzADZAwEtOX/nGhm
-        VbWvNns+5ssVivceOWNg+Wox5Ymq1lrqoKvbXV0CgYEAxbrDd1cF3aOF5FKxGfPS
-        iVXgXLjLVRczQMKkRSeV/GXbaSIEfDPVnHfhtJ8Lh0QQnfKuiSfn7wMUp4ratZsE
-        WWqiEeuvMQbDdSMSfMQdcBE93gUsNOut4wCWJ1qCew63cVnNVLNXC0Qe7W/DRuzt
-        x5fs/PUTA5BzYtNoJLxELoECgYEApyHOmpokD3ClIQxW39gCIIqUY9GI2h/8hP2q
-        A5W9cnnnOgGTp3Pd3hgVyN+PfrqIWYSI8uZBGuFCXcNGDpr/8DdrQqn7CgI4B4dD
-        ivMtgG66d8KLWqv1wMNd4EB6aVGZ4OJgw9TkykKicn8eBUrQ+1md4IIG0+CSVsPs
-        WaFo2wECgYEAmCvZ1eOQ9ADtOtaQyFO6i9yK99Xw4bkql2SV7Fq1TpPU2RKsxFGI
-        umOwQgq9OoqCxMuRvL9Fhq+uPCcTgZoyC96D3Kv1/eBqp9QwkdefkfVzfy9uCQZk
-        BkpJCpA07XJqIX9FK2qPiTbceOg4+5yrwQim/LlfRD74qwDCXnDGPHU=
-        -----END RSA PRIVATE KEY-----
-        ';
-
         $mail = new PHPMailer(true);
 
         try {
@@ -329,31 +267,34 @@ class Home extends BaseController {
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'tofunmi015@gmail.com';
-            $mail->Password   = 'Adeagbo015...';
+            $mail->Password   = 'hgelpcwvwrsoqqve';
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
             // Sender and recipient configuration
-            $mail->setFrom('tofunmi015@gmail.com', 'Adeagbo Stephen');
-            $mail->addAddress('tophsteve@gmail.com', 'Tophunmi');
+            $mail->setFrom($from, $from_name);
+            $mail->addAddress('tofunmi015@gmail.com', 'Primerose Consult');
 
             // Email content
             $mail->isHTML(true);
-            $mail->Subject = 'Test Email';
-            $mail->Body    = 'This is the HTML message body. You can use HTML tags here.';
-            $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
+            $mail->Subject = $subject;
+            $mail->Body    = $message;
+            $mail->AltBody = $message;
 
-                    // Add the DKIM-Signature header to the email
-            $headers = 'DKIM-Signature: '.$privateKey;
+            if(!empty($files)){
+                foreach($files as $f =>$val){
+                      // Attach files to the email
+                    $mail->addAttachment($val);
 
-            // Add custom headers to the email
-            $mail->addCustomHeader($headers);
-
+                }
+               
+            }
+            
             // Send the email
             $mail->send();
-            echo 'Message has been sent';
+            echo true;
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            echo false;
         }
     }
 }
