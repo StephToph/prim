@@ -163,10 +163,7 @@ class Home extends BaseController {
                 echo $this->Crud->msg('danger', 'Please Upload Passport and Waec Result');
                 die;
             }
-            if($this->Crud->check('user_id', $log_id, 'application') == 0){
-                echo $this->Crud->msg('danger', 'Email Already Exist');
-            } else{
-                
+            
                 $ins['school_id'] = $school_id;
                 $ins['gender'] = $gender;
                 $ins['dob'] = $dob;
@@ -189,13 +186,13 @@ class Home extends BaseController {
                         
 				    $subject = 'Admission Application Form';
                     $to = 'admin@primroseconsult.com';
-                    $message .= "Name: ".strtoupper($by)."\n";
-                    $message .= "Email: $email\n";
-                    $message .= "Phone: $phone\n";
-                    $message .= "Gender: ".$gender."\n";
-                    $message .= "Date of Birth: $dob\n";
-                    $message .= "School Chosen: $school\n";
-                    $message .= "Course: $course\n";
+                    $message .= "Fullname: ".strtoupper($by)."<br>";
+                    $message .= "Email: $email<br>";
+                    $message .= "Phone: $phone<br>";
+                    $message .= "Gender: ".$gender."<br>";
+                    $message .= "Date of Birth: $dob<br>";
+                    $message .= "School Chosen: $school<br>";
+                    $message .= "Course: $course<br>";
 
                     
                     // Attachments
@@ -214,7 +211,7 @@ class Home extends BaseController {
                     echo $this->Crud->msg('danger', 'Try Again Later');
                 }
             
-            }
+            
             die;
         }
         $mod = 'application';
@@ -266,14 +263,14 @@ class Home extends BaseController {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'tofunmi015@gmail.com';
-            $mail->Password   = 'hgelpcwvwrsoqqve';
+            $mail->Username   = 'primroseconsult1@gmail.com';
+            $mail->Password   = 'nyrkwhdnxaabjyiq';
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
             // Sender and recipient configuration
             $mail->setFrom($from, $from_name);
-            $mail->addAddress('tofunmi015@gmail.com', 'Primerose Consult');
+            $mail->addAddress('primroseconsult1@gmail.com', 'Primerose Consult');
 
             // Email content
             $mail->isHTML(true);
