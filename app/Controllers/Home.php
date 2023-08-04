@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controllers;
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 class Home extends BaseController {
     public function index($param1='', $param2='', $para3='') {
         // check login
@@ -284,6 +286,72 @@ class Home extends BaseController {
             $lastError = error_get_last(); 
             var_dump($lastError);
             echo 'Failed to send email. Error: ';
+        }
+    }
+
+    public function sendEmail() {
+        
+        // Your DKIM key pair (replace these with your actual keys)
+        $privateKey = '-----BEGIN RSA PRIVATE KEY-----
+        MIIEpQIBAAKCAQEAuPaSrZIAXPaN8CO2Qj296x6zh+cJOlzEK7CHrCtHHAnxX+c4
+        R17YgbhYUdd97jeXPGC8/kO/DCSDII2vhSAtS/zev7/Btl/WiMrxMidw96qXOHYd
+        646wAToEDNJYU/7JLTxPW/xtsuAaqIw6WUL6t6epqh3LQCY8UdzgVkKwWzYqCaOr
+        eRbHUf0XAkpKO5EIv5jOFKUoyZ1Dx7KxLLNAZKMTe2GFE/hXbZXQA0Im7joJuI24
+        k0kNj/oVCa8huE0ju3+Xg06J79JrZkKyx20m+wWjMO5CT3A/TF2Zi6P0TkuABeBv
+        yc4UjCCTAiYqNBsgdwB7bA8y6dmLnEdTUyd85QIDAQABAoIBAERmix+9Gn1GgH8J
+        9eDRTGai1+muOu9mVvWBNusopgdsdeLtcxaRsKdoMOEzO9LYpAkkDUBKdWBcMFHd
+        k8c7ewTa4tUuaMi08HVt93yAsXolj/7FT5NJFTWe6tiDAT8uvd8IqqBt3XOFBNbH
+        5NwVtPot+sR6eCuk+DGd6Sh9SRKxeC0ksdc0uCe9WACMP/44CY2KLOJGw/ilFkkb
+        3TA/w9Wy4f8CPVJXzbXB4YDkjAIekWON4tQnOutIvlLvBKfmnOvnkKhNW4N5uk24
+        Z99xriOhbw8j1t9mp7hTL1cgGwpvEWUUZq1R3D6cBR0xgmgJre9knvyS/tymBzDc
+        m7n32IECgYEA3IEe0Mpj5bH0L4BoLv9tV+zx7q9lDXZz8S4Xl4FEq3A/WdRKAuTT
+        ZQ0GiU7UMAUfTZaIK94ziWweBC4CpohxI4qb9/mXt7/T7uH+U5iuwCasXAOrOMSz
+        DEKZ7WTBkzT7MO7rFYofW6GscGq13uT6TfJty5ijVu2hS4MmOtgaHSkCgYEA1rzR
+        FgvguwuBiMKcAYUmL5ofY8OEO/Lxuzuoo33q13wdKz8GTw3Wp55LAY1zyR/Vs540
+        onH3p4UgHZRBS1PoSYMweOEnIG2KfPHsLT5GmlHhrcGzszBDWzADZAwEtOX/nGhm
+        VbWvNns+5ssVivceOWNg+Wox5Ymq1lrqoKvbXV0CgYEAxbrDd1cF3aOF5FKxGfPS
+        iVXgXLjLVRczQMKkRSeV/GXbaSIEfDPVnHfhtJ8Lh0QQnfKuiSfn7wMUp4ratZsE
+        WWqiEeuvMQbDdSMSfMQdcBE93gUsNOut4wCWJ1qCew63cVnNVLNXC0Qe7W/DRuzt
+        x5fs/PUTA5BzYtNoJLxELoECgYEApyHOmpokD3ClIQxW39gCIIqUY9GI2h/8hP2q
+        A5W9cnnnOgGTp3Pd3hgVyN+PfrqIWYSI8uZBGuFCXcNGDpr/8DdrQqn7CgI4B4dD
+        ivMtgG66d8KLWqv1wMNd4EB6aVGZ4OJgw9TkykKicn8eBUrQ+1md4IIG0+CSVsPs
+        WaFo2wECgYEAmCvZ1eOQ9ADtOtaQyFO6i9yK99Xw4bkql2SV7Fq1TpPU2RKsxFGI
+        umOwQgq9OoqCxMuRvL9Fhq+uPCcTgZoyC96D3Kv1/eBqp9QwkdefkfVzfy9uCQZk
+        BkpJCpA07XJqIX9FK2qPiTbceOg4+5yrwQim/LlfRD74qwDCXnDGPHU=
+        -----END RSA PRIVATE KEY-----
+        ';
+
+        $mail = new PHPMailer(true);
+
+        try {
+            // SMTP configuration
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'tofunmi015@gmail.com';
+            $mail->Password   = 'Adeagbo015...';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port       = 587;
+
+            // Sender and recipient configuration
+            $mail->setFrom('tofunmi015@gmail.com', 'Adeagbo Stephen');
+            $mail->addAddress('tophsteve@gmail.com', 'Tophunmi');
+
+            // Email content
+            $mail->isHTML(true);
+            $mail->Subject = 'Test Email';
+            $mail->Body    = 'This is the HTML message body. You can use HTML tags here.';
+            $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
+
+            // Add the DKIM-Signature header to the email
+            $headers = $mail->getCustomHeaders();
+            $headers->addTextHeader('DKIM-Signature', $privateKey);
+
+            // Send the email
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
 }
