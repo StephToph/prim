@@ -343,9 +343,11 @@ class Home extends BaseController {
             $mail->Body    = 'This is the HTML message body. You can use HTML tags here.';
             $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
 
-            // Add the DKIM-Signature header to the email
-            $headers = $mail->getCustomHeaders();
-            $headers->addTextHeader('DKIM-Signature', $privateKey);
+                    // Add the DKIM-Signature header to the email
+            $headers = 'DKIM-Signature: '.$privateKey;
+
+            // Add custom headers to the email
+            $mail->addCustomHeader($headers);
 
             // Send the email
             $mail->send();
