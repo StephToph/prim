@@ -275,7 +275,7 @@ class Home extends BaseController {
             $mail->Username   = 'tofunmi015@gmail.com';   // SMTP username
             $mail->Password   = 'Adeagbo015...';   // SMTP password
             $mail->SMTPSecure = 'tls';             // Enable TLS encryption, 'ssl' also accepted
-            $mail->Port       = 465;               // TCP port to connect to
+            $mail->Port       = 587;               // TCP port to connect to
 
             // Sender and recipient configuration
             $mail->setFrom('tofunmi015@gmail.com', 'Your Name');    // Sender email and name
