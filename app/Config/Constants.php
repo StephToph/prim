@@ -58,6 +58,7 @@ defined('push_email') || define('push_email', md5(time().rand()).'@loveworldbudd
 defined('fdate') || define('fdate', 'Y-m-d H:i:s');
 defined('curr') || define('curr', '&#8358;');
 defined('pay_server') || define('pay_server', 'test');
+defined('email_key') || define('email_key', '96BC60CF026A2008C4553636199F070F76892DDADD15777930F4B081BA40FD3E74D3F042FBF6CE962A6C883E5413F53C');
 
 /*
  | --------------------------------------------------------------------------

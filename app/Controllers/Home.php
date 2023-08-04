@@ -254,10 +254,10 @@ class Home extends BaseController {
     }
 
     function sends(){
-        $to = 'admin@primroseconsult.com';
+        $to = 'primros5@primroseconsult.com';
         $subject = 'Test Email';
         $message = 'This is a test email sent from PHP.';
-        $headers = 'From: tofunmi015@gmail.com';
+        $headers = 'From: admin@primroseconsult.com';
 
         if (mail($to, $subject, $message, $headers)) {
             echo 'Email sent successfully.';
