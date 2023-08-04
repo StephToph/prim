@@ -2,11 +2,6 @@
 
 namespace App\Controllers;
 
-require 'vendor/autoload.php';
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 class Home extends BaseController {
     public function index($param1='', $param2='', $para3='') {
         // check login
@@ -259,40 +254,21 @@ class Home extends BaseController {
     }
 
     function sends(){
-        $to = 'tofunmi015@gmail.com';
+        $to = 'primros5@primroseconsult.com';
         $subject = 'Test Email';
         $message = 'This is a test email sent from PHP.';
-        $headers = 'From: tofunmi015@gmail.com';
+        $headers = 'From: primros5@primroseconsult.com';
 
-        // Instantiation and passing `true` enables exceptions
-        $mail = new PHPMailer(true);
-
-        try {
-            // SMTP configuration
-            $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com'; // Your SMTP server address
-            $mail->SMTPAuth   = true;              // Enable SMTP authentication
-            $mail->Username   = 'tofunmi015@gmail.com';   // SMTP username
-            $mail->Password   = 'Adeagbo015...';   // SMTP password
-            $mail->SMTPSecure = 'tls';             // Enable TLS encryption, 'ssl' also accepted
-            $mail->Port       = 587;               // TCP port to connect to
-
-            // Sender and recipient configuration
-            $mail->setFrom('tofunmi015@gmail.com', 'Your Name');    // Sender email and name
-            $mail->addAddress('tophsteve@gmail.com', 'Recipient Name');  // Recipient email and name
-
-            // Email content
-            $mail->isHTML(true);                          // Set email format to HTML
-            $mail->Subject = 'Test Email';                // Email subject
-            $mail->Body    = 'This is the HTML message body. You can use HTML tags here.';  // Email body (HTML content)
-            $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.'; // Alternative plain text body
-
-            // Send the email
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        if (mail($to, $subject, $message, $headers)) {
+            echo 'Email sent successfully.';
+        } else {
+            echo 'Failed to send email.';
         }
 
+        if (!mail($to, $subject, $message, $headers)) {
+            $lastError = error_get_last(); 
+            var_dump($lastError);
+            echo 'Failed to send email. Error: ';
+        }
     }
 }
