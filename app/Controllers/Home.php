@@ -128,7 +128,7 @@ class Home extends BaseController {
     public function application($param1='', $param2='', $param3='') {
         // check login
         $log_id = $this->session->get('plx_pay_id');
-
+        if(empty($log_id)) return redirect()->to(site_url(''));
         $data['log_id'] = $log_id;
        
         $data['param1'] = $param1;
@@ -198,15 +198,14 @@ class Home extends BaseController {
                     // Attachments
                     $attachmentPaths = [$result, $passport];
 
-                    $send_mail = $this->sendEmail($email, $name, $subject, $message, $attachmentPaths);
                     if($this->sendEmail($email, $name, $subject, $message, $attachmentPaths)){
                         echo $this->Crud->msg('success', 'Email Sent');
                     } else {
                         echo $this->Crud->msg('danger', 'Email not Sent');
                     }
-
+                    $this->session->set('plx_pay_id', '');
                     echo $this->Crud->msg('success', 'Application Submitted');
-                    // echo '<script>location.reload(false);</script>';
+                    echo '<script>location.reload(false);</script>';
                 } else{
                     echo $this->Crud->msg('danger', 'Try Again Later');
                 }
@@ -289,9 +288,9 @@ class Home extends BaseController {
             
             // Send the email
             $mail->send();
-            echo true;
+            return true;
         } catch (Exception $e) {
-            echo false;
+            return false;
         }
     }
 }

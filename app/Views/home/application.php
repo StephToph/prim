@@ -111,7 +111,7 @@
 							</div>
 
 							<div class="col-12">
-								<button class="default-btn" type="submit">
+								<button class="default-btn bb_form_btn" type="submit">
 									Continue Application
 								</button>
 							</div>
