@@ -257,9 +257,24 @@ class Home extends BaseController {
         $to = 'admin@primroseconsult.com';
         $subject = 'Test Email';
         $message = 'This is a test email sent from PHP.';
-        $headers = 'From: tofunmi015@gmail.com';
+        $headers = 'From: ';
 
-        if (mail($to, $subject, $message, $headers)) {
+         // Boundary for multipart/mixed content
+         $boundary = md5(time());
+        $name = 'Admin';
+        $email = 'tofunmi015@gmail.com';
+         // Headers
+         $headers = "From: ".strtoupper($name)." <$email>\r\n";
+         $headers .= "MIME-Version: 1.0\r\n";
+         $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+         // Message content
+         $body = "--$boundary\r\n";
+         $body .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
+         $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+         $body .= "$message\r\n";
+
+        if (mail($to, $subject, $body, $headers)) {
             echo 'Email sent successfully.';
         } else {
             echo 'Failed to send email.';
