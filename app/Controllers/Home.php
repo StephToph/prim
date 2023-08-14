@@ -164,6 +164,11 @@ class Home extends BaseController {
                 die;
             }
             
+            if($this->Crud->check('user_id', $log_id, 'application') > 0){
+                echo $this->Crud->msg('danger', 'Record Already Exist!');
+                die;
+            } else {
+
                 $ins['school_id'] = $school_id;
                 $ins['gender'] = $gender;
                 $ins['dob'] = $dob;
@@ -183,7 +188,8 @@ class Home extends BaseController {
                     $phone =  $this->Crud->read_field('id', $log_id, 'user', 'phone');
                     $school =  $this->Crud->read_field('id', $school_id, 'school', 'name');
                     $course =  $this->Crud->read_field('id', $dept_id, 'department', 'name');
-                        
+
+                    $message = '';
 				    $subject = 'Admission Application Form';
                     $to = 'admin@primroseconsult.com';
                     $message .= "Fullname: ".strtoupper($by)."<br>";
@@ -204,13 +210,14 @@ class Home extends BaseController {
                         echo $this->Crud->msg('danger', 'Email not Sent');
                     }
                     $this->session->set('plx_pay_id', '');
-                    echo $this->Crud->msg('success', 'Application Submitted');
-                    echo '<script>location.reload(false);</script>';
+                    echo $this->Crud->msg('success', 'Application Submitted!<br>You would receive an Email withing the next 48 hours.<br><a href="https://wa.link/di9dv3">Click to chat with an Agent!</a>');
+                    // echo '<script>location.reload(false);</script>';
+                    $this->session->set('plx_pay_id', '');
                 } else{
                     echo $this->Crud->msg('danger', 'Try Again Later');
                 }
             
-            
+            }
             die;
         }
         $mod = 'application';

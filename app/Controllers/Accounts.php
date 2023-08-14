@@ -302,17 +302,17 @@ class Accounts extends BaseController {
     }
 
 	//// CHILDREN
-    public function children($param1='', $param2='', $param3='') {
+    public function application($param1='', $param2='', $param3='') {
         // check login
         $log_id = $this->session->get('plx_id');
         if(empty($log_id)) return redirect()->to(site_url('auth'));
 
         $role_id = $this->Crud->read_field('id', $log_id, 'user', 'role_id');
         $role = strtolower($this->Crud->read_field('id', $role_id, 'access_role', 'name'));
-        $role_c = $this->Crud->module($role_id, 'accounts/children', 'create');
-        $role_r = $this->Crud->module($role_id, 'accounts/children', 'read');
-        $role_u = $this->Crud->module($role_id, 'accounts/children', 'update');
-        $role_d = $this->Crud->module($role_id, 'accounts/children', 'delete');
+        $role_c = $this->Crud->module($role_id, 'accounts/application', 'create');
+        $role_r = $this->Crud->module($role_id, 'accounts/application', 'read');
+        $role_u = $this->Crud->module($role_id, 'accounts/application', 'update');
+        $role_d = $this->Crud->module($role_id, 'accounts/application', 'delete');
         if($role_r == 0){
             return redirect()->to(site_url('profile'));	
         }
@@ -321,9 +321,9 @@ class Accounts extends BaseController {
         $data['role'] = $role;
         $data['role_c'] = $role_c;
 
-        $table = 'child';
+        $table = 'user';
 
-		$form_link = site_url('accounts/children/');
+		$form_link = site_url('accounts/application/');
 		if($param1){$form_link .= $param1.'/';}
 		if($param2){$form_link .= $param2.'/';}
 		if($param3){$form_link .= $param3.'/';}
@@ -366,15 +366,22 @@ class Accounts extends BaseController {
 				}
 			} else {
 				// prepare for edit
-				if($param2 == 'edit') {
+				if($param2 == 'profile') {
 					if($param3) {
 						$edit = $this->Crud->read_single('id', $param3, $table);
 						if(!empty($edit)) {
 							foreach($edit as $e) {
 								$data['e_id'] = $e->id;
-								$data['e_name'] = $e->name;
-								$data['e_parent_id'] = $e->parent_id;
-								$data['e_age_id'] = $e->age_id;
+								$data['e_fullname'] = $e->fullname;
+								$data['e_email'] = $e->email;
+								$data['e_phone'] = $e->phone;
+								$data['e_reg_date'] = $e->reg_date;
+								$data['e_gender'] = $this->Crud->read_field('user_id', $e->id, 'application', 'gender');
+								$data['e_dob'] = $this->Crud->read_field('user_id', $e->id, 'application', 'dob');
+								$data['e_school'] = $this->Crud->read_field('user_id', $e->id, 'application', 'school_id');
+								$data['e_dept'] = $this->Crud->read_field('user_id', $e->id, 'application', 'department');
+								$data['e_result'] = $this->Crud->read_field('user_id', $e->id, 'application', 'result');
+								$data['e_passport'] = $this->Crud->read_field('user_id', $e->id, 'application', 'passport');
 							}
 						}
 					}
@@ -451,8 +458,8 @@ class Accounts extends BaseController {
 			if(empty($limit)) {$limit = $rec_limit;}
 			if(empty($offset)) {$offset = 0;}
 			
-			if(!empty($this->request->getPost('age_id'))) { $ageID = $this->request->getPost('age_id'); } else { $ageID = ''; }
-			if(!empty($this->request->getPost('parent_id'))) { $parentID = $this->request->getPost('parent_id'); } else { $parentID = ''; }
+			if(!empty($this->request->getPost('school_id'))) { $school_id = $this->request->getPost('school_id'); } else { $school_id = ''; }
+			if(!empty($this->request->getPost('course_id'))) { $course_id = $this->request->getPost('course_id'); } else { $course_id = ''; }
 			if (!empty($this->request->getPost('start_date'))) {$start_date = $this->request->getPost('start_date');} else {$start_date = '';}
 			if (!empty($this->request->getPost('end_date'))) {$end_date = $this->request->getPost('end_date');} else {$end_date = '';}
 			
@@ -462,22 +469,27 @@ class Accounts extends BaseController {
 			if(!$log_id) {
 				$item = '<div class="text-center text-muted">Session Timeout! - Please login again</div>';
 			} else {
-				$all_rec = $this->Crud->filter_children('', '', $log_id, $ageID, $parentID, $search, $start_date, $end_date);
+				$all_rec = $this->Crud->filter_application('', '', $log_id, $school_id, $course_id, $search, $start_date, $end_date);
 				if(!empty($all_rec)) { $counts = count($all_rec); }
-				$query = $this->Crud->filter_children($limit, $offset, $log_id, $ageID, $parentID, $search, $start_date, $end_date);
+				$query = $this->Crud->filter_application($limit, $offset, $log_id, $school_id, $course_id, $search, $start_date, $end_date);
 
 				if(!empty($query)) {
 					foreach($query as $q) {
 						$id = $q->id;
-						$name = $q->name;
-						$avatar = $q->avatar;
-						$age = $this->Crud->read_field('id', $q->age_id, 'age', 'name');
-						$parent = $this->Crud->read_field('id', $q->parent_id, 'user', 'fullname');
+						$name = $q->fullname;
+						$email = $q->email;
+						$phone = $q->phone;
+						$pay_status = $q->pay_status;
+						$avatar = $q->passport;
+						$school = $this->Crud->read_field('id', $q->school_id, 'school', 'name');
+						$dept = $this->Crud->read_field('id', $q->department, 'department', 'name');
 						$reg_date = date('M d, Y h:i A', strtotime($q->reg_date));
 
 						// count children
 						// $children = $this->db->table('child')->where('parent_id', $q->id)->countAllResults();
 						
+						$pay='<span class="text-danger">NOT PAID</span>';
+						if($pay_status > 0)$pay='<span class="text-success">PAID</span>';
 						if(empty($avatar)){
 							$avatar = 'assets/images/avatar.png';
 						}
@@ -488,11 +500,9 @@ class Accounts extends BaseController {
 						} else {
 							$all_btn = '
 								<div class="text-right">
-									<a href="javascript:;" class="text-danger pop" pageTitle="Delete '.$name.' Details" pageName="'.base_url('accounts/children/manage/delete/'.$id).'" pageSize="modal-sm">
-										<i class="anticon anticon-delete"></i> DELETE
-									</a>
-									<a href="javascript:;" class="text-primary pop" pageTitle="Edit '.$name.' Details" pageName="'.base_url('accounts/children/manage/edit/'.$id).'" pageSize="modal-md">
-										<i class="anticon anticon-edit"></i> EDIT
+									
+									<a href="javascript:;" class="text-info p-1  pop" pageTitle="VIEW '.$name.' Details" pageName="'.site_url('accounts/application/manage/profile/'.$id).'" pageSize="modal-md">
+										<i class="anticon anticon-eye"></i> VIEW
 									</a>
 								</div>
 							';
@@ -508,14 +518,15 @@ class Accounts extends BaseController {
 										<div class="single">
 											<div class="text-muted font-size-12">'.$reg_date.'</div>
 											<b class="font-size-16 text-primary">'.$name.'</b>
-											<div class="small text-muted">'.$parent.'</div>
+											<div class="small text-dark">'.$email.'</div>
+											<div class="small text-dark">'.$phone.'</div>
 										</div>
 									</div>
 									<div class="col-7 col-md-4 m-b-5">
-										<div class="text-muted font-size-12">AGE</div>
+										<div class="text-danger font-size-14 font-weight-bold">'.strtoupper($school).'</div>
 										<div class="font-size-14">
-											'.$age.'
-										</div>
+											'.$dept.'
+										</div>'.$pay.'
 									</div>
 									<div class="col-5 col-md-2">
 										<b class="font-size-14">'.$all_btn.'</b>
@@ -531,7 +542,7 @@ class Accounts extends BaseController {
 				$resp['item'] = '
 					<div class="text-center text-muted">
 						<br/><br/><br/><br/>
-						<i class="anticon anticon-team" style="font-size:150px;"></i><br/><br/>No Children Returned
+						<i class="anticon anticon-team" style="font-size:150px;"></i><br/><br/>No Application Returned
 					</div>
 				';
 			} else {
@@ -555,15 +566,12 @@ class Accounts extends BaseController {
 			die;
 		}
 
-		$data['parents'] = $this->Crud->read_single_order('role_id', 3, 'user', 'fullname', 'ASC');
-		$data['ages'] = $this->Crud->read_order('age', 'id', 'ASC');
-
         if($param1 == 'manage') { // view for form data posting
-			return view('account/children_form', $data);
+			return view('account/application_form', $data);
 		} else { // view for main page
-            $data['title'] = 'Children | '.app_name;
-            $data['page_active'] = 'accounts/children';
-            return view('account/children', $data);
+            $data['title'] = 'Application - '.app_name;
+            $data['page_active'] = 'accounts/application';
+            return view('account/application', $data);
         }
     }
 

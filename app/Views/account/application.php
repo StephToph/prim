@@ -12,7 +12,7 @@
     <div class="main-content">
         <div class="page-header">
             <h2 class="header-title" style="width:100%;">
-                Children
+                Student Application
             </h2>
             <div class="text-muted"><span id="listCount">0</span> records found</div>
         </div>
@@ -21,22 +21,21 @@
          <div class="row">
             <div class="col-12 col-sm-8 m-b-15">
                 <div class="search-tool">
-                    <i class="anticon anticon-search search-icon p-r-10 font-size-18"></i>
-                    <input id="search" placeholder="Search..." oninput="load('', '')" />
+                    <input id="search" class="form-control" placeholder="Search..." oninput="load('', '')" />
                 </div>
             </div>
-            <div class="col-6 col-sm-2 m-b-5">
-                <a href="javascript:;" class="btn btn-default btn-block" onclick="$('#filter_box').toggle();">
+            <!--    <div class="col-6 col-sm-4 m-b-5">
+                <a href="javascript:;" class="btn btn-primary btn-block" onclick="$('#filter_box').toggle();">
                     <i class="anticon anticon-filter"></i> Filter
                 </a>
             </div>
 
-            
+         
             <div class="col-6 col-sm-2 m-b-5">
                 <a href="javascript:;" class="float-right btn btn-block btn-primary pop" pageTitle="Add" pageName="<?php echo base_url('accounts/children/manage'); ?>" pageSize="modal-md">
                     <i class="anticon anticon-plus"></i> Add
                 </a>
-            </div>
+            </div> -->
         </div>
 
          <!-- Filter -->
@@ -143,7 +142,7 @@
             var end_date = $('#end_date').val();
 
             $.ajax({
-                url: site_url + 'accounts/children/load' + methods,
+                url: site_url + 'accounts/application/load' + methods,
                 type: 'post',
                 data: { age_id: age_id, parent_id: parent_id, start_date: start_date, end_date: end_date, search: search },
                 success: function (data) {
@@ -163,7 +162,7 @@
                     $('#listCount').html(dt.count);
                 },
                 complete: function () {
-                    $.getScript(site_url + 'assets/js/jsmodal.js');
+                    $.getScript(site_url + 'assets/backend/js/jsmodal.js');
                 }
             });
         }

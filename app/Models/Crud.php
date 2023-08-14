@@ -1119,23 +1119,27 @@ class Crud extends Model {
     }
 
 	/// filter children
-    public function filter_children($limit='', $offset='', $log_id='', $age_id='', $parent_id='', $search='', $start_date='', $end_date='') {
+    public function filter_application($limit='', $offset='', $log_id='', $school_id='', $course_id='', $search='', $start_date='', $end_date='') {
         $db = db_connect();
-        $builder = $db->table('child');
 
-        // build query
-		$builder->orderBy('id', 'DESC');
+		$builder = $db->table('user');
+		$builder->select('*, user.id as id, user.fullname as fullname, application.school_id,application.reg_date, application.department, application.result');
+		//$builder->from('product_pricing');
+		$builder->join('application', 'application.user_id = user.id', 'inner');
+		
+		$builder->orderBy('application.id', 'DESC');
+		
+		if(!empty($school_id))$builder->where('application.school_id', $school_id);
+		if(!empty($course_id))$builder->where('application.department', $course_id);
+		
+		if(!empty($search)) { $builder->like('fullname', $search); }
 
-		if(!empty($age_id)) { $builder->where('age_id', $age_id); }
-		if(!empty($parent_id)) { $builder->where('parent_id', $parent_id); }
-
-        if(!empty($search)) {
-            $builder->like('name', $search);
-        }
 		if(!empty($start_date) && !empty($end_date)){
-			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
-			$builder->where("DATE_FORMAT(reg_date,'%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
+			$builder->where("DATE_FORMAT('application.reg_date','%Y-%m-%d') >= '".$start_date."'",NULL,FALSE);
+			$builder->where("DATE_FORMAT('application.reg_date','%Y-%m-%d') <= '".$end_date."'",NULL,FALSE); 
 		}
+
+         $builder->where('role_id', 8); 
 		
         // limit query
         if($limit && $offset) {
