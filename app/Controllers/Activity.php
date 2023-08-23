@@ -92,10 +92,10 @@ class Activity extends BaseController {
 						$item .= '
                         <li class="list-group-item">
                             <div class="row p-t-15">
-                                <div class="col-1 p-2 m-t-2 m-b-2">
-                                    <em class="anticon anticon-'.$icon.' p-2 text-muted" style="font-size:50px;"></em>
+                                <div class="col-2 p-2 m-t-2 m-b-2">
+                                    <em class="anticon anticon-'.$icon.' p-2 text-muted" style="font-size:30px;"></em>
                                 </div>
-                                <div class="col-11 m-b-2" >
+                                <div class="col-10 m-b-2" >
                                     '.$action.' <small>on '.$reg_date.'</small>
                                     <div class="text-muted small text-right" align="right">'.$timespan.'</div>
                                  </div>
