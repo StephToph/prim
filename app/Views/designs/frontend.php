@@ -137,7 +137,7 @@
 							<a href="<?=site_url(); ?>auth">
 								<img src="<?=site_url(); ?>assets/logos.jpeg" alt="White-Logo" style="height:67px">
 							</a>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+							<p>At <?=app_name;?>, we believe that every student deserves the best educational opportunities. Let us be your partner in this exciting journey, guiding you towards a bright and successful future. Together, we can make your academic dreams a reality!.</p>
 							<ul class="address">
 								<li>
 									<i class="fa fa-phone"></i>

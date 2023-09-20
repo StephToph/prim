@@ -18,9 +18,8 @@
 						<div class="d-table-cell">
 							<div class="container">
 								<div class="hero-slider-text">
-									<span>Research More & More</span>
-									<h1>We Are Happy To Build Your Best <span>Business</span></h1>
-									<p>We help you for getting success</p>	
+									<h1>Navigating the Path to Academic Excellence: <span><?=app_name; ?></span></h1>
+									<p>Your Dream School Awaits – We're Your Guiding Star!</p>	
 									<div class="banner-button">
 										<a class="default-btn" href="<?=site_url(); ?>apply">
 											Apply Now
@@ -36,9 +35,8 @@
 						<div class="d-table-cell">
 							<div class="container">
 								<div class="hero-slider-text">
-									<span>Research More & More</span>
-									<h1>Take Your Business To New <span>Heights</span></h1>
-									<p>We help you for getting success</p>	
+									<h1>Unlocking Doors to Elite Institutions:<span> Choose <?=app_name;?></span></h1>
+									<p>Unlock the Future You Deserve </p>	
 									<div class="banner-button">
 										<a class="default-btn" href="<?=site_url(); ?>apply">
 											Apply Now
@@ -54,9 +52,8 @@
 						<div class="d-table-cell">
 							<div class="container">
 								<div class="hero-slider-text">
-									<span>Research More & More</span>
-									<h1>Take Your Business To New <span>Heights</span></h1>
-									<p>We help you for getting success</p>	
+									<h1>Your Educational Journey, Our Expertise</h1>
+									<p>Your Journey, Our Passion – Let's Achieve Success Together</p>	
 									<div class="banner-button">
 										<a class="default-btn" href="<?=site_url(); ?>apply">
 											Apply Now
@@ -81,26 +78,8 @@
 					<div class="col-lg-12">
 						<div class="about-title">
 							<span>About Us</span>
-							<h2>We ProvideTotal Business Solutions</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gda. Risus commodo viverra maecenas accumsan.</p>
-							<ul>
-								<li>
-									<i class="flaticon-right-arrow"></i>
-									Premium Service Beyond you
-								</li>
-								<li>
-									<i class="flaticon-right-arrow"></i>
-									Set a Like this Photo
-								</li>
-								<li>
-									<i class="flaticon-right-arrow"></i>
-									Premium Service beyond you
-								</li>
-								<li>
-									<i class="flaticon-right-arrow"></i>
-									A wonderful Sarcenet
-								</li>
-							</ul>
+							<h2>Unlocking Your Educational Journey</h2>
+							<p>In today's dynamic and competitive academic landscape, finding the perfect educational institution can be a daunting task. Parents and students often face a myriad of choices, each with its unique strengths and requirements. That's where <?=app_name;?> comes to the rescue! We are your trusted partner in navigating the intricate world of school admissions, ensuring a smooth and successful transition into the ideal educational institution.</p>
 						</div>
 					</div>
 					<!-- <div class="col-lg-6">
@@ -129,21 +108,27 @@
 								<li class="nav-item">
 									<i class="flaticon-steering-wheel"></i>
 									<a class="nav-link active" id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">
-										<i class="flaticon-pie-chart"></i>
-										Best Consulting
+										<i class="fa fa-graduation-cap"></i>
+										School Selection
 									</a>
 								</li>
 
 								<li class="nav-item">
 									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
-										<i class="flaticon-consultant"></i>
-										Consultant
+										<i class="fa fa-address-card-o"></i>
+										Interview Coaching
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
-										<i class="flaticon-consultant"></i>
-										Consultant
+										<i class="fa fa-briefcase"></i>
+										Application Support
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
+										<i class="fa fa-money"></i>
+										Financial Planning
 									</a>
 								</li>
 							</ul>
@@ -169,22 +154,22 @@
 								<div class="col-lg-4 col-md-4 pr-0">
 									<div class="single-box choose-1">
 										<i class="flaticon-shield"></i>
-										<h3>Top Security</h3>
-										<p>Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt labore.</p>
+										<h3>Expert Guidance: </h3>
+										<p>Our team of seasoned education experts brings years of experience in the field. We understand the nuances of the admission process and stay updated with the latest trends and requirements to offer you the most up-to-date guidance.</p>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 pl-0 pr-0">
 									<div class="single-box choose-3">
 										<i class="flaticon-content"></i>
-										<h3>Risk Manage</h3>
-										<p>Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt labore.</p>
+										<h3>Personalized Approach:</h3>
+										<p> At <?=app_name; ?>, we recognize that every student is unique. We tailor our services to your specific needs, providing personalized recommendations and strategies to maximize your chances of admission.</p>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 pl-0">
 									<div class="single-box choose-4">
 										<i class="flaticon-help"></i>
-										<h3>Fast Support</h3>
-										<p>Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt labore.</p>
+										<h3>Comprehensive Services: </h3>
+										<p>From selecting the right schools, preparing application documents, and interview coaching to financial planning and visa assistance, we offer a comprehensive suite of services to address all aspects of the admissions process.</p>
 									</div>
 								</div>
 							</div>
