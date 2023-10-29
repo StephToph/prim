@@ -95,7 +95,7 @@
 									<li class="nav-item">
                                         <a href="<?=site_url(); ?>" class="nav-link ">Scholarship</a>
                                     </li>
-									<li class="nav-item">
+									<!-- <li class="nav-item">
                                         <a href="#team" class="nav-link ">Our Teams</a>
                                     </li>
 									<li class="nav-item">
@@ -103,7 +103,7 @@
                                     </li>
 									<li class="nav-item">
                                         <a href="#faq" class="nav-link ">FAQs</a>
-                                    </li>
+                                    </li> -->
 									<li class="nav-item">
 										<a href="#contact" class="nav-link">Contact</a>
 									</li>

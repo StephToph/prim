@@ -388,10 +388,10 @@
 		<!-- End Blog Area -->
 
 		<!-- Start FAQ Area -->
-		<!-- <section class="questions-area two pb-100">
+		<section class="questions-area two pb-100">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-lg-6"  id="faq">
+					<!-- <div class="col-lg-6"  id="faq">
 						<div class="questions-bg-area">
 							<div class="section-title">
 								<span>FAQ</span>
@@ -424,10 +424,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="col-lg-6"  id="contact">
 						<div class="questions">
+							<h4 class="text-white">Contact Us</h4>
 							<div class="contact-form">
 								<form id="contactForm">
 									<div class="row">
@@ -478,7 +479,7 @@
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<!-- End FAQ Area -->
 <script>var site_url = '<?php echo site_url(); ?>';</script>
 <?=$this->endSection();?>
