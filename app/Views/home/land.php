@@ -183,7 +183,7 @@
 
 		
 		<!-- Start Team Area -->
-		<section class="team-area pt-50 pb-70" id="team">
+		<!-- <section class="team-area pt-50 pb-70" id="team">
 			<div class="container">
 				<div class="section-title">
 					<span>Team Member</span>
@@ -249,9 +249,8 @@
 				</div>
 			</div>
 		</section>
-		<!-- End Team Area -->
-
-		<!-- Start Client Area -->
+		
+		
 		<section class="client-area ptb-100">
 			<div class="container">
 				<div class="section-title">
@@ -337,11 +336,11 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- End Client Area -->
 
 		<!-- Start Blog Area -->
-        <section class="blog-area pb-100" id="blog">
+        <!-- <section class="blog-area pb-100" id="blog">
 			<div class="container">
 				<div class="section-title">
 					<span>Blog</span>
@@ -385,11 +384,11 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- End Blog Area -->
 
 		<!-- Start FAQ Area -->
-		<section class="questions-area two pb-100">
+		<!-- <section class="questions-area two pb-100">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-6"  id="faq">
@@ -479,7 +478,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- End FAQ Area -->
 <script>var site_url = '<?php echo site_url(); ?>';</script>
 <?=$this->endSection();?>
