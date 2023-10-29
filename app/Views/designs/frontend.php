@@ -105,7 +105,7 @@
                                         <a href="#faq" class="nav-link ">FAQs</a>
                                     </li> -->
 									<li class="nav-item">
-										<a href="#contact" class="nav-link">Contact</a>
+										<a href="<?=site_url(); ?>#contact" class="nav-link">Contact</a>
 									</li>
 								</ul>
 								<div class="others-option">
