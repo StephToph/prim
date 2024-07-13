@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="<?php echo site_url('profile'); ?>" class="dropdown-item d-block p-h-15 p-v-10">
+                                <a href="<?php echo site_url('profile/index'); ?>" class="dropdown-item d-block p-h-15 p-v-10">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <i class="anticon opacity-04 font-size-16 anticon-user"></i>
