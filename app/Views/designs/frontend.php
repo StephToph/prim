@@ -145,7 +145,8 @@
 								</li>
 								<li>
 									<i class="fa fa-envelope"></i>
-									<a href="javascript:;"><span class="__cf_email__">Email</span></a>
+									<a href="javascript:;" onclick="email_toggle();"><span class="__cf_email__" id="email_resp">Email</span></a>
+
 								</li>
 							</ul>
 						</div>
@@ -303,6 +304,16 @@
 				}
 			}
 			
+			function email_toggle(){
+				var emailElement = $('#email_resp');
+				var currentText = emailElement.html();
+				
+				if (currentText === 'Our Email') {
+					emailElement.html('admin@primroseconsult.com');
+				} else {
+					emailElement.html('Our Email');
+				}
+			}
 			$("#img-upload").change(function(){
 				readURL(this, 'img0');
 			});

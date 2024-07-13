@@ -122,13 +122,7 @@
 								<li class="nav-item">
 									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
 										<i class="fa fa-briefcase"></i>
-										Application Support
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
-										<i class="fa fa-money"></i>
-										Financial Planning
+										Application
 									</a>
 								</li>
 							</ul>
@@ -249,7 +243,7 @@
 				</div>
 			</div>
 		</section>
-		
+		-->
 		
 		<section class="client-area ptb-100">
 			<div class="container">
@@ -336,11 +330,11 @@
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<!-- End Client Area -->
 
 		<!-- Start Blog Area -->
-        <!-- <section class="blog-area pb-100" id="blog">
+        <section class="blog-area pb-100" id="blog">
 			<div class="container">
 				<div class="section-title">
 					<span>Blog</span>
@@ -384,14 +378,14 @@
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<!-- End Blog Area -->
 
 		<!-- Start FAQ Area -->
 		<section class="questions-area two pb-100">
 			<div class="container">
 				<div class="row align-items-center">
-					<!-- <div class="col-lg-6"  id="faq">
+					<div class="col-lg-6"  id="faq">
 						<div class="questions-bg-area">
 							<div class="section-title">
 								<span>FAQ</span>
@@ -424,7 +418,7 @@
 								</div>
 							</div>
 						</div>
-					</div> -->
+					</div>
 
 					<div class="col-lg-6"  id="contact">
 						<div class="questions">
