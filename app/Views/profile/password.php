@@ -60,5 +60,5 @@
 <?php echo $this->endSection(); ?>
 
 <?php echo $this->section('footer_bottom'); ?>
-    <script src="<?php echo site_url(); ?>assets/js/jsform.js"></script>
+    <script src="<?php echo site_url(); ?>assets/backend/js/jsform.js"></script>
 <?php echo $this->endSection(); ?>

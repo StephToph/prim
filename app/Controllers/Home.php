@@ -10,7 +10,41 @@ class Home extends BaseController {
         $log_id = $this->session->get('plx_id');
 
         $data['log_id'] = $log_id;
+        if($param1 == 'contact'){
+            if($this->request->getMethod() == 'post'){
+                $name = $this->request->getPost('name');
+                $email = $this->request->getPost('email');
+                $phone_number = $this->request->getPost('phone_number');
+                $message = $this->request->getPost('message');
+                
+            
+                $to = 'admin@primroseconsult.com';
+                $subject = 'Enquiry';
+                $headers = 'From: ';
         
+                // Boundary for multipart/mixed content
+                $boundary = md5(time());
+                
+                // Headers
+                $headers = "From: ".strtoupper($name)." <$email>\r\n";
+                $headers .= "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+                // Message content
+                $body = "--$boundary\r\n";
+                $body .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
+                $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+                $body .= "$message\r\n";
+        
+                if (mail($to, $subject, $body, $headers)) {
+                    echo $this->Crud->msg('success', 'Email sent successfully.');
+							echo '<script>location.reload(false);</script>';
+                } else {
+                    echo $this->Crud->msg('warning', 'Failed to send email.');
+                }
+                die;
+            }
+        }
         $mod = 'home';
         $data['title'] = ''.app_name;
         $data['page_active'] = $mod;

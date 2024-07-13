@@ -378,7 +378,7 @@
 						<div class="questions">
 							<h4 class="text-white">Contact Us</h4>
 							<div class="contact-form">
-								<form id="contactForm">
+								<?php echo form_open_multipart('home/index/contact', array('id'=>'bb_ajax_form', 'class'=>'')); ?>
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
@@ -398,8 +398,8 @@
 	
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label>Website</label>
-												<input type="text" name="phone_number" id="phone_number" required data-error="Please enter your number" class="form-control" placeholder="Your Phone">
+												<label>Phone</label>
+												<input type="text" name="phone_number" id="phone_number"  data-error="Please enter your number" class="form-control" placeholder="Your Phone">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
@@ -421,6 +421,9 @@
 											<div class="clearfix"></div>
 										</div>
 									</div>
+									<div class="row">
+										<div class="col-sm-12"><div id="bb_ajax_msg"></div></div>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -430,4 +433,6 @@
 		</section>
 		<!-- End FAQ Area -->
 <script>var site_url = '<?php echo site_url(); ?>';</script>
+
+<script src="<?php echo site_url(); ?>assets/backend/js/jsform.js"></script>
 <?=$this->endSection();?>
