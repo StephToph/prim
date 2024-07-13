@@ -106,7 +106,6 @@ class Home extends BaseController {
                         echo $this->Crud->msg('success', 'Application Payment Successful!');
                         echo '<script>window.location.replace("'.site_url('home/application').'");</script>';
                     }
-					
 				}
 			}
 			////////////////////////////////////
@@ -145,7 +144,8 @@ class Home extends BaseController {
                     $ins_res = $this->Crud->create('user', $ins);
                     $this->session->set('plx_pay_id', $ins_res);
                     if($ins_res > 0){
-                        echo '<script>payWithPaystack();</script>';
+                        echo $this->Crud->msg('success', 'Application Successful!');
+                        echo '<script>window.location.replace("'.site_url('home/application').'");</script>';
                     } else{
                         echo $this->Crud->msg('danger', 'Try Again Later');
                     }
