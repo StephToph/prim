@@ -122,13 +122,7 @@
 								<li class="nav-item">
 									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
 										<i class="fa fa-briefcase"></i>
-										Application Support
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="pills-4-tab" data-bs-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">
-										<i class="fa fa-money"></i>
-										Financial Planning
+										Application
 									</a>
 								</li>
 							</ul>
@@ -258,89 +252,43 @@
 					<h2>What Our Client Say</h2>
 				</div>
 				<div class="row align-items-center client-bg">
-					<div class="col-lg-12 p-0">
+					<div class="col-lg-6 p-0">
+						<div class="client-img">
+							<img src="<?=site_url(); ?>assets/public/assets/img/client-img/client-img.jpg" alt="">
+						</div>
+					</div>
+					<div class="col-lg-6 p-0">
 						<div class="client-details-wrap owl-carousel owl-theme">
+							<?php
+								$blog = $this->Crud->read_single('status', 0, 'testimonial');
+								if(!empty($blog)){
+									foreach($blog as $b){
+										$img = $b->image;
+										if(empty($img) || !file_exists($img)){
+											$img = 'assets/blog.jpg';
+										}
+								
+							?>
 							<div class="client-details">
 								<img src="<?=site_url(); ?>assets/avatar.jpeg" alt="" style="height:100px">
-								<h3>Amelia Daniel</h3>
-								<span>Chairman and founder</span>
+								<h3><?=strtoupper($b->name);?></h3>
+								<span><?=ucwords($b->title); ?></span>
 								<i class="flaticon-quote"></i>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore  dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus  viverra maecenas accumsan lacus vel facilisis.</p>
-								<ul>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-								</ul>
+								<p><?=ucwords($d->testimony); ?></p>
+								
 							</div>
-							<div class="client-details">
-								<img src="<?=site_url(); ?>assets/avatar.jpeg" alt="" style="height:100px">
-								<h3>Alex Mason</h3>
-								<span>Visual Media</span>
-								<i class="flaticon-quote"></i>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore  dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus  viverra maecenas accumsan lacus vel facilisis.</p>
-								<ul>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-								</ul>
-							</div>
-							<div class="client-details">
-								<img src="<?=site_url(); ?>assets/avatar.jpeg" alt="" style="height:100px">
-								<h3>Michael Harper</h3>
-								<span>Sales Manager</span>
-								<i class="flaticon-quote"></i>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore  dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus  viverra maecenas accumsan lacus vel facilisis.</p>
-								<ul>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-									</li>
-								</ul>
-							</div>
+							<?php 
+									} }
+							?>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>-->
 		<!-- End Client Area -->
 
 		<!-- Start Blog Area -->
-        <!-- <section class="blog-area pb-100" id="blog">
+        <section class="blog-area pb-100" id="blog">
 			<div class="container">
 				<div class="section-title">
 					<span>Blog</span>
@@ -384,14 +332,14 @@
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<!-- End Blog Area -->
 
 		<!-- Start FAQ Area -->
 		<section class="questions-area two pb-100">
 			<div class="container">
 				<div class="row align-items-center">
-					<!-- <div class="col-lg-6"  id="faq">
+					<div class="col-lg-6"  id="faq">
 						<div class="questions-bg-area">
 							<div class="section-title">
 								<span>FAQ</span>
@@ -424,7 +372,7 @@
 								</div>
 							</div>
 						</div>
-					</div> -->
+					</div>
 
 					<div class="col-lg-6"  id="contact">
 						<div class="questions">
