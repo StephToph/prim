@@ -260,7 +260,7 @@
 					<div class="col-lg-6 p-0">
 						<div class="client-details-wrap owl-carousel owl-theme">
 							<?php
-								$blog = $this->Crud->read_single('status', 0, 'testimonial');
+								$blog = '';
 								if(!empty($blog)){
 									foreach($blog as $b){
 										$img = $b->image;
